@@ -6,7 +6,7 @@ import { Pair } from './entities/pair'
 import IUniswapV2Pair from '@uniswap/v2-core/build/IUniswapV2Pair.json'
 import invariant from 'tiny-invariant'
 import { FACTORY_ADDRESS } from './constants'
-import { FACTORY_ABI } from "./abis/GenericFactory";
+import { FACTORY_ABI } from './abis/GenericFactory'
 
 let TOKEN_DECIMALS_CACHE: { [chainId: number]: { [address: string]: number } } = {
   [SupportedChainId.MAINNET]: {

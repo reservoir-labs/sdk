@@ -1,10 +1,10 @@
 import { Fetcher } from './fetcher'
-import {WETH9 as _WETH9} from "@uniswap/sdk-core/dist/entities/weth9";
-import { Contract, ContractFactory } from "@ethersproject/contracts";
-import { FACTORY_ABI, FACTORY_BYTECODE } from "./abis/GenericFactory";
-import { Provider} from "@ethersproject/providers";
-import { Wallet } from "@ethersproject/wallet";
-import {WebSocketProvider} from "@ethersproject/providers";
+import { WETH9 as _WETH9 } from '@uniswap/sdk-core/dist/entities/weth9'
+import { Contract, ContractFactory } from '@ethersproject/contracts'
+import { FACTORY_ABI, FACTORY_BYTECODE } from './abis/GenericFactory'
+import { Provider } from '@ethersproject/providers'
+import { Wallet } from '@ethersproject/wallet'
+import { WebSocketProvider } from '@ethersproject/providers'
 
 describe('fetcher', () => {
   // const ADDRESSES = [
@@ -23,10 +23,9 @@ describe('fetcher', () => {
   let wallet: Wallet
 
   beforeAll(async () => {
-
-    provider = new WebSocketProvider("ws://127.0.0.1:8545")
+    provider = new WebSocketProvider('ws://127.0.0.1:8545')
     // private key from anvil
-    wallet = new Wallet("0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80", provider)
+    wallet = new Wallet('0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80', provider)
     const cf = new ContractFactory(FACTORY_ABI, FACTORY_BYTECODE, wallet)
     factory = await cf.deploy(wallet.address)
 
