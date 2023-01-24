@@ -1,7 +1,7 @@
 import { BigintIsh, Price, sqrt, Token, CurrencyAmount } from '@uniswap/sdk-core'
 import invariant from 'tiny-invariant'
 import JSBI from 'jsbi'
-import {keccak256, pack} from '@ethersproject/solidity'
+import { keccak256, pack } from '@ethersproject/solidity'
 import { getCreate2Address } from '@ethersproject/address'
 
 import { FACTORY_ADDRESS, MINIMUM_LIQUIDITY, FIVE, _997, _1000, ONE, ZERO } from '../constants'
@@ -37,12 +37,7 @@ export const computePairAddress = ({
   initCode += token0.toString()
   initCode += token1.toString()
 
-  return getCreate2Address(
-    factoryAddress,
-    pack(['uint256'], [0x0]),
-    keccak256(['string'],
-        [initCode]),
-  )
+  return getCreate2Address(factoryAddress, pack(['uint256'], [0x0]), keccak256(['string'], [initCode]))
 }
 export class Pair {
   public readonly liquidityToken: Token
