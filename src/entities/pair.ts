@@ -24,7 +24,7 @@ export const computePairAddress = ({
 
   let initCode: any
 
-  switch(curveId) {
+  switch (curveId) {
     case 0:
       initCode = ConstantProductPair.bytecode
       break
