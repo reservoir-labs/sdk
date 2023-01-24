@@ -47,6 +47,11 @@ export abstract class Fetcher {
     return pairs
   }
 
+  public static async fetchRelevantPairs(): Promise<Pair[]> {
+
+    return []
+  }
+
   /**
    * Fetch information for a given token on the given chain, using the given ethers provider.
    * @param chainId chain of the token
