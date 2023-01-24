@@ -48,7 +48,6 @@ export abstract class Fetcher {
   }
 
   public static async fetchRelevantPairs(): Promise<Pair[]> {
-
     return []
   }
 
