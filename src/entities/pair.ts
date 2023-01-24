@@ -1,48 +1,72 @@
 import { BigintIsh, Price, sqrt, Token, CurrencyAmount } from '@uniswap/sdk-core'
 import invariant from 'tiny-invariant'
 import JSBI from 'jsbi'
-import { pack, keccak256 } from '@ethersproject/solidity'
+import { keccak256 } from '@ethersproject/solidity'
 import { getCreate2Address } from '@ethersproject/address'
 
 import { FACTORY_ADDRESS, MINIMUM_LIQUIDITY, FIVE, _997, _1000, ONE, ZERO } from '../constants'
 import { InsufficientReservesError, InsufficientInputAmountError } from '../errors'
+import ConstantProductPair from '../abis/ConstantProductPair.json'
+import StablePair from '../abis/StablePair.json'
 
 export const computePairAddress = ({
   factoryAddress,
   tokenA,
-  tokenB
+  tokenB,
+  curveId
 }: {
   factoryAddress: string
   tokenA: Token
   tokenB: Token
+  curveId: number
 }): string => {
   const [token0, token1] = tokenA.sortsBefore(tokenB) ? [tokenA, tokenB] : [tokenB, tokenA] // does safety checks
+
+  let initCode: any
+
+  switch(curveId) {
+    case 0:
+      initCode = ConstantProductPair.bytecode
+      break
+    case 1:
+      initCode = StablePair.bytecode
+      break
+  }
+
+  // TODO: load the initCode according to the curve and literally append token0 token1 behind
+  initCode += token0.toString()
+  initCode += token1.toString()
+
   return getCreate2Address(
     factoryAddress,
-    keccak256(['bytes'], [pack(['address', 'address'], [token0.address, token1.address])]),
-    INIT_CODE_HASH
+      "",
+    keccak256(['string'],
+        [initCode]),
   )
 }
 export class Pair {
   public readonly liquidityToken: Token
   private readonly tokenAmounts: [CurrencyAmount<Token>, CurrencyAmount<Token>]
 
-  public static getAddress(tokenA: Token, tokenB: Token): string {
-    return computePairAddress({ factoryAddress: FACTORY_ADDRESS, tokenA, tokenB })
+  private readonly curveId: number
+
+  public static getAddress(tokenA: Token, tokenB: Token, curveId: number): string {
+    return computePairAddress({ factoryAddress: FACTORY_ADDRESS, tokenA, tokenB, curveId })
   }
 
-  public constructor(currencyAmountA: CurrencyAmount<Token>, tokenAmountB: CurrencyAmount<Token>) {
+  public constructor(currencyAmountA: CurrencyAmount<Token>, tokenAmountB: CurrencyAmount<Token>, curveId: number) {
     const tokenAmounts = currencyAmountA.currency.sortsBefore(tokenAmountB.currency) // does safety checks
       ? [currencyAmountA, tokenAmountB]
       : [tokenAmountB, currencyAmountA]
     this.liquidityToken = new Token(
       tokenAmounts[0].currency.chainId,
-      Pair.getAddress(tokenAmounts[0].currency, tokenAmounts[1].currency),
+      Pair.getAddress(tokenAmounts[0].currency, tokenAmounts[1].currency, curveId),
       18,
       'UNI-V2',
       'Uniswap V2'
     )
     this.tokenAmounts = tokenAmounts as [CurrencyAmount<Token>, CurrencyAmount<Token>]
+    this.curveId = curveId
   }
 
   /**
@@ -123,7 +147,7 @@ export class Pair {
     if (JSBI.equal(outputAmount.quotient, ZERO)) {
       throw new InsufficientInputAmountError()
     }
-    return [outputAmount, new Pair(inputReserve.add(inputAmount), outputReserve.subtract(outputAmount))]
+    return [outputAmount, new Pair(inputReserve.add(inputAmount), outputReserve.subtract(outputAmount), this.curveId)]
   }
 
   public getInputAmount(outputAmount: CurrencyAmount<Token>): [CurrencyAmount<Token>, Pair] {
@@ -144,7 +168,7 @@ export class Pair {
       outputAmount.currency.equals(this.token0) ? this.token1 : this.token0,
       JSBI.add(JSBI.divide(numerator, denominator), ONE)
     )
-    return [inputAmount, new Pair(inputReserve.add(inputAmount), outputReserve.subtract(outputAmount))]
+    return [inputAmount, new Pair(inputReserve.add(inputAmount), outputReserve.subtract(outputAmount), this.curveId)]
   }
 
   public getLiquidityMinted(

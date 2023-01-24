@@ -6,7 +6,7 @@ import { Pair } from './entities/pair'
 import IUniswapV2Pair from '@uniswap/v2-core/build/IUniswapV2Pair.json'
 import invariant from 'tiny-invariant'
 import { FACTORY_ADDRESS } from './constants'
-import { FACTORY_ABI } from './abis/GenericFactory'
+import GenericFactory from "./abis/GenericFactory.json"
 
 let TOKEN_DECIMALS_CACHE: { [chainId: number]: { [address: string]: number } } = {
   [SupportedChainId.MAINNET]: {
@@ -40,7 +40,7 @@ export abstract class Fetcher {
     chainId: SupportedChainId,
     provider = getDefaultProvider(getNetwork(chainId))
   ): Promise<string[]> {
-    const pairs: string[] = await new Contract(FACTORY_ADDRESS, FACTORY_ABI, provider).allPairs()
+    const pairs: string[] = await new Contract(FACTORY_ADDRESS, GenericFactory.abi, provider).allPairs()
 
     console.log(pairs)
 
@@ -95,12 +95,13 @@ export abstract class Fetcher {
     provider = getDefaultProvider(getNetwork(tokenA.chainId))
   ): Promise<Pair> {
     invariant(tokenA.chainId === tokenB.chainId, 'CHAIN_ID')
-    const address = Pair.getAddress(tokenA, tokenB)
+    const address = Pair.getAddress(tokenA, tokenB, curveId)
     const [reserves0, reserves1] = await new Contract(address, IUniswapV2Pair.abi, provider).getReserves()
     const balances = tokenA.sortsBefore(tokenB) ? [reserves0, reserves1] : [reserves1, reserves0]
     return new Pair(
       CurrencyAmount.fromRawAmount(tokenA, balances[0]),
-      CurrencyAmount.fromRawAmount(tokenB, balances[1])
+      CurrencyAmount.fromRawAmount(tokenB, balances[1]),
+      curveId
     )
   }
 }
