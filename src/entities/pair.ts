@@ -24,7 +24,7 @@ export const computePairAddress = ({
 
   let initCode: any
 
-  switch(curveId) {
+  switch (curveId) {
     case 0:
       initCode = ConstantProductPair.bytecode
       break
@@ -37,12 +37,7 @@ export const computePairAddress = ({
   initCode += token0.toString()
   initCode += token1.toString()
 
-  return getCreate2Address(
-    factoryAddress,
-      "",
-    keccak256(['string'],
-        [initCode]),
-  )
+  return getCreate2Address(factoryAddress, '', keccak256(['string'], [initCode]))
 }
 export class Pair {
   public readonly liquidityToken: Token
