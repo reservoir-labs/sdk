@@ -3,10 +3,11 @@ import { getNetwork } from '@ethersproject/networks'
 import { getDefaultProvider } from '@ethersproject/providers'
 import { SupportedChainId, Token, CurrencyAmount } from '@reservoir-labs/sdk-core'
 import { Pair } from './entities/pair'
-import IUniswapV2Pair from '@uniswap/v2-core/build/IUniswapV2Pair.json'
 import invariant from 'tiny-invariant'
 import { FACTORY_ADDRESS } from './constants'
 import GenericFactory from './abis/GenericFactory.json'
+import ReservoirPair from './abis/ReservoirPair.json'
+import JSBI from "jsbi";
 
 let TOKEN_DECIMALS_CACHE: { [chainId: number]: { [address: string]: number } } = {
   [SupportedChainId.MAINNET]: {
@@ -93,8 +94,11 @@ export abstract class Fetcher {
   ): Promise<Pair> {
     invariant(tokenA.chainId === tokenB.chainId, 'CHAIN_ID')
     const address = Pair.getAddress(tokenA, tokenB, curveId)
-    const [reserves0, reserves1] = await new Contract(address, IUniswapV2Pair.abi, provider).getReserves()
+
+    const pair = await new Contract(address, ReservoirPair.abi, provider)
+    const [reserves0, reserves1] = pair.getReserves()
     const balances = tokenA.sortsBefore(tokenB) ? [reserves0, reserves1] : [reserves1, reserves0]
+    const swapFee: JSBI = pair.swapFee()
     return new Pair(
       CurrencyAmount.fromRawAmount(tokenA, balances[0]),
       CurrencyAmount.fromRawAmount(tokenB, balances[1]),
