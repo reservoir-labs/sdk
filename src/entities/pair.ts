@@ -37,10 +37,10 @@ export const computePairAddress = ({
   const encodedTokenAddresses = defaultAbiCoder.encode(['address', 'address'], [token0.address, token1.address])
   const initCodeWithTokens = pack(['bytes', 'bytes'], [initCode, encodedTokenAddresses])
 
-  // TODO: to replace this zero bytes32 with a constant instead of using a string literal?
   // N.B: we do not use a salt as the initCode is unique with token0 and token1 appended to it
   return getCreate2Address(
     factoryAddress,
+    // TODO: to replace this zero bytes32 with a constant instead of using a string literal
     pack(['bytes32'], ['0x0000000000000000000000000000000000000000000000000000000000000000']),
     keccak256(['bytes'], [initCodeWithTokens])
   )
