@@ -8,6 +8,7 @@ import { FACTORY_ADDRESS, MINIMUM_LIQUIDITY, FIVE, _997, _1000, ONE, ZERO } from
 import { InsufficientReservesError, InsufficientInputAmountError } from '../errors'
 import ConstantProductPair from '../abis/ConstantProductPair.json'
 import StablePair from '../abis/StablePair.json'
+import {defaultAbiCoder} from "@ethersproject/abi";
 
 export const computePairAddress = ({
   factoryAddress,
@@ -26,18 +27,19 @@ export const computePairAddress = ({
 
   switch (curveId) {
     case 0:
-      initCode = ConstantProductPair.bytecode
+      initCode = ConstantProductPair.bytecode.object
       break
     case 1:
-      initCode = StablePair.bytecode
+      initCode = StablePair.bytecode.object
       break
   }
 
-  // TODO: load the initCode according to the curve and literally append token0 token1 behind
-  initCode += token0.toString()
-  initCode += token1.toString()
+  const encodedTokenAddresses = defaultAbiCoder.encode(['address', 'address'], [token0.address, token1.address])
+  const initCodeWithTokens = pack(['bytes', 'bytes'], [initCode, encodedTokenAddresses])
 
-  return getCreate2Address(factoryAddress, pack(['uint256'], [0x0]), keccak256(['string'], [initCode]))
+  // TODO: to replace this zero bytes32 with a constant instead of using a string literal?
+  // N.B: we do not use a salt as the initCode is unique with token0 and token1 appended to it
+  return getCreate2Address(factoryAddress, pack(['bytes32'], ['0x0000000000000000000000000000000000000000000000000000000000000000']), keccak256(['bytes'], [initCodeWithTokens]))
 }
 export class Pair {
   public readonly liquidityToken: Token
