@@ -29,11 +29,11 @@ describe('fetcher', () => {
     const cf = new ContractFactory(GenericFactory.abi, GenericFactory.bytecode, wallet)
     factory = await cf.deploy(wallet.address)
 
-    console.log(factory.address)
+    console.log("factory address", factory.address)
   })
 
   it('should fetch pairs', async () => {
     const pairs = await Fetcher.fetchAllPairs(43114, provider)
-    console.log(pairs)
+    console.log("pairs", pairs)
   })
 })

@@ -1,6 +1,8 @@
 import JSBI from 'jsbi'
 
-export const FACTORY_ADDRESS = '0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f'
+// TODO: update this with the standardized CREATE2 address that will be the same across all chains
+// Currently it only works for the wallet derived from anvil's private key
+export const FACTORY_ADDRESS = '0x2b0d36facd61b71cc05ab8f3d2355ec3631c0dd5'
 
 export const MINIMUM_LIQUIDITY = JSBI.BigInt(1000)
 

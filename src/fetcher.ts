@@ -41,9 +41,6 @@ export abstract class Fetcher {
     provider = getDefaultProvider(getNetwork(chainId))
   ): Promise<string[]> {
     const pairs: string[] = await new Contract(FACTORY_ADDRESS, GenericFactory.abi, provider).allPairs()
-
-    console.log(pairs)
-
     return pairs
   }
 
