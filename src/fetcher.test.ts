@@ -2,7 +2,7 @@ import { Fetcher } from './fetcher'
 import { WETH9 as _WETH9 } from '@reservoir-labs/sdk-core/dist/entities/weth9'
 import { Contract, ContractFactory } from '@ethersproject/contracts'
 import GenericFactory from './abis/GenericFactory.json'
-import { Provider } from '@ethersproject/providers'
+import {BaseProvider} from '@ethersproject/providers'
 import { Wallet } from '@ethersproject/wallet'
 import { WebSocketProvider } from '@ethersproject/providers'
 
@@ -19,7 +19,7 @@ describe('fetcher', () => {
   // const WETH9 = _WETH9[43114]
 
   let factory: Contract
-  let provider: Provider
+  let provider: BaseProvider
   let wallet: Wallet
 
   beforeAll(async () => {
@@ -33,7 +33,7 @@ describe('fetcher', () => {
   })
 
   it('should fetch pairs', async () => {
-    const pairs = await Fetcher.fetchAllPairs(43114, this.provider)
+    const pairs = await Fetcher.fetchAllPairs(43114, provider)
     console.log(pairs)
   })
 })
