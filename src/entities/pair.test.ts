@@ -1,4 +1,4 @@
-import { Token, WETH9, Price, CurrencyAmount } from '@uniswap/sdk-core'
+import { Token, WETH9, Price, CurrencyAmount } from '@reservoir-labs/sdk-core'
 import { InsufficientInputAmountError } from '../errors'
 import { computePairAddress, Pair } from './pair'
 

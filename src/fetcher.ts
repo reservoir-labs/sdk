@@ -1,7 +1,7 @@
 import { Contract } from '@ethersproject/contracts'
 import { getNetwork } from '@ethersproject/networks'
 import { getDefaultProvider } from '@ethersproject/providers'
-import { SupportedChainId, Token, CurrencyAmount } from '@uniswap/sdk-core'
+import { SupportedChainId, Token, CurrencyAmount } from '@reservoir-labs/sdk-core'
 import { Pair } from './entities/pair'
 import IUniswapV2Pair from '@uniswap/v2-core/build/IUniswapV2Pair.json'
 import invariant from 'tiny-invariant'
