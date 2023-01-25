@@ -51,11 +51,15 @@ export class Pair {
 
   private readonly curveId: number
 
+  // TODO: does the frontend dev need to know about the platformFee as well?
+  // not necessary for the swap function, but for the misc info about yield yes
+  public readonly swapFee: JSBI
+
   public static getAddress(tokenA: Token, tokenB: Token, curveId: number): string {
     return computePairAddress({ factoryAddress: FACTORY_ADDRESS, tokenA, tokenB, curveId })
   }
 
-  public constructor(currencyAmountA: CurrencyAmount<Token>, tokenAmountB: CurrencyAmount<Token>, curveId: number) {
+  public constructor(currencyAmountA: CurrencyAmount<Token>, tokenAmountB: CurrencyAmount<Token>, curveId: number, swapFee: JSBI = JSBI.BigInt(3000)) {
     const tokenAmounts = currencyAmountA.currency.sortsBefore(tokenAmountB.currency) // does safety checks
       ? [currencyAmountA, tokenAmountB]
       : [tokenAmountB, currencyAmountA]
@@ -68,6 +72,7 @@ export class Pair {
     )
     this.tokenAmounts = tokenAmounts as [CurrencyAmount<Token>, CurrencyAmount<Token>]
     this.curveId = curveId
+    this.swapFee = swapFee
   }
 
   /**

@@ -102,7 +102,8 @@ export abstract class Fetcher {
     return new Pair(
       CurrencyAmount.fromRawAmount(tokenA, balances[0]),
       CurrencyAmount.fromRawAmount(tokenB, balances[1]),
-      curveId
+      curveId,
+      swapFee
     )
   }
 }
