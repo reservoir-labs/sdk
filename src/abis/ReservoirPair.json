@@ -2453,45 +2453,19 @@
     "absolutePath": "src/ReservoirPair.sol",
     "id": 31685,
     "exportedSymbols": {
-      "Bytes32Lib": [
-        36099
-      ],
-      "ERC20": [
-        29520
-      ],
-      "FactoryStoreLib": [
-        36407
-      ],
-      "GenericFactory": [
-        30053
-      ],
-      "IAssetManager": [
-        35553
-      ],
-      "LogCompression": [
-        36476
-      ],
-      "Observation": [
-        30102
-      ],
-      "ReservoirERC20": [
-        30063
-      ],
-      "ReservoirPair": [
-        31684
-      ],
-      "SafeCast": [
-        26338
-      ],
-      "SafeTransferLib": [
-        27285
-      ],
-      "Slot0": [
-        30093
-      ],
-      "stdMath": [
-        4232
-      ]
+      "Bytes32Lib": [36099],
+      "ERC20": [29520],
+      "FactoryStoreLib": [36407],
+      "GenericFactory": [30053],
+      "IAssetManager": [35553],
+      "LogCompression": [36476],
+      "Observation": [30102],
+      "ReservoirERC20": [30063],
+      "ReservoirPair": [31684],
+      "SafeCast": [26338],
+      "SafeTransferLib": [27285],
+      "Slot0": [30093],
+      "stdMath": [4232]
     },
     "nodeType": "SourceUnit",
     "src": "0:19270:25",
@@ -2501,12 +2475,7 @@
         "nodeType": "PragmaDirective",
         "src": "0:23:25",
         "nodes": [],
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".0"
-        ]
+        "literals": ["solidity", "^", "0.8", ".0"]
       },
       {
         "id": 30067,
@@ -3010,9 +2979,7 @@
             "libraryName": {
               "id": 30105,
               "name": "FactoryStoreLib",
-              "nameLocations": [
-                "1534:15:25"
-              ],
+              "nameLocations": ["1534:15:25"],
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 36407,
               "src": "1534:15:25"
@@ -3023,9 +2990,7 @@
               "pathNode": {
                 "id": 30106,
                 "name": "GenericFactory",
-                "nameLocations": [
-                  "1554:14:25"
-                ],
+                "nameLocations": ["1554:14:25"],
                 "nodeType": "IdentifierPath",
                 "referencedDeclaration": 30053,
                 "src": "1554:14:25"
@@ -3047,9 +3012,7 @@
             "libraryName": {
               "id": 30109,
               "name": "Bytes32Lib",
-              "nameLocations": [
-                "1580:10:25"
-              ],
+              "nameLocations": ["1580:10:25"],
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 36099,
               "src": "1580:10:25"
@@ -3074,9 +3037,7 @@
             "libraryName": {
               "id": 30112,
               "name": "SafeCast",
-              "nameLocations": [
-                "1614:8:25"
-              ],
+              "nameLocations": ["1614:8:25"],
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 26338,
               "src": "1614:8:25"
@@ -4315,9 +4276,7 @@
               "pathNode": {
                 "id": 30204,
                 "name": "GenericFactory",
-                "nameLocations": [
-                  "2832:14:25"
-                ],
+                "nameLocations": ["2832:14:25"],
                 "nodeType": "IdentifierPath",
                 "referencedDeclaration": 30053,
                 "src": "2832:14:25"
@@ -4354,9 +4313,7 @@
               "pathNode": {
                 "id": 30207,
                 "name": "ERC20",
-                "nameLocations": [
-                  "2877:5:25"
-                ],
+                "nameLocations": ["2877:5:25"],
                 "nodeType": "IdentifierPath",
                 "referencedDeclaration": 29520,
                 "src": "2877:5:25"
@@ -4393,9 +4350,7 @@
               "pathNode": {
                 "id": 30210,
                 "name": "ERC20",
-                "nameLocations": [
-                  "2912:5:25"
-                ],
+                "nameLocations": ["2912:5:25"],
                 "nodeType": "IdentifierPath",
                 "referencedDeclaration": 29520,
                 "src": "2912:5:25"
@@ -4493,9 +4448,7 @@
               "pathNode": {
                 "id": 30218,
                 "name": "Slot0",
-                "nameLocations": [
-                  "3313:5:25"
-                ],
+                "nameLocations": ["3313:5:25"],
                 "nodeType": "IdentifierPath",
                 "referencedDeclaration": 30093,
                 "src": "3313:5:25"
@@ -4666,18 +4619,8 @@
               "isPure": true,
               "kind": "structConstructorCall",
               "lValueRequested": false,
-              "nameLocations": [
-                "3344:8:25",
-                "3357:8:25",
-                "3370:15:25",
-                "3390:5:25"
-              ],
-              "names": [
-                "reserve0",
-                "reserve1",
-                "packedTimestamp",
-                "index"
-              ],
+              "nameLocations": ["3344:8:25", "3357:8:25", "3370:15:25", "3390:5:25"],
+              "names": ["reserve0", "reserve1", "packedTimestamp", "index"],
               "nodeType": "FunctionCall",
               "src": "3337:78:25",
               "tryCall": false,
@@ -5123,10 +5066,7 @@
                       "id": 30252,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "3673:7:25",
                       "typeDescriptions": {
@@ -6869,9 +6809,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    30397
-                  ],
+                  "assignments": [30397],
                   "declarations": [
                     {
                       "constant": false,
@@ -7266,9 +7204,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    30433
-                  ],
+                  "assignments": [30433],
                   "declarations": [
                     {
                       "constant": false,
@@ -7291,9 +7227,7 @@
                         "pathNode": {
                           "id": 30431,
                           "name": "Slot0",
-                          "nameLocations": [
-                            "5020:5:25"
-                          ],
+                          "nameLocations": ["5020:5:25"],
                           "nodeType": "IdentifierPath",
                           "referencedDeclaration": 30093,
                           "src": "5020:5:25"
@@ -7325,9 +7259,7 @@
                   "src": "5020:28:25"
                 },
                 {
-                  "assignments": [
-                    30437
-                  ],
+                  "assignments": [30437],
                   "declarations": [
                     {
                       "constant": false,
@@ -7723,10 +7655,7 @@
                       "id": 30463,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "5336:7:25",
                       "typeDescriptions": {
@@ -8110,9 +8039,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    30499
-                  ],
+                  "assignments": [30499],
                   "declarations": [
                     {
                       "constant": false,
@@ -8135,9 +8062,7 @@
                         "pathNode": {
                           "id": 30497,
                           "name": "Slot0",
-                          "nameLocations": [
-                            "5723:5:25"
-                          ],
+                          "nameLocations": ["5723:5:25"],
                           "nodeType": "IdentifierPath",
                           "referencedDeclaration": 30093,
                           "src": "5723:5:25"
@@ -8604,12 +8529,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    30531,
-                    30533,
-                    30535,
-                    null
-                  ],
+                  "assignments": [30531, 30533, 30535, null],
                   "declarations": [
                     {
                       "constant": false,
@@ -9052,12 +8972,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    30566,
-                    30568,
-                    30570,
-                    null
-                  ],
+                  "assignments": [30566, 30568, 30570, null],
                   "declarations": [
                     {
                       "constant": false,
@@ -9797,9 +9712,7 @@
                 "modifierName": {
                   "id": 30605,
                   "name": "onlyFactory",
-                  "nameLocations": [
-                    "6771:11:25"
-                  ],
+                  "nameLocations": ["6771:11:25"],
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 30265,
                   "src": "6771:11:25"
@@ -10027,9 +9940,7 @@
                 "modifierName": {
                   "id": 30625,
                   "name": "onlyFactory",
-                  "nameLocations": [
-                    "7074:11:25"
-                  ],
+                  "nameLocations": ["7074:11:25"],
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 30265,
                   "src": "7074:11:25"
@@ -10097,9 +10008,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    30645
-                  ],
+                  "assignments": [30645],
                   "declarations": [
                     {
                       "constant": false,
@@ -10489,10 +10398,7 @@
                       "id": 30667,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "7457:7:25",
                       "typeDescriptions": {
@@ -10670,9 +10576,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    30688
-                  ],
+                  "assignments": [30688],
                   "declarations": [
                     {
                       "constant": false,
@@ -11062,10 +10966,7 @@
                       "id": 30710,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "7848:7:25",
                       "typeDescriptions": {
@@ -11243,9 +11144,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    30733
-                  ],
+                  "assignments": [30733],
                   "declarations": [
                     {
                       "constant": false,
@@ -11606,10 +11505,7 @@
                       "id": 30741,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "8154:7:25",
                       "typeDescriptions": {
@@ -11762,10 +11658,7 @@
                       "id": 30758,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "8258:7:25",
                       "typeDescriptions": {
@@ -11794,9 +11687,7 @@
                   "src": "8258:62:25"
                 },
                 {
-                  "assignments": [
-                    30769
-                  ],
+                  "assignments": [30769],
                   "declarations": [
                     {
                       "constant": false,
@@ -12129,10 +12020,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    30799,
-                    30801
-                  ],
+                  "assignments": [30799, 30801],
                   "declarations": [
                     {
                       "constant": false,
@@ -12874,9 +12762,7 @@
                     "src": "9151:519:25",
                     "statements": [
                       {
-                        "assignments": [
-                          30853
-                        ],
+                        "assignments": [30853],
                         "declarations": [
                           {
                             "constant": false,
@@ -12990,9 +12876,7 @@
                         "src": "9165:74:25"
                       },
                       {
-                        "assignments": [
-                          30862
-                        ],
+                        "assignments": [30862],
                         "declarations": [
                           {
                             "constant": false,
@@ -13213,10 +13097,7 @@
                                   "id": 30902,
                                   "name": "revert",
                                   "nodeType": "Identifier",
-                                  "overloadedDeclarations": [
-                                    -19,
-                                    -19
-                                  ],
+                                  "overloadedDeclarations": [-19, -19],
                                   "referencedDeclaration": -19,
                                   "src": "9616:6:25",
                                   "typeDescriptions": {
@@ -13606,10 +13487,7 @@
                                   "id": 30889,
                                   "name": "require",
                                   "nodeType": "Identifier",
-                                  "overloadedDeclarations": [
-                                    -18,
-                                    -18
-                                  ],
+                                  "overloadedDeclarations": [-18, -18],
                                   "referencedDeclaration": -18,
                                   "src": "9492:7:25",
                                   "typeDescriptions": {
@@ -13675,9 +13553,7 @@
                     "pathNode": {
                       "id": 30830,
                       "name": "ERC20",
-                      "nameLocations": [
-                        "8969:5:25"
-                      ],
+                      "nameLocations": ["8969:5:25"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 29520,
                       "src": "8969:5:25"
@@ -14081,10 +13957,7 @@
                       "id": 30924,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "9961:7:25",
                       "typeDescriptions": {
@@ -14368,10 +14241,7 @@
                       "id": 30943,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "10060:7:25",
                       "typeDescriptions": {
@@ -14400,9 +14270,7 @@
                   "src": "10060:89:25"
                 },
                 {
-                  "assignments": [
-                    30963
-                  ],
+                  "assignments": [30963],
                   "declarations": [
                     {
                       "constant": false,
@@ -14513,9 +14381,7 @@
                   "src": "10160:47:25"
                 },
                 {
-                  "assignments": [
-                    30971
-                  ],
+                  "assignments": [30971],
                   "declarations": [
                     {
                       "constant": false,
@@ -15935,9 +15801,7 @@
                     "pathNode": {
                       "id": 31068,
                       "name": "ERC20",
-                      "nameLocations": [
-                        "12442:5:25"
-                      ],
+                      "nameLocations": ["12442:5:25"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 29520,
                       "src": "12442:5:25"
@@ -16018,9 +15882,7 @@
                     "pathNode": {
                       "id": 31075,
                       "name": "ERC20",
-                      "nameLocations": [
-                        "12495:5:25"
-                      ],
+                      "nameLocations": ["12495:5:25"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 29520,
                       "src": "12495:5:25"
@@ -16089,9 +15951,7 @@
               "pathNode": {
                 "id": 31082,
                 "name": "IAssetManager",
-                "nameLocations": [
-                  "12530:13:25"
-                ],
+                "nameLocations": ["12530:13:25"],
                 "nodeType": "IdentifierPath",
                 "referencedDeclaration": 35553,
                 "src": "12530:13:25"
@@ -16260,10 +16120,7 @@
                       "id": 31092,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "12644:7:25",
                       "typeDescriptions": {
@@ -16346,9 +16203,7 @@
                 "modifierName": {
                   "id": 31089,
                   "name": "onlyFactory",
-                  "nameLocations": [
-                    "12622:11:25"
-                  ],
+                  "nameLocations": ["12622:11:25"],
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 30265,
                   "src": "12622:11:25"
@@ -16384,9 +16239,7 @@
                     "pathNode": {
                       "id": 31085,
                       "name": "IAssetManager",
-                      "nameLocations": [
-                        "12590:13:25"
-                      ],
+                      "nameLocations": ["12590:13:25"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 35553,
                       "src": "12590:13:25"
@@ -17136,9 +16989,7 @@
                       "src": "13555:190:25",
                       "statements": [
                         {
-                          "assignments": [
-                            31189
-                          ],
+                          "assignments": [31189],
                           "declarations": [
                             {
                               "constant": false,
@@ -17369,9 +17220,7 @@
                     "src": "13317:200:25",
                     "statements": [
                       {
-                        "assignments": [
-                          31168
-                        ],
+                        "assignments": [31168],
                         "declarations": [
                           {
                             "constant": false,
@@ -17625,9 +17474,7 @@
                     "pathNode": {
                       "id": 31151,
                       "name": "ERC20",
-                      "nameLocations": [
-                        "13138:5:25"
-                      ],
+                      "nameLocations": ["13138:5:25"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 29520,
                       "src": "13138:5:25"
@@ -17970,9 +17817,7 @@
                   }
                 },
                 {
-                  "assignments": [
-                    31241
-                  ],
+                  "assignments": [31241],
                   "declarations": [
                     {
                       "constant": false,
@@ -18088,9 +17933,7 @@
                   "src": "14129:62:25"
                 },
                 {
-                  "assignments": [
-                    31249
-                  ],
+                  "assignments": [31249],
                   "declarations": [
                     {
                       "constant": false,
@@ -19139,10 +18982,7 @@
                       "id": 31315,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "14816:7:25",
                       "typeDescriptions": {
@@ -19273,9 +19113,7 @@
                       "src": "15140:266:25",
                       "statements": [
                         {
-                          "assignments": [
-                            31359
-                          ],
+                          "assignments": [31359],
                           "declarations": [
                             {
                               "constant": false,
@@ -19694,9 +19532,7 @@
                     "src": "14919:192:25",
                     "statements": [
                       {
-                        "assignments": [
-                          31330
-                        ],
+                        "assignments": [31330],
                         "declarations": [
                           {
                             "constant": false,
@@ -20133,9 +19969,7 @@
                       "src": "15714:266:25",
                       "statements": [
                         {
-                          "assignments": [
-                            31424
-                          ],
+                          "assignments": [31424],
                           "declarations": [
                             {
                               "constant": false,
@@ -20554,9 +20388,7 @@
                     "src": "15439:246:25",
                     "statements": [
                       {
-                        "assignments": [
-                          31395
-                        ],
+                        "assignments": [31395],
                         "declarations": [
                           {
                             "constant": false,
@@ -21273,9 +21105,7 @@
                 "pathNode": {
                   "id": 31479,
                   "name": "Observation",
-                  "nameLocations": [
-                    "16976:11:25"
-                  ],
+                  "nameLocations": ["16976:11:25"],
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 30102,
                   "src": "16976:11:25"
@@ -21503,10 +21333,7 @@
                       "id": 31497,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "17369:7:25",
                       "typeDescriptions": {
@@ -21669,9 +21496,7 @@
                     "pathNode": {
                       "id": 31493,
                       "name": "Observation",
-                      "nameLocations": [
-                        "17326:11:25"
-                      ],
+                      "nameLocations": ["17326:11:25"],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 30102,
                       "src": "17326:11:25"
@@ -21705,9 +21530,7 @@
               "nodes": [],
               "statements": [
                 {
-                  "assignments": [
-                    31516
-                  ],
+                  "assignments": [31516],
                   "declarations": [
                     {
                       "constant": false,
@@ -22185,10 +22008,7 @@
                       "id": 31546,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "17847:7:25",
                       "typeDescriptions": {
@@ -22341,9 +22161,7 @@
                 "modifierName": {
                   "id": 31543,
                   "name": "onlyFactory",
-                  "nameLocations": [
-                    "17825:11:25"
-                  ],
+                  "nameLocations": ["17825:11:25"],
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 30265,
                   "src": "17825:11:25"
@@ -23952,9 +23770,7 @@
             "baseName": {
               "id": 30103,
               "name": "ReservoirERC20",
-              "nameLocations": [
-                "1507:14:25"
-              ],
+              "nameLocations": ["1507:14:25"],
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 30063,
               "src": "1507:14:25"
@@ -23968,11 +23784,7 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": false,
-        "linearizedBaseContracts": [
-          31684,
-          30063,
-          29520
-        ],
+        "linearizedBaseContracts": [31684, 30063, 29520],
         "name": "ReservoirPair",
         "nameLocation": "1490:13:25",
         "scope": 31685,

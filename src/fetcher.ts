@@ -7,7 +7,7 @@ import invariant from 'tiny-invariant'
 import { FACTORY_ADDRESS } from './constants'
 import GenericFactory from './abis/GenericFactory.json'
 import ReservoirPair from './abis/ReservoirPair.json'
-import JSBI from "jsbi";
+import JSBI from 'jsbi'
 
 let TOKEN_DECIMALS_CACHE: { [chainId: number]: { [address: string]: number } } = {
   [SupportedChainId.MAINNET]: {

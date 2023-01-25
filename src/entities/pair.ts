@@ -59,7 +59,12 @@ export class Pair {
     return computePairAddress({ factoryAddress: FACTORY_ADDRESS, tokenA, tokenB, curveId })
   }
 
-  public constructor(currencyAmountA: CurrencyAmount<Token>, tokenAmountB: CurrencyAmount<Token>, curveId: number, swapFee: JSBI = JSBI.BigInt(3000)) {
+  public constructor(
+    currencyAmountA: CurrencyAmount<Token>,
+    tokenAmountB: CurrencyAmount<Token>,
+    curveId: number,
+    swapFee: JSBI = JSBI.BigInt(3000)
+  ) {
     const tokenAmounts = currencyAmountA.currency.sortsBefore(tokenAmountB.currency) // does safety checks
       ? [currencyAmountA, tokenAmountB]
       : [tokenAmountB, currencyAmountA]
