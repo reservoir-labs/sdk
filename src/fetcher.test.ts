@@ -2,7 +2,7 @@ import { Fetcher } from './fetcher'
 import { WETH9 as _WETH9 } from '@reservoir-labs/sdk-core/dist/entities/weth9'
 import { Contract, ContractFactory } from '@ethersproject/contracts'
 import GenericFactory from './abis/GenericFactory.json'
-import {BaseProvider} from '@ethersproject/providers'
+import { BaseProvider } from '@ethersproject/providers'
 import { Wallet } from '@ethersproject/wallet'
 import { WebSocketProvider } from '@ethersproject/providers'
 

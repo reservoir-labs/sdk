@@ -164,10 +164,14 @@ describe('Pair', () => {
   })
   describe('#involvesToken', () => {
     expect(
-      new Pair(CurrencyAmount.fromRawAmount(USDC, '100'), CurrencyAmount.fromRawAmount(DAI, '100'), 0).involvesToken(USDC)
+      new Pair(CurrencyAmount.fromRawAmount(USDC, '100'), CurrencyAmount.fromRawAmount(DAI, '100'), 0).involvesToken(
+        USDC
+      )
     ).toEqual(true)
     expect(
-      new Pair(CurrencyAmount.fromRawAmount(USDC, '100'), CurrencyAmount.fromRawAmount(DAI, '100'), 0).involvesToken(DAI)
+      new Pair(CurrencyAmount.fromRawAmount(USDC, '100'), CurrencyAmount.fromRawAmount(DAI, '100'), 0).involvesToken(
+        DAI
+      )
     ).toEqual(true)
     expect(
       new Pair(CurrencyAmount.fromRawAmount(USDC, '100'), CurrencyAmount.fromRawAmount(DAI, '100'), 0).involvesToken(
@@ -229,7 +233,11 @@ describe('Pair', () => {
     it('getLiquidityValue:!feeOn', async () => {
       const tokenA = new Token(3, '0x0000000000000000000000000000000000000001', 18)
       const tokenB = new Token(3, '0x0000000000000000000000000000000000000002', 18)
-      const pair = new Pair(CurrencyAmount.fromRawAmount(tokenA, '1000'), CurrencyAmount.fromRawAmount(tokenB, '1000'), 0)
+      const pair = new Pair(
+        CurrencyAmount.fromRawAmount(tokenA, '1000'),
+        CurrencyAmount.fromRawAmount(tokenB, '1000'),
+        0
+      )
 
       {
         const liquidityValue = pair.getLiquidityValue(
@@ -270,7 +278,11 @@ describe('Pair', () => {
     it('getLiquidityValue:feeOn', async () => {
       const tokenA = new Token(3, '0x0000000000000000000000000000000000000001', 18)
       const tokenB = new Token(3, '0x0000000000000000000000000000000000000002', 18)
-      const pair = new Pair(CurrencyAmount.fromRawAmount(tokenA, '1000'), CurrencyAmount.fromRawAmount(tokenB, '1000'), 0)
+      const pair = new Pair(
+        CurrencyAmount.fromRawAmount(tokenA, '1000'),
+        CurrencyAmount.fromRawAmount(tokenB, '1000'),
+        0
+      )
 
       const liquidityValue = pair.getLiquidityValue(
         tokenA,
