@@ -8,7 +8,7 @@ import { FACTORY_ADDRESS, MINIMUM_LIQUIDITY, FIVE, _997, _1000, ONE, ZERO } from
 import { InsufficientReservesError, InsufficientInputAmountError } from '../errors'
 import ConstantProductPair from '../abis/ConstantProductPair.json'
 import StablePair from '../abis/StablePair.json'
-import {defaultAbiCoder} from "@ethersproject/abi";
+import { defaultAbiCoder } from '@ethersproject/abi'
 
 export const computePairAddress = ({
   factoryAddress,
@@ -39,7 +39,11 @@ export const computePairAddress = ({
 
   // TODO: to replace this zero bytes32 with a constant instead of using a string literal?
   // N.B: we do not use a salt as the initCode is unique with token0 and token1 appended to it
-  return getCreate2Address(factoryAddress, pack(['bytes32'], ['0x0000000000000000000000000000000000000000000000000000000000000000']), keccak256(['bytes'], [initCodeWithTokens]))
+  return getCreate2Address(
+    factoryAddress,
+    pack(['bytes32'], ['0x0000000000000000000000000000000000000000000000000000000000000000']),
+    keccak256(['bytes'], [initCodeWithTokens])
+  )
 }
 export class Pair {
   public readonly liquidityToken: Token
