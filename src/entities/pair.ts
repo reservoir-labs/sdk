@@ -174,7 +174,10 @@ export class Pair {
     const outputReserve = this.reserveOf(outputAmount.currency)
     const inputReserve = this.reserveOf(outputAmount.currency.equals(this.token0) ? this.token1 : this.token0)
     const numerator = JSBI.multiply(JSBI.multiply(inputReserve.quotient, outputAmount.quotient), FEE_ACCURACY)
-    const denominator = JSBI.multiply(JSBI.subtract(outputReserve.quotient, outputAmount.quotient), JSBI.subtract(FEE_ACCURACY, this.swapFee))
+    const denominator = JSBI.multiply(
+      JSBI.subtract(outputReserve.quotient, outputAmount.quotient),
+      JSBI.subtract(FEE_ACCURACY, this.swapFee)
+    )
     const inputAmount = CurrencyAmount.fromRawAmount(
       outputAmount.currency.equals(this.token0) ? this.token1 : this.token0,
       JSBI.add(JSBI.divide(numerator, denominator), ONE)
