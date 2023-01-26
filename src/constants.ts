@@ -11,5 +11,3 @@ export const FEE_ACCURACY = JSBI.BigInt(1_000_000) // 100%
 export const ZERO = JSBI.BigInt(0)
 export const ONE = JSBI.BigInt(1)
 export const FIVE = JSBI.BigInt(5)
-export const _997 = JSBI.BigInt(997)
-export const _1000 = JSBI.BigInt(1000)
