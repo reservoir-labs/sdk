@@ -1,5 +1,7 @@
-dist
-node_modules
-out/
-cache/
-broadcast/
+/dist
+/node_modules
+
+# Foundry
+/out
+/cache
+/broadcast
