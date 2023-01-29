@@ -41,9 +41,7 @@ export abstract class Fetcher {
     chainId: SupportedChainId,
     provider = getDefaultProvider(getNetwork(chainId))
   ): Promise<string[]> {
-    const factory: Contract = await new Contract(FACTORY_ADDRESS, GenericFactory.abi, provider)
-    const pairs: string[] = await factory.allPairs()
-    return pairs
+    return await new Contract(FACTORY_ADDRESS, GenericFactory.abi, provider).allPairs()
   }
 
   public static async fetchRelevantPairs(): Promise<Pair[]> {
