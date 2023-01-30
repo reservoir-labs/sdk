@@ -195,7 +195,7 @@ export class Pair {
       // can refer to balancer's implementation https://github.com/balancer-labs/balancer-v2-monorepo/blob/master/pvt/helpers/src/models/pools/stable/StablePool.ts
 
       // calculate invariant
-
+      
 
       inputAmount =
     }
