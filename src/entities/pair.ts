@@ -65,6 +65,7 @@ export class Pair {
     curveId: number,
     swapFee: JSBI = JSBI.BigInt(3000)
   ) {
+    invariant(curveId == 0 || curveId == 1, 'INVALID_CURVE_ID')
     const tokenAmounts = currencyAmountA.currency.sortsBefore(tokenAmountB.currency) // does safety checks
       ? [currencyAmountA, tokenAmountB]
       : [tokenAmountB, currencyAmountA]
@@ -171,17 +172,36 @@ export class Pair {
       throw new InsufficientReservesError()
     }
 
-    const outputReserve = this.reserveOf(outputAmount.currency)
-    const inputReserve = this.reserveOf(outputAmount.currency.equals(this.token0) ? this.token1 : this.token0)
-    const numerator = JSBI.multiply(JSBI.multiply(inputReserve.quotient, outputAmount.quotient), FEE_ACCURACY)
-    const denominator = JSBI.multiply(
-      JSBI.subtract(outputReserve.quotient, outputAmount.quotient),
-      JSBI.subtract(FEE_ACCURACY, this.swapFee)
-    )
-    const inputAmount = CurrencyAmount.fromRawAmount(
-      outputAmount.currency.equals(this.token0) ? this.token1 : this.token0,
-      JSBI.add(JSBI.divide(numerator, denominator), ONE)
-    )
+    let outputReserve = this.reserveOf(outputAmount.currency)
+    let inputReserve = this.reserveOf(outputAmount.currency.equals(this.token0) ? this.token1 : this.token0)
+    let inputAmount
+    if (this.curveId == 0) {
+      // outputReserve = this.reserveOf(outputAmount.currency)
+      // inputReserve = this.reserveOf(outputAmount.currency.equals(this.token0) ? this.token1 : this.token0)
+      const numerator = JSBI.multiply(JSBI.multiply(inputReserve.quotient, outputAmount.quotient), FEE_ACCURACY)
+      const denominator = JSBI.multiply(
+          JSBI.subtract(outputReserve.quotient, outputAmount.quotient),
+          JSBI.subtract(FEE_ACCURACY, this.swapFee)
+      )
+      inputAmount = CurrencyAmount.fromRawAmount(
+          outputAmount.currency.equals(this.token0) ? this.token1 : this.token0,
+          JSBI.add(JSBI.divide(numerator, denominator), ONE)
+      )
+    }
+    else if (this.curveId == 1) {
+      // StableSwap convergence algo
+      // can refer to Sushi's HybridPool impl at https://github.com/sushiswap/sdk/blob/canary/packages/trident-sdk/src/entities/HybridPool.ts
+      // did not implement the getAmountIn / out function
+      // can refer to balancer's implementation https://github.com/balancer-labs/balancer-v2-monorepo/blob/master/pvt/helpers/src/models/pools/stable/StablePool.ts
+
+      // calculate invariant
+
+
+      inputAmount =
+    }
+
+
+
     return [inputAmount, new Pair(inputReserve.add(inputAmount), outputReserve.subtract(outputAmount), this.curveId)]
   }
 
