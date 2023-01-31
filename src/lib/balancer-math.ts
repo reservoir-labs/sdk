@@ -65,39 +65,6 @@ export function calculateApproxInvariant(
   return fp(inv)
 }
 
-// export function calculateAnalyticalInvariantForTwoTokens(
-//     fpRawBalances: BigNumberish[],
-//     amplificationParameter: BigNumberish
-// ): BigNumber {
-//     if (fpRawBalances.length !== 2) {
-//         throw 'Analytical invariant is solved only for 2 balances'
-//     }
-//
-//     const sum = fpRawBalances.reduce((a: Decimal, b: BigNumberish) => a.add(fromFp(b)), decimal(0))
-//     const prod = fpRawBalances.reduce((a: Decimal, b: BigNumberish) => a.mul(fromFp(b)), decimal(1))
-//
-//     // The amplification parameter equals to: A n^(n-1), where A is the amplification coefficient
-//     const amplificationCoefficient = decimal(amplificationParameter).div(2)
-//
-//     //Q
-//     const q = amplificationCoefficient.mul(-16).mul(sum).mul(prod)
-//
-//     //P
-//     const p = amplificationCoefficient.minus(decimal(1).div(4)).mul(16).mul(prod)
-//
-//     //C
-//     const c = q
-//         .pow(2)
-//         .div(4)
-//         .add(p.pow(3).div(27))
-//         .pow(1 / 2)
-//         .minus(q.div(2))
-//         .pow(1 / 3)
-//
-//     const invariant = c.minus(p.div(c.mul(3)))
-//     return fp(invariant)
-// }
-
 export function calcOutGivenIn(
   fpBalances: BigNumberish[],
   amplificationParameter: BigNumberish,
