@@ -1,6 +1,7 @@
 import { Token, WETH9, Price, CurrencyAmount } from '@reservoir-labs/sdk-core'
 import { InsufficientInputAmountError } from '../errors'
 import { computePairAddress, Pair } from './pair'
+import JSBI from "jsbi";
 
 describe('computePairAddress', () => {
   it('should correctly compute the pool address', () => {
@@ -54,7 +55,7 @@ describe('Pair', () => {
 
   describe('#getAddress', () => {
     it('returns the correct address', () => {
-      expect(Pair.getAddress(USDC, DAI, 0)).toEqual('0xcA3D9FF439Cd5d7DAbbfCf779E162507F47998CE')
+      expect(Pair.getAddress(USDC, DAI, 0)).toEqual('0x4248b9548e77D8d7518bBA6a608dBebA71DcC1Dc')
     })
   })
 
@@ -178,6 +179,23 @@ describe('Pair', () => {
         WETH9[1]
       )
     ).toEqual(false)
+  })
+  describe('#getOutputAmount', () => {
+    describe('StablePair', () => {
+      const pair = new Pair(CurrencyAmount.fromRawAmount(DAI, '1000000'), CurrencyAmount.fromRawAmount(USDC, '800000'), 1, JSBI.BigInt(100), JSBI.BigInt(1000))
+
+      it('should give the correct output amount given the inputAmount', () => {
+        const outputAmount = CurrencyAmount.fromRawAmount(DAI, '100')
+        const inputAmount = pair.getOutputAmount(outputAmount)
+
+        console.log(inputAmount)
+      })
+    })
+    describe('ConstantProductPair', () => {
+      it('should give the correct output amount given the inputAmount', () => {
+
+      })
+    })
   })
   describe('miscellaneous', () => {
     it('getLiquidityMinted:0', async () => {

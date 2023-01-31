@@ -9,7 +9,7 @@ import { InsufficientReservesError, InsufficientInputAmountError } from '../erro
 import ConstantProductPair from '../abis/ConstantProductPair.json'
 import StablePair from '../abis/StablePair.json'
 import { defaultAbiCoder } from '@ethersproject/abi'
-import { calcInGivenOut, calcOutGivenIn } from 'lib/balancer-math'
+import { calcInGivenOut, calcOutGivenIn } from '../lib/balancer-math'
 
 export const computePairAddress = ({
   factoryAddress,
@@ -171,10 +171,15 @@ export class Pair {
     } else if (this.curveId == 1) {
       const balances: string[] = [inputReserve.toExact(), outputReserve.toExact()]
 
+      // TODO: the balancer function expects the numbers passed in to be in fixedpoint format already
+      // figure out exactly how to convert from JSBI -> fp / decimal
       outputAmount = calcOutGivenIn(balances, this.amplificationCoefficient.toString(), 0, 1, inputAmount.toExact())
+
+      console.log(outputAmount)
+
       outputAmount = CurrencyAmount.fromRawAmount(
         inputAmount.currency.equals(this.token0) ? this.token1 : this.token0,
-        JSBI.BigInt(inputAmount)
+        JSBI.BigInt(outputAmount.toString())
       )
     }
 

@@ -14,6 +14,8 @@ export function calculateApproxInvariant(
   const totalCoins = fpRawBalances.length
   const balances = fpRawBalances.map(fromFp)
 
+  console.log("raw bal", fpRawBalances)
+
   const sum = balances.reduce((a, b) => a.add(b), decimal(0))
 
   if (sum.isZero()) {
