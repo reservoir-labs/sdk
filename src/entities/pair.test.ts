@@ -1,7 +1,7 @@
 import { Token, WETH9, Price, CurrencyAmount } from '@reservoir-labs/sdk-core'
 import { InsufficientInputAmountError } from '../errors'
 import { computePairAddress, Pair } from './pair'
-import JSBI from "jsbi";
+import JSBI from 'jsbi'
 
 describe('computePairAddress', () => {
   it('should correctly compute the pool address', () => {
@@ -182,7 +182,13 @@ describe('Pair', () => {
   })
   describe('#getOutputAmount', () => {
     describe('StablePair', () => {
-      const pair = new Pair(CurrencyAmount.fromRawAmount(DAI, '1000000'), CurrencyAmount.fromRawAmount(USDC, '800000'), 1, JSBI.BigInt(100), JSBI.BigInt(1000))
+      const pair = new Pair(
+        CurrencyAmount.fromRawAmount(DAI, '1000000'),
+        CurrencyAmount.fromRawAmount(USDC, '800000'),
+        1,
+        JSBI.BigInt(100),
+        JSBI.BigInt(1000)
+      )
 
       it('should give the correct output amount given the inputAmount', () => {
         const outputAmount = CurrencyAmount.fromRawAmount(DAI, '100')
@@ -192,9 +198,7 @@ describe('Pair', () => {
       })
     })
     describe('ConstantProductPair', () => {
-      it('should give the correct output amount given the inputAmount', () => {
-
-      })
+      it('should give the correct output amount given the inputAmount', () => {})
     })
   })
   describe('miscellaneous', () => {
