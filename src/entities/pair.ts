@@ -9,7 +9,7 @@ import { InsufficientReservesError, InsufficientInputAmountError } from '../erro
 import ConstantProductPair from '../abis/ConstantProductPair.json'
 import StablePair from '../abis/StablePair.json'
 import { defaultAbiCoder } from '@ethersproject/abi'
-import {calcInGivenOut, calcOutGivenIn} from "lib/balancer-math";
+import { calcInGivenOut, calcOutGivenIn } from 'lib/balancer-math'
 
 export const computePairAddress = ({
   factoryAddress,
@@ -162,20 +162,19 @@ export class Pair {
       const numerator = JSBI.multiply(inputAmountWithFee, outputReserve.quotient)
       const denominator = JSBI.add(JSBI.multiply(inputReserve.quotient, FEE_ACCURACY), inputAmountWithFee)
       outputAmount = CurrencyAmount.fromRawAmount(
-          inputAmount.currency.equals(this.token0) ? this.token1 : this.token0,
-          JSBI.divide(numerator, denominator)
+        inputAmount.currency.equals(this.token0) ? this.token1 : this.token0,
+        JSBI.divide(numerator, denominator)
       )
       if (JSBI.equal(outputAmount.quotient, ZERO)) {
         throw new InsufficientInputAmountError()
       }
-    }
-    else if (this.curveId == 1) {
+    } else if (this.curveId == 1) {
       const balances: string[] = [inputReserve.toExact(), outputReserve.toExact()]
 
       outputAmount = calcOutGivenIn(balances, this.amplificationCoefficient.toString(), 0, 1, inputAmount.toExact())
       outputAmount = CurrencyAmount.fromRawAmount(
-          inputAmount.currency.equals(this.token0) ? this.token1 : this.token0,
-          JSBI.BigInt(inputAmount)
+        inputAmount.currency.equals(this.token0) ? this.token1 : this.token0,
+        JSBI.BigInt(inputAmount)
       )
     }
 
@@ -200,15 +199,14 @@ export class Pair {
     if (this.curveId == 0) {
       const numerator = JSBI.multiply(JSBI.multiply(inputReserve.quotient, outputAmount.quotient), FEE_ACCURACY)
       const denominator = JSBI.multiply(
-          JSBI.subtract(outputReserve.quotient, outputAmount.quotient),
-          JSBI.subtract(FEE_ACCURACY, this.swapFee)
+        JSBI.subtract(outputReserve.quotient, outputAmount.quotient),
+        JSBI.subtract(FEE_ACCURACY, this.swapFee)
       )
       inputAmount = CurrencyAmount.fromRawAmount(
-          outputAmount.currency.equals(this.token0) ? this.token1 : this.token0,
-          JSBI.add(JSBI.divide(numerator, denominator), ONE)
+        outputAmount.currency.equals(this.token0) ? this.token1 : this.token0,
+        JSBI.add(JSBI.divide(numerator, denominator), ONE)
       )
-    }
-    else if (this.curveId == 1) {
+    } else if (this.curveId == 1) {
       // can refer to Sushi's HybridPool impl at https://github.com/sushiswap/sdk/blob/canary/packages/trident-sdk/src/entities/HybridPool.ts
       // did not implement the getAmountIn / out function
       // can refer to balancer's implementation https://github.com/balancer-labs/balancer-v2-monorepo/blob/master/pvt/helpers/src/models/pools/stable/StablePool.ts
@@ -219,8 +217,8 @@ export class Pair {
 
       // cast to JSBI as the returned type from balancer is a Decimal type
       inputAmount = CurrencyAmount.fromRawAmount(
-          outputAmount.currency.equals(this.token0) ? this.token1 : this.token0,
-          JSBI.BigInt(inputAmount.toString())
+        outputAmount.currency.equals(this.token0) ? this.token1 : this.token0,
+        JSBI.BigInt(inputAmount.toString())
       )
     }
 
