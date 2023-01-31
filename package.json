@@ -10,7 +10,7 @@
   ],
   "repository": "https://github.com/reservoir-labs/sdk.git",
   "keywords": [
-    "uniswap",
+    "reservoir",
     "ethereum"
   ],
   "module": "dist/sdk.esm.js",

@@ -9,6 +9,7 @@ import { InsufficientReservesError, InsufficientInputAmountError } from '../erro
 import ConstantProductPair from '../abis/ConstantProductPair.json'
 import StablePair from '../abis/StablePair.json'
 import { defaultAbiCoder } from '@ethersproject/abi'
+import {calcInGivenOut, calcOutGivenIn} from "lib/balancer-math";
 
 export const computePairAddress = ({
   factoryAddress,
@@ -55,6 +56,9 @@ export class Pair {
   // not necessary for the swap function, but for the misc info about yield yes
   public readonly swapFee: JSBI
 
+  // 0 for ConstantProductPair, non-zero for StablePair
+  public readonly amplificationCoefficient: JSBI
+
   public static getAddress(tokenA: Token, tokenB: Token, curveId: number): string {
     return computePairAddress({ factoryAddress: FACTORY_ADDRESS, tokenA, tokenB, curveId })
   }
@@ -63,7 +67,8 @@ export class Pair {
     currencyAmountA: CurrencyAmount<Token>,
     tokenAmountB: CurrencyAmount<Token>,
     curveId: number,
-    swapFee: JSBI = JSBI.BigInt(3000)
+    swapFee: JSBI = JSBI.BigInt(3000),
+    amplificationCoefficient: JSBI = JSBI.BigInt(0)
   ) {
     invariant(curveId == 0 || curveId == 1, 'INVALID_CURVE_ID')
     const tokenAmounts = currencyAmountA.currency.sortsBefore(tokenAmountB.currency) // does safety checks
@@ -79,6 +84,7 @@ export class Pair {
     this.tokenAmounts = tokenAmounts as [CurrencyAmount<Token>, CurrencyAmount<Token>]
     this.curveId = curveId
     this.swapFee = swapFee
+    this.amplificationCoefficient = amplificationCoefficient
   }
 
   /**
@@ -150,15 +156,30 @@ export class Pair {
     const inputReserve = this.reserveOf(inputAmount.currency)
     const outputReserve = this.reserveOf(inputAmount.currency.equals(this.token0) ? this.token1 : this.token0)
     const inputAmountWithFee = JSBI.multiply(inputAmount.quotient, JSBI.subtract(FEE_ACCURACY, this.swapFee))
-    const numerator = JSBI.multiply(inputAmountWithFee, outputReserve.quotient)
-    const denominator = JSBI.add(JSBI.multiply(inputReserve.quotient, FEE_ACCURACY), inputAmountWithFee)
-    const outputAmount = CurrencyAmount.fromRawAmount(
-      inputAmount.currency.equals(this.token0) ? this.token1 : this.token0,
-      JSBI.divide(numerator, denominator)
-    )
-    if (JSBI.equal(outputAmount.quotient, ZERO)) {
-      throw new InsufficientInputAmountError()
+    let outputAmount
+
+    if (this.curveId == 0) {
+      const numerator = JSBI.multiply(inputAmountWithFee, outputReserve.quotient)
+      const denominator = JSBI.add(JSBI.multiply(inputReserve.quotient, FEE_ACCURACY), inputAmountWithFee)
+      outputAmount = CurrencyAmount.fromRawAmount(
+          inputAmount.currency.equals(this.token0) ? this.token1 : this.token0,
+          JSBI.divide(numerator, denominator)
+      )
+      if (JSBI.equal(outputAmount.quotient, ZERO)) {
+        throw new InsufficientInputAmountError()
+      }
     }
+    else if (this.curveId == 1) {
+      const balances: string[] = [inputReserve.toExact(), outputReserve.toExact()]
+
+      outputAmount = calcOutGivenIn(balances, this.amplificationCoefficient.toString(), 0, 1, inputAmount.toExact())
+      outputAmount = CurrencyAmount.fromRawAmount(
+          inputAmount.currency.equals(this.token0) ? this.token1 : this.token0,
+          JSBI.BigInt(inputAmount)
+      )
+    }
+
+    // @ts-ignore
     return [outputAmount, new Pair(inputReserve.add(inputAmount), outputReserve.subtract(outputAmount), this.curveId)]
   }
 
@@ -175,9 +196,8 @@ export class Pair {
     let outputReserve = this.reserveOf(outputAmount.currency)
     let inputReserve = this.reserveOf(outputAmount.currency.equals(this.token0) ? this.token1 : this.token0)
     let inputAmount
+
     if (this.curveId == 0) {
-      // outputReserve = this.reserveOf(outputAmount.currency)
-      // inputReserve = this.reserveOf(outputAmount.currency.equals(this.token0) ? this.token1 : this.token0)
       const numerator = JSBI.multiply(JSBI.multiply(inputReserve.quotient, outputAmount.quotient), FEE_ACCURACY)
       const denominator = JSBI.multiply(
           JSBI.subtract(outputReserve.quotient, outputAmount.quotient),
@@ -189,19 +209,22 @@ export class Pair {
       )
     }
     else if (this.curveId == 1) {
-      // StableSwap convergence algo
       // can refer to Sushi's HybridPool impl at https://github.com/sushiswap/sdk/blob/canary/packages/trident-sdk/src/entities/HybridPool.ts
       // did not implement the getAmountIn / out function
       // can refer to balancer's implementation https://github.com/balancer-labs/balancer-v2-monorepo/blob/master/pvt/helpers/src/models/pools/stable/StablePool.ts
+      const balances: string[] = [inputReserve.toExact(), outputReserve.toExact()]
 
-      // calculate invariant
-      
+      // TODO: what about swap fees?
+      inputAmount = calcInGivenOut(balances, this.amplificationCoefficient.toString(), 0, 1, outputAmount.toExact())
 
-      inputAmount =
+      // cast to JSBI as the returned type from balancer is a Decimal type
+      inputAmount = CurrencyAmount.fromRawAmount(
+          outputAmount.currency.equals(this.token0) ? this.token1 : this.token0,
+          JSBI.BigInt(inputAmount.toString())
+      )
     }
 
-
-
+    // @ts-ignore
     return [inputAmount, new Pair(inputReserve.add(inputAmount), outputReserve.subtract(outputAmount), this.curveId)]
   }
 
