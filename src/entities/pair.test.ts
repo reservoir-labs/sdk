@@ -183,18 +183,18 @@ describe('Pair', () => {
   describe('#getOutputAmount', () => {
     describe('StablePair', () => {
       const pair = new Pair(
-        CurrencyAmount.fromRawAmount(DAI, '1000000'),
-        CurrencyAmount.fromRawAmount(USDC, '800000'),
+        CurrencyAmount.fromRawAmount(DAI, '1000000000000000000000000'),
+        CurrencyAmount.fromRawAmount(USDC, '800000000000000000000000'),
         1,
         JSBI.BigInt(100),
         JSBI.BigInt(1000)
       )
 
       it('should give the correct output amount given the inputAmount', () => {
-        const outputAmount = CurrencyAmount.fromRawAmount(DAI, '100')
-        const inputAmount = pair.getOutputAmount(outputAmount)
+        const inputAmount = CurrencyAmount.fromRawAmount(DAI, '100')
+        const outputAmount = pair.getOutputAmount(inputAmount)
 
-        console.log(inputAmount)
+        console.log(outputAmount)
       })
     })
     describe('ConstantProductPair', () => {

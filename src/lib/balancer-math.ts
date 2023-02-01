@@ -11,10 +11,11 @@ export function calculateApproxInvariant(
   fpRawBalances: BigNumberish[],
   amplificationParameter: BigNumberish
 ): BigNumber {
-  const totalCoins = fpRawBalances.length
-  const balances = fpRawBalances.map(fromFp)
 
   console.log('raw bal', fpRawBalances)
+
+  const totalCoins = fpRawBalances.length
+  const balances = fpRawBalances.map(fromFp)
 
   const sum = balances.reduce((a, b) => a.add(b), decimal(0))
 

@@ -169,14 +169,11 @@ export class Pair {
         throw new InsufficientInputAmountError()
       }
     } else if (this.curveId == 1) {
-      const balances: string[] = [inputReserve.toExact(), outputReserve.toExact()]
+      const scaledBalances = this._scaleAmounts([inputReserve, outputReserve])
 
-      // TODO: the balancer function expects the numbers passed in to be in fixedpoint format already
-      // figure out exactly how to convert from JSBI -> fp / decimal
-      outputAmount = calcOutGivenIn(balances, this.amplificationCoefficient.toString(), 0, 1, inputAmount.toExact())
+      outputAmount = calcOutGivenIn(scaledBalances.map(bal => bal.toString()), this.amplificationCoefficient.toString(), 0, 1, inputAmount.toExact())
 
       console.log(outputAmount)
-
       outputAmount = CurrencyAmount.fromRawAmount(
         inputAmount.currency.equals(this.token0) ? this.token1 : this.token0,
         JSBI.BigInt(outputAmount.toString())
@@ -185,6 +182,15 @@ export class Pair {
 
     // @ts-ignore
     return [outputAmount, new Pair(inputReserve.add(inputAmount), outputReserve.subtract(outputAmount), this.curveId)]
+  }
+
+  private _scaleAmounts(amounts: CurrencyAmount<Token>[]) : JSBI[] {
+    return amounts.map((amount) => {
+      return JSBI.multiply(
+          JSBI.multiply(JSBI.BigInt(amount.toExact()), JSBI.BigInt(amount.decimalScale)),
+          JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(18  - amount.currency.decimals))
+      )
+    })
   }
 
   public getInputAmount(outputAmount: CurrencyAmount<Token>): [CurrencyAmount<Token>, Pair] {
