@@ -171,7 +171,13 @@ export class Pair {
     } else if (this.curveId == 1) {
       const scaledBalances = this._scaleAmounts([inputReserve, outputReserve])
 
-      outputAmount = calcOutGivenIn(scaledBalances.map(bal => bal.toString()), this.amplificationCoefficient.toString(), 0, 1, inputAmount.toExact())
+      outputAmount = calcOutGivenIn(
+        scaledBalances.map(bal => bal.toString()),
+        this.amplificationCoefficient.toString(),
+        0,
+        1,
+        inputAmount.toExact()
+      )
 
       console.log(outputAmount)
       outputAmount = CurrencyAmount.fromRawAmount(
@@ -184,11 +190,11 @@ export class Pair {
     return [outputAmount, new Pair(inputReserve.add(inputAmount), outputReserve.subtract(outputAmount), this.curveId)]
   }
 
-  private _scaleAmounts(amounts: CurrencyAmount<Token>[]) : JSBI[] {
-    return amounts.map((amount) => {
+  private _scaleAmounts(amounts: CurrencyAmount<Token>[]): JSBI[] {
+    return amounts.map(amount => {
       return JSBI.multiply(
-          JSBI.multiply(JSBI.BigInt(amount.toExact()), JSBI.BigInt(amount.decimalScale)),
-          JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(18  - amount.currency.decimals))
+        JSBI.multiply(JSBI.BigInt(amount.toExact()), JSBI.BigInt(amount.decimalScale)),
+        JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(18 - amount.currency.decimals))
       )
     })
   }

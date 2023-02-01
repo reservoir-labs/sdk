@@ -11,7 +11,6 @@ export function calculateApproxInvariant(
   fpRawBalances: BigNumberish[],
   amplificationParameter: BigNumberish
 ): BigNumber {
-
   console.log('raw bal', fpRawBalances)
 
   const totalCoins = fpRawBalances.length
