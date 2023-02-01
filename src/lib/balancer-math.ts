@@ -1,3 +1,5 @@
+// ADAPTED FROM BALANCER https://github.com/balancer-labs/balancer-v2-monorepo/blob/master/pvt/helpers/src/models/pools/stable/math.ts
+
 import { Decimal } from 'decimal.js'
 import { BigNumber } from '@ethersproject/bignumber'
 
@@ -11,8 +13,6 @@ export function calculateApproxInvariant(
   fpRawBalances: BigNumberish[],
   amplificationParameter: BigNumberish
 ): BigNumber {
-  console.log('raw bal', fpRawBalances)
-
   const totalCoins = fpRawBalances.length
   const balances = fpRawBalances.map(fromFp)
 

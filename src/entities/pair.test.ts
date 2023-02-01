@@ -191,10 +191,9 @@ describe('Pair', () => {
       )
 
       it('should give the correct output amount given the inputAmount', () => {
-        const inputAmount = CurrencyAmount.fromRawAmount(DAI, '100')
-        const outputAmount = pair.getOutputAmount(inputAmount)
+        const inputAmount = CurrencyAmount.fromRawAmount(DAI, '1000000000000000000')
+        const [outputAmount, ] = pair.getOutputAmount(inputAmount)
 
-        console.log(outputAmount)
       })
     })
     describe('ConstantProductPair', () => {
