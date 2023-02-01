@@ -241,8 +241,8 @@ export class Pair {
   private _scaleAmounts(amounts: CurrencyAmount<Token>[]): JSBI[] {
     return amounts.map(amount => {
       return JSBI.multiply(
-          JSBI.multiply(JSBI.BigInt(amount.toExact()), JSBI.BigInt(amount.decimalScale)),
-          JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(18 - amount.currency.decimals))
+        JSBI.multiply(JSBI.BigInt(amount.toExact()), JSBI.BigInt(amount.decimalScale)),
+        JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(18 - amount.currency.decimals))
       )
     })
   }
