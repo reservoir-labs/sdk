@@ -229,7 +229,9 @@ export class Pair {
       inputAmount = CurrencyAmount.fromRawAmount(
         outputAmount.currency.equals(this.token0) ? this.token1 : this.token0,
         JSBI.BigInt(inputAmount.toString())
-      ).multiply(JSBI.add(FEE_ACCURACY, this.swapFee)).divide(FEE_ACCURACY) // add fee
+      )
+        .multiply(JSBI.add(FEE_ACCURACY, this.swapFee))
+        .divide(FEE_ACCURACY) // add fee
     }
 
     // @ts-ignore
