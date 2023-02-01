@@ -226,12 +226,10 @@ export class Pair {
         scaledOutputAmount[0].toString()
       )
 
-      // TODO: when is the swap fee added???
-
       inputAmount = CurrencyAmount.fromRawAmount(
         outputAmount.currency.equals(this.token0) ? this.token1 : this.token0,
         JSBI.BigInt(inputAmount.toString())
-      )
+      ).multiply(JSBI.add(FEE_ACCURACY, this.swapFee)).divide(FEE_ACCURACY) // add fee
     }
 
     // @ts-ignore

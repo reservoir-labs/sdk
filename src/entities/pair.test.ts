@@ -193,6 +193,15 @@ describe('Pair', () => {
       it('should give the correct output amount given the inputAmount', () => {
         const inputAmount = CurrencyAmount.fromRawAmount(DAI, '1000000000000000000')
         const [outputAmount] = pair.getOutputAmount(inputAmount)
+
+        expect(outputAmount.toExact()).toEqual('0.999772449652')
+      })
+
+      it('should give the correct input amount given the outputAmount', () => {
+        const outputAmount = CurrencyAmount.fromRawAmount(DAI, '1000000000000000000')
+        const [inputAmount] = pair.getInputAmount(outputAmount)
+
+        expect(inputAmount.toExact()).toEqual('0.99987242950292577')
       })
     })
     describe('ConstantProductPair', () => {
