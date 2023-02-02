@@ -1,7 +1,7 @@
 import { Contract } from '@ethersproject/contracts'
 import { getNetwork } from '@ethersproject/networks'
 import { getDefaultProvider } from '@ethersproject/providers'
-import {SupportedChainId, Token, CurrencyAmount, WETH9} from '@reservoir-labs/sdk-core'
+import { SupportedChainId, Token, CurrencyAmount, WETH9 } from '@reservoir-labs/sdk-core'
 import { Pair } from './entities/pair'
 import invariant from 'tiny-invariant'
 import { FACTORY_ADDRESS } from './constants'
@@ -68,7 +68,14 @@ export abstract class Fetcher {
     const nativeTokenBConstantProduct = await factory.getPair(tokenB.address, WETH9[chainId].address, 0)
     const nativeTokenBStable = await factory.getPair(tokenB.address, WETH9[chainId].address, 1)
 
-    return [stable, constantProduct, nativeTokenAConstantProduct, nativeTokenAStable, nativeTokenBConstantProduct, nativeTokenBStable].filter(address => address != AddressZero)
+    return [
+      stable,
+      constantProduct,
+      nativeTokenAConstantProduct,
+      nativeTokenAStable,
+      nativeTokenBConstantProduct,
+      nativeTokenBStable
+    ].filter(address => address != AddressZero)
   }
 
   /**
