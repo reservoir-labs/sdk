@@ -8,6 +8,7 @@ import { FACTORY_ADDRESS } from './constants'
 import GenericFactory from './abis/GenericFactory.json'
 import ReservoirPair from './abis/ReservoirPair.json'
 import JSBI from 'jsbi'
+import {AddressZero} from "@ethersproject/constants";
 
 let TOKEN_DECIMALS_CACHE: { [chainId: number]: { [address: string]: number } } = {
   [SupportedChainId.MAINNET]: {
@@ -62,12 +63,12 @@ export abstract class Fetcher {
     const constantProduct = await factory.getPair(tokenA.address, tokenB.address, 0)
 
     // get native pairs
-    const nativeTokenAConstantProduct = await factory.getPair(tokenA.address, WETH9[chainId], 0)
-    const nativeTokenAStable = await factory.getPair(tokenA.address, WETH9[chainId], 1)
-    const nativeTokenBConstantProduct = await factory.getPair(tokenA.address, WETH9[chainId], 0)
-    const nativeTokenBStable = await factory.getPair(tokenA.address, WETH9[chainId], 1)
+    const nativeTokenAConstantProduct = await factory.getPair(tokenA.address, WETH9[chainId].address, 0)
+    const nativeTokenAStable = await factory.getPair(tokenA.address, WETH9[chainId].address, 1)
+    const nativeTokenBConstantProduct = await factory.getPair(tokenB.address, WETH9[chainId].address, 0)
+    const nativeTokenBStable = await factory.getPair(tokenB.address, WETH9[chainId].address, 1)
 
-    return [stable, constantProduct, nativeTokenAConstantProduct, nativeTokenAStable, nativeTokenBConstantProduct, nativeTokenBStable].filter(address => address != null)
+    return [stable, constantProduct, nativeTokenAConstantProduct, nativeTokenAStable, nativeTokenBConstantProduct, nativeTokenBStable].filter(address => address != AddressZero)
   }
 
   /**
