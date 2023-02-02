@@ -113,6 +113,7 @@ export abstract class Fetcher {
    * Fetches information about a pair and constructs a pair from the given two tokens.
    * @param tokenA first token
    * @param tokenB second token
+   * @param curveId 0 for ConstantProduct, 1 for Stable
    * @param provider the provider to use to fetch the data
    */
   public static async fetchPairData(
