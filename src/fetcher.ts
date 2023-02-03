@@ -56,6 +56,8 @@ export abstract class Fetcher {
     tokenB: Token,
     provider = getDefaultProvider(getNetwork(chainId))
   ): Promise<Pair[]> {
+    invariant(tokenA.chainId == tokenB.chainId, 'CHAIN_ID')
+    invariant(tokenA != tokenB, 'SAME_TOKEN')
     const factory = new Contract(FACTORY_ADDRESS, GenericFactory.abi, provider)
 
     // get the pairs for the two curves
