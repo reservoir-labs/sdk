@@ -68,7 +68,7 @@ export abstract class Fetcher {
     const nativeTokenBConstantProduct = await factory.getPair(tokenB.address, WETH9[chainId].address, 0)
     const nativeTokenBStable = await factory.getPair(tokenB.address, WETH9[chainId].address, 1)
 
-    return [
+    const relevantPairs = [
       stable,
       constantProduct,
       nativeTokenAConstantProduct,
@@ -76,6 +76,8 @@ export abstract class Fetcher {
       nativeTokenBConstantProduct,
       nativeTokenBStable
     ].filter(address => address != AddressZero)
+
+    return [... new Set(relevantPairs)] // de-duplicate repeated addresses
   }
 
   /**

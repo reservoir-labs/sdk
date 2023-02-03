@@ -22,7 +22,6 @@ describe('fetcher', () => {
         new Token(43114, USDC_AVAX, 6),
         provider
       )
-
       expect(relevantPairs.length).toBeLessThan(6)
     })
   })
