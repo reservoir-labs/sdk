@@ -77,7 +77,7 @@ export abstract class Fetcher {
       nativeTokenBStable
     ].filter(address => address != AddressZero)
 
-    return [... new Set(relevantPairs)] // de-duplicate repeated addresses
+    return [...new Set(relevantPairs)] // de-duplicate repeated addresses
   }
 
   /**
