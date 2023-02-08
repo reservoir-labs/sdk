@@ -129,7 +129,6 @@ describe('Router', () => {
               CurrencyAmount.fromRawAmount(Ether.onChain(1), JSBI.BigInt(100))
             ),
             {
-
               recipient: '0x0000000000000000000000000000000000000004',
               allowedSlippage: new Percent('1', '100'),
               feeOnTransfer: true
@@ -150,7 +149,6 @@ describe('Router', () => {
               CurrencyAmount.fromRawAmount(token1, JSBI.BigInt(100))
             ),
             {
-
               recipient: '0x0000000000000000000000000000000000000004',
               allowedSlippage: new Percent('1', '100'),
               feeOnTransfer: true
@@ -172,7 +170,6 @@ describe('Router', () => {
               CurrencyAmount.fromRawAmount(token0, JSBI.BigInt(100))
             ),
             {
-
               recipient: '0x0000000000000000000000000000000000000004',
               allowedSlippage: new Percent('1', '100'),
               feeOnTransfer: true
@@ -197,7 +194,6 @@ describe('Router', () => {
                 CurrencyAmount.fromRawAmount(token1, JSBI.BigInt(100))
               ),
               {
-
                 recipient: '0x0000000000000000000000000000000000000004',
                 allowedSlippage: new Percent('1', '100'),
                 feeOnTransfer: true
@@ -213,7 +209,6 @@ describe('Router', () => {
                 CurrencyAmount.fromRawAmount(Ether.onChain(1), JSBI.BigInt(100))
               ),
               {
-
                 recipient: '0x0000000000000000000000000000000000000004',
                 allowedSlippage: new Percent('1', '100'),
                 feeOnTransfer: true
@@ -229,7 +224,6 @@ describe('Router', () => {
                 CurrencyAmount.fromRawAmount(token1, JSBI.BigInt(100))
               ),
               {
-
                 recipient: '0x0000000000000000000000000000000000000004',
                 allowedSlippage: new Percent('1', '100'),
                 feeOnTransfer: true
