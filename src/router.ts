@@ -73,19 +73,17 @@ export abstract class Router {
 
     let methodName: string
     let args: (string | string[] | number[])[]
-    let value: string
+    let value: string = ZERO_HEX
     switch (trade.tradeType) {
       case TradeType.EXACT_INPUT:
         methodName = 'swapExactForVariable'
         // uint amountIn, uint amountOutMin, address[] path, uint256[] curveIds, address to
         args = [amountIn, amountOut, path, curveIds, to]
-        value = ZERO_HEX
         break
       case TradeType.EXACT_OUTPUT:
         methodName = 'swapVariableForExact'
         // uint amountOut, uint amountInMax, address[] path, uint256[] curveIds, address to
         args = [amountOut, amountIn, path, curveIds, to]
-        value = ZERO_HEX
         break
     }
     return {
