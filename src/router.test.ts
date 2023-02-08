@@ -30,10 +30,11 @@ describe('Router', () => {
           ),
           { recipient: '0x0000000000000000000000000000000000000004', allowedSlippage: new Percent('1', '100') }
         )
-        expect(result.methodName).toEqual('swapExactETHForTokens')
+        expect(result.methodName).toEqual('swapExactForVariable')
         expect(result.args).toEqual([
           '0x51',
           [WETH9[1].address, token0.address, token1.address],
+          [0,0],
           '0x0000000000000000000000000000000000000004'
         ])
         expect(result.value).toEqual('0x64')
@@ -118,119 +119,6 @@ describe('Router', () => {
           '0x0000000000000000000000000000000000000004'
         ])
         expect(result.value).toEqual('0x0')
-      })
-    })
-    describe('supporting fee on transfer', () => {
-      describe('exact in', () => {
-        it('ether to token1', () => {
-          const result = Router.swapCallParameters(
-            Trade.exactIn(
-              new Route([pair_weth_0, pair_0_1], ETHER, token1),
-              CurrencyAmount.fromRawAmount(Ether.onChain(1), JSBI.BigInt(100))
-            ),
-            {
-              recipient: '0x0000000000000000000000000000000000000004',
-              allowedSlippage: new Percent('1', '100'),
-              feeOnTransfer: true
-            }
-          )
-          expect(result.methodName).toEqual('swapExactETHForTokensSupportingFeeOnTransferTokens')
-          expect(result.args.slice(0, -1)).toEqual([
-            '0x51',
-            [WETH9[1].address, token0.address, token1.address],
-            '0x0000000000000000000000000000000000000004'
-          ])
-          expect(result.value).toEqual('0x64')
-        })
-        it('token1 to ether', () => {
-          const result = Router.swapCallParameters(
-            Trade.exactIn(
-              new Route([pair_0_1, pair_weth_0], token1, ETHER),
-              CurrencyAmount.fromRawAmount(token1, JSBI.BigInt(100))
-            ),
-            {
-              recipient: '0x0000000000000000000000000000000000000004',
-              allowedSlippage: new Percent('1', '100'),
-              feeOnTransfer: true
-            }
-          )
-          expect(result.methodName).toEqual('swapExactTokensForETHSupportingFeeOnTransferTokens')
-          expect(result.args.slice(0, -1)).toEqual([
-            '0x64',
-            '0x51',
-            [token1.address, token0.address, WETH9[1].address],
-            '0x0000000000000000000000000000000000000004'
-          ])
-          expect(result.value).toEqual('0x0')
-        })
-        it('token0 to token1', () => {
-          const result = Router.swapCallParameters(
-            Trade.exactIn(
-              new Route([pair_0_1], token0, token1),
-              CurrencyAmount.fromRawAmount(token0, JSBI.BigInt(100))
-            ),
-            {
-              recipient: '0x0000000000000000000000000000000000000004',
-              allowedSlippage: new Percent('1', '100'),
-              feeOnTransfer: true
-            }
-          )
-          expect(result.methodName).toEqual('swapExactTokensForTokensSupportingFeeOnTransferTokens')
-          expect(result.args.slice(0, -1)).toEqual([
-            '0x64',
-            '0x59',
-            [token0.address, token1.address],
-            '0x0000000000000000000000000000000000000004'
-          ])
-          expect(result.value).toEqual('0x0')
-        })
-      })
-      describe('exact out', () => {
-        it('ether to token1', () => {
-          expect(() =>
-            Router.swapCallParameters(
-              Trade.exactOut(
-                new Route([pair_weth_0, pair_0_1], ETHER, token1),
-                CurrencyAmount.fromRawAmount(token1, JSBI.BigInt(100))
-              ),
-              {
-                recipient: '0x0000000000000000000000000000000000000004',
-                allowedSlippage: new Percent('1', '100'),
-                feeOnTransfer: true
-              }
-            )
-          ).toThrow('EXACT_OUT_FOT')
-        })
-        it('token1 to ether', () => {
-          expect(() =>
-            Router.swapCallParameters(
-              Trade.exactOut(
-                new Route([pair_0_1, pair_weth_0], token1, ETHER),
-                CurrencyAmount.fromRawAmount(Ether.onChain(1), JSBI.BigInt(100))
-              ),
-              {
-                recipient: '0x0000000000000000000000000000000000000004',
-                allowedSlippage: new Percent('1', '100'),
-                feeOnTransfer: true
-              }
-            )
-          ).toThrow('EXACT_OUT_FOT')
-        })
-        it('token0 to token1', () => {
-          expect(() =>
-            Router.swapCallParameters(
-              Trade.exactOut(
-                new Route([pair_0_1], token0, token1),
-                CurrencyAmount.fromRawAmount(token1, JSBI.BigInt(100))
-              ),
-              {
-                recipient: '0x0000000000000000000000000000000000000004',
-                allowedSlippage: new Percent('1', '100'),
-                feeOnTransfer: true
-              }
-            )
-          ).toThrow('EXACT_OUT_FOT')
-        })
       })
     })
   })

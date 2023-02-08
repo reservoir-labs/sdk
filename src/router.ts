@@ -1,5 +1,5 @@
 import { Token, Currency, CurrencyAmount, Percent, TradeType, validateAndParseAddress } from '@reservoir-labs/sdk-core'
-import { Trade } from './entities'
+import {Pair, Trade} from './entities'
 import invariant from 'tiny-invariant'
 
 /**
@@ -32,7 +32,7 @@ export interface SwapParameters {
   /**
    * The arguments to pass to the method, all hex encoded.
    */
-  args: (string | string[])[]
+  args: (string | string[] | number[])[]
   /**
    * The amount of wei to send in hex.
    */
@@ -59,6 +59,7 @@ export abstract class Router {
    * @param options options for the call parameters
    */
   public static swapCallParameters(trade: Trade<Currency, Currency, TradeType>, options: TradeOptions): SwapParameters {
+    // TODO: where do we insert in the multicall to wrap / unwrap things?
     const etherIn = trade.inputAmount.currency.isNative
     const etherOut = trade.outputAmount.currency.isNative
     // the router does not support both ether in and out
@@ -68,59 +69,31 @@ export abstract class Router {
     const amountIn: string = toHex(trade.maximumAmountIn(options.allowedSlippage))
     const amountOut: string = toHex(trade.minimumAmountOut(options.allowedSlippage))
     const path: string[] = trade.route.path.map((token: Token) => token.address)
+    const curveIds: number[] = trade.route.pairs.map((pair: Pair) => pair.curveId)
 
-    const useFeeOnTransfer = Boolean(options.feeOnTransfer)
+    console.log("curveIds", curveIds)
 
     let methodName: string
-    let args: (string | string[])[]
+    let args: (string | string[] | number[])[]
     let value: string
     switch (trade.tradeType) {
       case TradeType.EXACT_INPUT:
-        if (etherIn) {
-          // TODO: refactor these code using methodName
-          // If etherIn or out we need to use multicall to unwrap them
-          methodName = useFeeOnTransfer ? 'swapExactETHForTokensSupportingFeeOnTransferTokens' : 'swapExactETHForTokens'
-          // (uint amountOutMin, address[] calldata path, address to)
-          args = [amountOut, path, to]
-          value = amountIn
-        } else if (etherOut) {
-          methodName = useFeeOnTransfer ? 'swapExactTokensForETHSupportingFeeOnTransferTokens' : 'swapExactTokensForETH'
-          // (uint amountIn, uint amountOutMin, address[] calldata path, address to)
-          args = [amountIn, amountOut, path, to]
-          value = ZERO_HEX
-        } else {
-          methodName = useFeeOnTransfer
-            ? 'swapExactTokensForTokensSupportingFeeOnTransferTokens'
-            : 'swapExactTokensForTokens'
-          // (uint amountIn, uint amountOutMin, address[] calldata path, address to)
-          args = [amountIn, amountOut, path, to]
-          value = ZERO_HEX
-        }
+        methodName = 'swapExactForVariable'
+        // amountIn is incorrect, amountOut is correct as slippage has been added
+        args = [amountIn, amountOut, path, curveIds, to]
+        value = ZERO_HEX
         break
       case TradeType.EXACT_OUTPUT:
-        invariant(!useFeeOnTransfer, 'EXACT_OUT_FOT')
-        if (etherIn) {
-          // TODO: refactor these code using methodName
-          methodName = 'swapETHForExactTokens'
-          // (uint amountOut, address[] calldata path, address to)
-          args = [amountOut, path, to]
-          value = amountIn
-        } else if (etherOut) {
-          methodName = 'swapTokensForExactETH'
-          // (uint amountOut, uint amountInMax, address[] calldata path, address to)
-          args = [amountOut, amountIn, path, to]
-          value = ZERO_HEX
-        } else {
-          methodName = 'swapTokensForExactTokens'
-          // (uint amountOut, uint amountInMax, address[] calldata path, address to)
-          args = [amountOut, amountIn, path, to]
-          value = ZERO_HEX
-        }
+        methodName = 'swapVariableForExact'
+        // amountIn is correct, amountOut is not
+        args = [amountOut, amountIn, path, curveIds, to]
+        value = ZERO_HEX
         break
     }
     return {
       methodName,
       args,
+      // TODO: should we remove value?
       value
     }
   }
