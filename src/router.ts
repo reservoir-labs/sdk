@@ -1,5 +1,5 @@
 import { Token, Currency, CurrencyAmount, Percent, TradeType, validateAndParseAddress } from '@reservoir-labs/sdk-core'
-import {Pair, Trade} from './entities'
+import { Pair, Trade } from './entities'
 import invariant from 'tiny-invariant'
 
 /**
@@ -71,7 +71,7 @@ export abstract class Router {
     const path: string[] = trade.route.path.map((token: Token) => token.address)
     const curveIds: number[] = trade.route.pairs.map((pair: Pair) => pair.curveId)
 
-    console.log("curveIds", curveIds)
+    console.log('curveIds', curveIds)
 
     let methodName: string
     let args: (string | string[] | number[])[]
