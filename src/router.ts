@@ -71,21 +71,19 @@ export abstract class Router {
     const path: string[] = trade.route.path.map((token: Token) => token.address)
     const curveIds: number[] = trade.route.pairs.map((pair: Pair) => pair.curveId)
 
-    console.log('curveIds', curveIds)
-
     let methodName: string
     let args: (string | string[] | number[])[]
     let value: string
     switch (trade.tradeType) {
       case TradeType.EXACT_INPUT:
         methodName = 'swapExactForVariable'
-        // amountIn is incorrect, amountOut is correct as slippage has been added
+        // uint amountIn, uint amountOutMin, address[] path, uint256[] curveIds, address to
         args = [amountIn, amountOut, path, curveIds, to]
         value = ZERO_HEX
         break
       case TradeType.EXACT_OUTPUT:
         methodName = 'swapVariableForExact'
-        // amountIn is correct, amountOut is not
+        // uint amountOut, uint amountInMax, address[] path, uint256[] curveIds, address to
         args = [amountOut, amountIn, path, curveIds, to]
         value = ZERO_HEX
         break

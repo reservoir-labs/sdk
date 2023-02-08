@@ -32,12 +32,13 @@ describe('Router', () => {
         )
         expect(result.methodName).toEqual('swapExactForVariable')
         expect(result.args).toEqual([
+          '0x64',
           '0x51',
           [WETH9[1].address, token0.address, token1.address],
           [0, 0],
           '0x0000000000000000000000000000000000000004'
         ])
-        expect(result.value).toEqual('0x64')
+        expect(result.value).toEqual('0x0')
       })
 
       it('token1 to ether', () => {
