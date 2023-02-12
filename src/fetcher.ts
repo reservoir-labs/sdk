@@ -156,7 +156,7 @@ export abstract class Fetcher {
     let ampCoefficient = null
     if (curveId == 1) {
       // fetch amplification coefficient
-      ampCoefficient = await new Contract(address, StablePair.abi, provider).getCurrentAPrecise()
+      ampCoefficient = JSBI.BigInt(await new Contract(address, StablePair.abi, provider).getCurrentAPrecise())
     }
 
     return new Pair(
