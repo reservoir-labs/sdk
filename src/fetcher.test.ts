@@ -70,6 +70,8 @@ describe('fetcher', () => {
       expect(pair.amplificationCoefficient).toEqual(null)
       expect(pair.reserve0.toExact()).toEqual('1000000')
       expect(pair.reserve1.toExact()).toEqual('950000')
+      expect(pair.token0.symbol).toEqual('USDC')
+      expect(pair.token1.symbol).toEqual('USDT')
     })
   })
 })
