@@ -29,31 +29,31 @@ const ERC20_ABI = [
     type: 'function'
   },
   {
-    "inputs": [],
-    "name": "symbol",
-    "outputs": [
+    inputs: [],
+    name: 'symbol',
+    outputs: [
       {
-        "internalType": "string",
-        "name": "",
-        "type": "string"
+        internalType: 'string',
+        name: '',
+        type: 'string'
       }
     ],
-    "stateMutability": "view",
-    "type": "function"
+    stateMutability: 'view',
+    type: 'function'
   },
   {
-    "inputs": [],
-    "name": "name",
-    "outputs": [
+    inputs: [],
+    name: 'name',
+    outputs: [
       {
-        "internalType": "string",
-        "name": "",
-        "type": "string"
+        internalType: 'string',
+        name: '',
+        type: 'string'
       }
     ],
-    "stateMutability": "view",
-    "type": "function"
-  },
+    stateMutability: 'view',
+    type: 'function'
+  }
 ]
 
 /**
@@ -195,27 +195,27 @@ export abstract class Fetcher {
   }
 
   public static async fetchPairDataUsingAddress(
-      chainId: SupportedChainId,
-      address: string,
-      provider = getDefaultProvider(getNetwork(chainId))
-  ) : Promise<Pair> {
+    chainId: SupportedChainId,
+    address: string,
+    provider = getDefaultProvider(getNetwork(chainId))
+  ): Promise<Pair> {
     const pair = new Contract(address, ReservoirPair.abi, provider)
 
     const token0ERC20 = new Contract(await pair.token0(), ERC20_ABI, provider)
     const token0: Token = await Fetcher.fetchTokenData(
-        chainId,
-        token0ERC20.address,
-        provider,
-        await token0ERC20.symbol(),
-        await token0ERC20.name()
+      chainId,
+      token0ERC20.address,
+      provider,
+      await token0ERC20.symbol(),
+      await token0ERC20.name()
     )
     const token1ERC20 = new Contract(await pair.token1(), ERC20_ABI, provider)
     const token1: Token = await Fetcher.fetchTokenData(
-        chainId,
-        token1ERC20.address,
-        provider,
-        await token1ERC20.symbol(),
-        await token1ERC20.name()
+      chainId,
+      token1ERC20.address,
+      provider,
+      await token1ERC20.symbol(),
+      await token1ERC20.name()
     )
 
     const reserves = await pair.getReserves()
@@ -223,7 +223,7 @@ export abstract class Fetcher {
     let curveId
 
     const factory = new Contract(FACTORY_ADDRESS, GenericFactory.abi, provider)
-    if (address == await factory.getPair(token0.address, token1.address, 0)) {
+    if (address == (await factory.getPair(token0.address, token1.address, 0))) {
       curveId = 0
     } else {
       curveId = 1
@@ -235,11 +235,11 @@ export abstract class Fetcher {
       ampCoefficient = JSBI.BigInt(await new Contract(address, StablePair.abi, provider).getCurrentAPrecise())
     }
     return new Pair(
-        CurrencyAmount.fromRawAmount(token0, reserves.rReserve0),
-        CurrencyAmount.fromRawAmount(token1, reserves.rReserve1),
-        curveId,
-        swapFee,
-        ampCoefficient
+      CurrencyAmount.fromRawAmount(token0, reserves.rReserve0),
+      CurrencyAmount.fromRawAmount(token1, reserves.rReserve1),
+      curveId,
+      swapFee,
+      ampCoefficient
     )
   }
 }
