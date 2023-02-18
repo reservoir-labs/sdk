@@ -22,7 +22,8 @@
     "prepublishOnly": "tsdx build",
     "anvil": "anvil",
     "anvil:avax": "anvil -f https://api.avax.network/ext/bc/C/rpc",
-    "setupTest": "cd lib/v3-periphery && forge script scripts/setup_scaffold.s.sol --target-contract SetupScaffold --fork-url \"http://127.0.0.1:8545\" --broadcast --skip-simulation --slow -vvv"
+    "setupTest": "cd lib/v3-periphery && forge script scripts/setup_scaffold.s.sol --target-contract SetupScaffold --fork-url \"http://127.0.0.1:8545\" --broadcast --skip-simulation --slow -vvv",
+    "deployStablePair": "cd lib/v3-periphery && forge script scripts/deploy_stablepair.s.sol --target-contract DeployStablePair --fork-url \"http://127.0.0.1:8545\" --broadcast -vvv"
   },
   "dependencies": {
     "@ethersproject/address": "^5.0.0",
