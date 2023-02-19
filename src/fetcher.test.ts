@@ -13,7 +13,7 @@ describe('fetcher', () => {
     it('should fetch pairs', async () => {
       const pairs = await Fetcher.fetchAllPairs(43114, provider)
 
-      expect(pairs.length).toEqual(1)
+      expect(pairs.length).toEqual(2)
     })
   })
 
