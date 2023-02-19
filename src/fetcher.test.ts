@@ -62,11 +62,7 @@ describe('fetcher', () => {
     it('should fetch the info of a valid pair', async () => {
       const pairAddresses = await Fetcher.fetchAllPairs(43114, provider)
 
-      const pair = await Fetcher.fetchPairDataUsingAddress(
-        43114,
-        pairAddresses[0],
-        provider
-      )
+      const pair = await Fetcher.fetchPairDataUsingAddress(43114, pairAddresses[0], provider)
 
       expect(pair.curveId).toEqual(0)
       expect(pair.amplificationCoefficient).toEqual(null)
