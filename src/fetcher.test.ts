@@ -60,9 +60,11 @@ describe('fetcher', () => {
 
   describe('fetchPairDataUsingAddress', () => {
     it('should fetch the info of a valid pair', async () => {
+      const pairAddresses = await Fetcher.fetchAllPairs(43114, provider)
+
       const pair = await Fetcher.fetchPairDataUsingAddress(
         43114,
-        '0x48C82748F328350415Ed505c02B0Be0347610713',
+        pairAddresses[0],
         provider
       )
 
