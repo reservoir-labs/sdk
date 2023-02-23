@@ -184,7 +184,8 @@ export class Trade<TInput extends Currency, TOutput extends Currency, TTradeType
    * @param slippageTolerance tolerance of unfavorable slippage from the execution price of this trade
    */
   public minimumAmountOut(slippageTolerance: Percent): CurrencyAmount<TOutput> {
-    invariant(!slippageTolerance.lessThan(ZERO), 'SLIPPAGE_TOLERANCE')
+    // was throwing a weird error regarding not being able to parse ZERO as a fraction so using the literal for now
+    invariant(!slippageTolerance.lessThan(0), 'SLIPPAGE_TOLERANCE')
     if (this.tradeType === TradeType.EXACT_OUTPUT) {
       return this.outputAmount
     } else {
@@ -201,7 +202,8 @@ export class Trade<TInput extends Currency, TOutput extends Currency, TTradeType
    * @param slippageTolerance tolerance of unfavorable slippage from the execution price of this trade
    */
   public maximumAmountIn(slippageTolerance: Percent): CurrencyAmount<TInput> {
-    invariant(!slippageTolerance.lessThan(ZERO), 'SLIPPAGE_TOLERANCE')
+    // was throwing a weird error regarding not being able to parse ZERO as a fraction so using the literal for now
+    invariant(!slippageTolerance.lessThan(0), 'SLIPPAGE_TOLERANCE')
     if (this.tradeType === TradeType.EXACT_INPUT) {
       return this.inputAmount
     } else {
