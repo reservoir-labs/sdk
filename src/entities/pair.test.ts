@@ -191,11 +191,11 @@ describe('Pair', () => {
         JSBI.BigInt(1000)
       )
       const pair2 = new Pair(
-          CurrencyAmount.fromRawAmount(USDC, '815018240192830192830192'),
-          CurrencyAmount.fromRawAmount(USDT, '950192301923'),
-          1,
-          JSBI.BigInt(100),
-          JSBI.BigInt(1000)
+        CurrencyAmount.fromRawAmount(USDC, '815018240192830192830192'),
+        CurrencyAmount.fromRawAmount(USDT, '950192301923'),
+        1,
+        JSBI.BigInt(100),
+        JSBI.BigInt(1000)
       )
 
       it('should give the correct output amount given the inputAmount', () => {
