@@ -244,10 +244,11 @@ export class Pair {
     return [inputAmount, new Pair(inputReserve.add(inputAmount), outputReserve.subtract(outputAmount), this.curveId)]
   }
 
+  // normalizes all amounts to 18 decimals so that they can be used in the StablePair convergence algorithm
   private _scaleAmounts(amounts: CurrencyAmount<Token>[]): JSBI[] {
     return amounts.map(amount => {
       return JSBI.multiply(
-        JSBI.multiply(JSBI.BigInt(amount.toExact()), JSBI.BigInt(amount.decimalScale)),
+        JSBI.BigInt(amount.quotient),
         JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(18 - amount.currency.decimals))
       )
     })
