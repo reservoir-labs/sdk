@@ -10,6 +10,7 @@ import ConstantProductPair from '../abis/ConstantProductPair.json'
 import StablePair from '../abis/StablePair.json'
 import { defaultAbiCoder } from '@ethersproject/abi'
 import { calcInGivenOut, calcOutGivenIn } from '../lib/balancer-math'
+import { decimal } from "../lib/numbers";
 
 export const computePairAddress = ({
   factoryAddress,
@@ -157,10 +158,9 @@ export class Pair {
     }
     const inputReserve = this.reserveOf(inputAmount.currency)
     const outputReserve = this.reserveOf(inputAmount.currency.equals(this.token0) ? this.token1 : this.token0)
-    const inputAmountWithFee = JSBI.multiply(inputAmount.quotient, JSBI.subtract(FEE_ACCURACY, this.swapFee))
     let outputAmount
-
     if (this.curveId == 0) {
+      const inputAmountWithFee = JSBI.multiply(inputAmount.quotient, JSBI.subtract(FEE_ACCURACY, this.swapFee))
       const numerator = JSBI.multiply(inputAmountWithFee, outputReserve.quotient)
       const denominator = JSBI.add(JSBI.multiply(inputReserve.quotient, FEE_ACCURACY), inputAmountWithFee)
       outputAmount = CurrencyAmount.fromRawAmount(
@@ -170,11 +170,13 @@ export class Pair {
       if (JSBI.equal(outputAmount.quotient, ZERO)) {
         throw new InsufficientInputAmountError()
       }
+      // console.log("exact output CP", outputAmount.toExact())
     } else if (this.curveId == 1) {
       invariant(this.amplificationCoefficient != null)
-
+      const feeDeductedAmountIn = inputAmount.multiply(JSBI.subtract(FEE_ACCURACY, this.swapFee)).divide(FEE_ACCURACY)
+      // console.log("feededucted in", feeDeductedAmountIn.toExact())
       const scaledBalances = this._scaleAmounts([inputReserve, outputReserve])
-      const scaledInputAmount = this._scaleAmounts([inputAmount])
+      const scaledInputAmount = this._scaleAmounts([feeDeductedAmountIn])
 
       outputAmount = calcOutGivenIn(
         scaledBalances.map(bal => bal.toString()),
@@ -184,10 +186,19 @@ export class Pair {
         scaledInputAmount[0].toString()
       )
 
+      // console.log("before outputAmt", outputAmount.toString())
+      // normalize amount from 18 decimals into the correct decimals for the token again
+      // `toDP` is used to chop off the digits after the decimal point
+      outputAmount = outputAmount.div(decimal(10).pow(18 - outputReserve.currency.decimals)).toDP(0)
+      // console.log("typeof raw outputAmount", typeof outputAmount)
+      // console.log(outputAmount)
+      // console.log("raw output amt", outputAmount.toString())
+
       outputAmount = CurrencyAmount.fromRawAmount(
         inputAmount.currency.equals(this.token0) ? this.token1 : this.token0,
         JSBI.BigInt(outputAmount.toString())
       )
+      // console.log("exact output stab", outputAmount.toExact())
     }
 
     // @ts-ignore
