@@ -159,6 +159,7 @@ export class Pair {
     const inputReserve = this.reserveOf(inputAmount.currency)
     const outputReserve = this.reserveOf(inputAmount.currency.equals(this.token0) ? this.token1 : this.token0)
     let outputAmount
+
     if (this.curveId == 0) {
       const inputAmountWithFee = JSBI.multiply(inputAmount.quotient, JSBI.subtract(FEE_ACCURACY, this.swapFee))
       const numerator = JSBI.multiply(inputAmountWithFee, outputReserve.quotient)
@@ -243,6 +244,9 @@ export class Pair {
         scaledOutputAmount[0].toString()
       )
 
+      // normalize amount from 18 decimals into the correct decimals for the token again
+      // `toDP` is used to chop off the digits after the decimal point
+      inputAmount = inputAmount.div(decimal(10).pow(18 - inputReserve.currency.decimals)).toDP(0)
       inputAmount = CurrencyAmount.fromRawAmount(
         outputAmount.currency.equals(this.token0) ? this.token1 : this.token0,
         JSBI.BigInt(inputAmount.toString())
