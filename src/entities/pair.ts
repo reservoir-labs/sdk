@@ -10,7 +10,7 @@ import ConstantProductPair from '../abis/ConstantProductPair.json'
 import StablePair from '../abis/StablePair.json'
 import { defaultAbiCoder } from '@ethersproject/abi'
 import { calcInGivenOut, calcOutGivenIn } from '../lib/balancer-math'
-import { decimal } from "../lib/numbers";
+import { decimal } from '../lib/numbers'
 
 export const computePairAddress = ({
   factoryAddress,
