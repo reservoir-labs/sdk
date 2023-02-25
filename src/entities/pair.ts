@@ -180,10 +180,9 @@ export class Pair {
       const scaledInputAmount = this._scaleAmounts([feeDeductedAmountIn])
 
       outputAmount = calcOutGivenIn(
-        scaledBalances.map(bal => bal.toString()),
+        scaledBalances[0].toString(),
+        scaledBalances[1].toString(),
         this.amplificationCoefficient.toString(),
-        0,
-        1,
         scaledInputAmount[0].toString()
       )
 
@@ -237,10 +236,9 @@ export class Pair {
       const scaledOutputAmount = this._scaleAmounts([outputAmount])
 
       inputAmount = calcInGivenOut(
-        scaledBalances.map(bal => bal.toString()),
+        scaledBalances[0].toString(),
+        scaledBalances[1].toString(),
         this.amplificationCoefficient.toString(),
-        0,
-        1,
         scaledOutputAmount[0].toString()
       )
 
