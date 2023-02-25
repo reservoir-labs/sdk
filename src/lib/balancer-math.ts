@@ -26,8 +26,6 @@ export function calculateApproxInvariant(
 
   const sum = bal0.add(bal1)
 
-  console.log('sum is ', sum)
-
   if (sum.isZero()) {
     return bn(0)
   }
