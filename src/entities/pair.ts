@@ -175,23 +175,15 @@ export class Pair {
     } else if (this.curveId == 1) {
       invariant(this.amplificationCoefficient != null)
       const feeDeductedAmountIn = inputAmount.multiply(JSBI.subtract(FEE_ACCURACY, this.swapFee)).divide(FEE_ACCURACY)
-      // console.log("feededucted in", feeDeductedAmountIn.toExact())
-      const scaledBalances = this._scaleAmounts([inputReserve, outputReserve])
-      const scaledInputAmount = this._scaleAmounts([feeDeductedAmountIn])
 
       outputAmount = calcOutGivenIn(
-        scaledBalances[0].toString(),
-        scaledBalances[1].toString(),
+        inputReserve.toExact(),
+        outputReserve.toExact(),
         this.amplificationCoefficient.toString(),
-        scaledInputAmount[0].toString()
+        feeDeductedAmountIn.toExact()
       )
+      outputAmount = outputAmount.mul(decimal(10).pow(outputReserve.currency.decimals)).toDP(0)
 
-      // console.log("before outputAmt", outputAmount.toString())
-      // normalize amount from 18 decimals into the correct decimals for the token again
-      // `toDP` is used to chop off the digits after the decimal point
-      outputAmount = outputAmount.div(decimal(10).pow(18 - outputReserve.currency.decimals)).toDP(0)
-      // console.log("typeof raw outputAmount", typeof outputAmount)
-      // console.log(outputAmount)
       // console.log("raw output amt", outputAmount.toString())
 
       outputAmount = CurrencyAmount.fromRawAmount(
@@ -232,19 +224,16 @@ export class Pair {
     } else if (this.curveId == 1) {
       invariant(this.amplificationCoefficient != null)
 
-      const scaledBalances = this._scaleAmounts([inputReserve, outputReserve])
-      const scaledOutputAmount = this._scaleAmounts([outputAmount])
-
       inputAmount = calcInGivenOut(
-        scaledBalances[0].toString(),
-        scaledBalances[1].toString(),
+        inputReserve.toExact(),
+        outputReserve.toExact(),
         this.amplificationCoefficient.toString(),
-        scaledOutputAmount[0].toString()
+        outputAmount.toExact()
       )
 
       // normalize amount from 18 decimals into the correct decimals for the token again
       // `toDP` is used to chop off the digits after the decimal point
-      inputAmount = inputAmount.div(decimal(10).pow(18 - inputReserve.currency.decimals)).toDP(0)
+      inputAmount = inputAmount.mul(decimal(10).pow(inputReserve.currency.decimals)).toDP(0)
       inputAmount = CurrencyAmount.fromRawAmount(
         outputAmount.currency.equals(this.token0) ? this.token1 : this.token0,
         JSBI.BigInt(inputAmount.toString())
@@ -258,14 +247,14 @@ export class Pair {
   }
 
   // normalizes all amounts to 18 decimals so that they can be used in the StablePair convergence algorithm
-  private _scaleAmounts(amounts: CurrencyAmount<Token>[]): JSBI[] {
-    return amounts.map(amount => {
-      return JSBI.multiply(
-        JSBI.BigInt(amount.quotient),
-        JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(18 - amount.currency.decimals))
-      )
-    })
-  }
+  // private _scaleAmounts(amounts: CurrencyAmount<Token>[]): JSBI[] {
+  //   return amounts.map(amount => {
+  //     return JSBI.multiply(
+  //       JSBI.BigInt(amount.quotient),
+  //       JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(18 - amount.currency.decimals))
+  //     )
+  //   })
+  // }
 
   // TODO: refactor this for stablePair calculations?
   public getLiquidityMinted(
