@@ -3,12 +3,16 @@
 import { Decimal } from 'decimal.js'
 import { BigNumber } from '@ethersproject/bignumber'
 
-import {BigNumberish, decimal, bn, fp, fromFp, toFp, within1} from './numbers'
+import { BigNumberish, decimal, bn, fp, fromFp, toFp, within1 } from './numbers'
 
-const A_PRECISION = decimal( 100)
+const A_PRECISION = decimal(100)
 const MAX_LOOP_LIMIT = 256
 
-export function calculateInvariant(xp0: BigNumberish, xp1: BigNumberish, amplificationCoefficient: BigNumberish): BigNumber {
+export function calculateInvariant(
+  xp0: BigNumberish,
+  xp1: BigNumberish,
+  amplificationCoefficient: BigNumberish
+): BigNumber {
   return calculateApproxInvariant(xp0, xp1, amplificationCoefficient)
 }
 
@@ -22,7 +26,7 @@ export function calculateApproxInvariant(
 
   const sum = bal0.add(bal1)
 
-  console.log("sum is ", sum)
+  console.log('sum is ', sum)
 
   if (sum.isZero()) {
     return bn(0)
@@ -34,11 +38,24 @@ export function calculateApproxInvariant(
   let inv = sum
   let prevInv = decimal(0)
   for (let i = 0; i < MAX_LOOP_LIMIT; ++i) {
-    let dP = inv.mul(inv).div(bal0).mul(inv).div(bal1).div(4)
+    let dP = inv
+      .mul(inv)
+      .div(bal0)
+      .mul(inv)
+      .div(bal1)
+      .div(4)
 
     prevInv = inv
-    inv = N_A.mul(sum).div(A_PRECISION).add(dP.mul(2))
-        .div(N_A.minus(A_PRECISION).mul(inv).div(A_PRECISION).add(dP).mul(3))
+    inv = N_A.mul(sum)
+      .div(A_PRECISION)
+      .add(dP.mul(2))
+      .div(
+        N_A.minus(A_PRECISION)
+          .mul(inv)
+          .div(A_PRECISION)
+          .add(dP)
+          .mul(3)
+      )
 
     if (within1(inv, prevInv)) {
       break
@@ -51,7 +68,7 @@ export function calcOutGivenIn(
   reserveIn: BigNumberish,
   reserveOut: BigNumberish,
   amplificationCoefficient: BigNumberish,
-  fpTokenAmountIn: BigNumberish,
+  fpTokenAmountIn: BigNumberish
 ): Decimal {
   const invariant = fromFp(calculateInvariant(reserveIn, reserveOut, amplificationCoefficient))
 
@@ -60,7 +77,7 @@ export function calcOutGivenIn(
   const finalBalanceOut = _getTokenBalanceGivenInvariantAndAllOtherBalances(
     balanceIn,
     decimal(amplificationCoefficient),
-    invariant,
+    invariant
   )
 
   return toFp(finalBalanceOut.sub(fromFp(reserveOut)))
@@ -70,7 +87,7 @@ export function calcInGivenOut(
   reserveIn: BigNumberish,
   reserveOut: BigNumberish,
   amplificationCoefficient: BigNumberish,
-  fpTokenAmountOut: BigNumberish,
+  fpTokenAmountOut: BigNumberish
 ): Decimal {
   const invariant = fromFp(calculateInvariant(reserveIn, reserveOut, amplificationCoefficient))
 
@@ -79,7 +96,7 @@ export function calcInGivenOut(
   const finalBalanceIn = _getTokenBalanceGivenInvariantAndAllOtherBalances(
     balanceOut,
     decimal(amplificationCoefficient),
-    invariant,
+    invariant
   )
 
   return toFp(reserveIn).sub(finalBalanceIn)
@@ -88,12 +105,15 @@ export function calcInGivenOut(
 function _getTokenBalanceGivenInvariantAndAllOtherBalances(
   balanceIn: Decimal,
   amplificationCoefficient: Decimal,
-  invariant: Decimal,
+  invariant: Decimal
 ): Decimal {
   const N_A = amplificationCoefficient.mul(2)
 
   let c = invariant.mul(invariant).div(balanceIn.mul(2))
-  c = c.mul(invariant).mul(A_PRECISION).div(N_A.mul(2))
+  c = c
+    .mul(invariant)
+    .mul(A_PRECISION)
+    .div(N_A.mul(2))
 
   let b = balanceIn.add(invariant.mul(A_PRECISION).div(N_A))
   let yPrev
@@ -101,10 +121,15 @@ function _getTokenBalanceGivenInvariantAndAllOtherBalances(
 
   for (let i = 1; i < MAX_LOOP_LIMIT; ++i) {
     yPrev = y
-    y = y.mul(y).add(c)
-        .div(
-            y.mul(2).add(b).sub(invariant)
-        )
+    y = y
+      .mul(y)
+      .add(c)
+      .div(
+        y
+          .mul(2)
+          .add(b)
+          .sub(invariant)
+      )
     if (within1(yPrev, y)) {
       break
     }

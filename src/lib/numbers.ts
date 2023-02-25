@@ -148,10 +148,18 @@ export function randomFromInterval(min: number, max: number): number {
 
 export function within1(x: Decimal, y: Decimal): boolean {
   if (x.gt(y)) {
-    if (fp(x).sub(fp(y)).lte(1)) {
+    if (
+      fp(x)
+        .sub(fp(y))
+        .lte(1)
+    ) {
       return true
     }
-  } else if (fp(y).sub(fp(x)).lte(1)) {
+  } else if (
+    fp(y)
+      .sub(fp(x))
+      .lte(1)
+  ) {
     return true
   }
   return false
