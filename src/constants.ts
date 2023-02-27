@@ -9,7 +9,7 @@ export const FEE_ACCURACY = JSBI.BigInt(1_000_000) // 100%
 
 export const A_PRECISION = JSBI.BigInt(100)
 
-export const DEFAULT_AMPLIFICATION_COEFFICIENT_PRECISE = JSBI.multiply(JSBI.BigInt( 1000), A_PRECISION)  // 1000 with 100 of precision
+export const DEFAULT_AMPLIFICATION_COEFFICIENT_PRECISE = JSBI.multiply(JSBI.BigInt(1000), A_PRECISION) // 1000 with 100 of precision
 
 // exports for internal consumption
 export const ZERO = JSBI.BigInt(0)

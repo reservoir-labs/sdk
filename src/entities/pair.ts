@@ -17,7 +17,7 @@ import { InsufficientReservesError, InsufficientInputAmountError } from '../erro
 import ConstantProductPair from '../abis/ConstantProductPair.json'
 import StablePair from '../abis/StablePair.json'
 import { defaultAbiCoder } from '@ethersproject/abi'
-import {calcInGivenOut, calcOutGivenIn, calculateInvariant} from '../lib/balancer-math'
+import { calcInGivenOut, calcOutGivenIn, calculateInvariant } from '../lib/balancer-math'
 import { decimal } from '../lib/numbers'
 
 export const computePairAddress = ({
@@ -282,12 +282,18 @@ export class Pair {
     if (this.curveId === 0) {
       if (JSBI.equal(totalSupply.quotient, ZERO)) {
         liquidity = JSBI.subtract(
-            sqrt(JSBI.multiply(tokenAmounts[0].quotient, tokenAmounts[1].quotient)),
-            MINIMUM_LIQUIDITY
+          sqrt(JSBI.multiply(tokenAmounts[0].quotient, tokenAmounts[1].quotient)),
+          MINIMUM_LIQUIDITY
         )
       } else {
-        const amount0 = JSBI.divide(JSBI.multiply(tokenAmounts[0].quotient, totalSupply.quotient), this.reserve0.quotient)
-        const amount1 = JSBI.divide(JSBI.multiply(tokenAmounts[1].quotient, totalSupply.quotient), this.reserve1.quotient)
+        const amount0 = JSBI.divide(
+          JSBI.multiply(tokenAmounts[0].quotient, totalSupply.quotient),
+          this.reserve0.quotient
+        )
+        const amount1 = JSBI.divide(
+          JSBI.multiply(tokenAmounts[1].quotient, totalSupply.quotient),
+          this.reserve1.quotient
+        )
         liquidity = JSBI.lessThanOrEqual(amount0, amount1) ? amount0 : amount1
       }
       if (!JSBI.greaterThan(liquidity, ZERO)) {
@@ -299,9 +305,9 @@ export class Pair {
       if (JSBI.equal(totalSupply.quotient, ZERO)) {
         // calculate initial stable liq
         const newLiq = calculateInvariant(
-            tokenAmounts[0].toExact(),
-            tokenAmounts[1].toExact(),
-            DEFAULT_AMPLIFICATION_COEFFICIENT_PRECISE.toString() // might want to read this from the factory
+          tokenAmounts[0].toExact(),
+          tokenAmounts[1].toExact(),
+          DEFAULT_AMPLIFICATION_COEFFICIENT_PRECISE.toString() // might want to read this from the factory
         )
         liquidity = JSBI.subtract(JSBI.BigInt(newLiq), MINIMUM_LIQUIDITY)
       } else {
