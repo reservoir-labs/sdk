@@ -4,12 +4,20 @@ import JSBI from 'jsbi'
 import { keccak256, pack } from '@ethersproject/solidity'
 import { getCreate2Address } from '@ethersproject/address'
 
-import { FACTORY_ADDRESS, MINIMUM_LIQUIDITY, FIVE, FEE_ACCURACY, ONE, ZERO } from '../constants'
+import {
+  FACTORY_ADDRESS,
+  MINIMUM_LIQUIDITY,
+  FIVE,
+  FEE_ACCURACY,
+  ONE,
+  ZERO,
+  DEFAULT_AMPLIFICATION_COEFFICIENT_PRECISE
+} from '../constants'
 import { InsufficientReservesError, InsufficientInputAmountError } from '../errors'
 import ConstantProductPair from '../abis/ConstantProductPair.json'
 import StablePair from '../abis/StablePair.json'
 import { defaultAbiCoder } from '@ethersproject/abi'
-import { calcInGivenOut, calcOutGivenIn } from '../lib/balancer-math'
+import {calcInGivenOut, calcOutGivenIn, calculateInvariant} from '../lib/balancer-math'
 import { decimal } from '../lib/numbers'
 
 export const computePairAddress = ({
@@ -58,6 +66,7 @@ export class Pair {
   public readonly swapFee: JSBI
 
   // null for ConstantProductPair, non-zero for StablePair
+  // stored with A_PRECISION
   public readonly amplificationCoefficient: JSBI | null
 
   public static getAddress(tokenA: Token, tokenB: Token, curveId: number): string {
@@ -256,7 +265,6 @@ export class Pair {
   //   })
   // }
 
-  // TODO: refactor this for stablePair calculations?
   public getLiquidityMinted(
     totalSupply: CurrencyAmount<Token>,
     tokenAmountA: CurrencyAmount<Token>,
@@ -267,20 +275,59 @@ export class Pair {
       ? [tokenAmountA, tokenAmountB]
       : [tokenAmountB, tokenAmountA]
     invariant(tokenAmounts[0].currency.equals(this.token0) && tokenAmounts[1].currency.equals(this.token1), 'TOKEN')
+    invariant(this.curveId === 0 || this.curveId === 1)
 
     let liquidity: JSBI
-    if (JSBI.equal(totalSupply.quotient, ZERO)) {
-      liquidity = JSBI.subtract(
-        sqrt(JSBI.multiply(tokenAmounts[0].quotient, tokenAmounts[1].quotient)),
-        MINIMUM_LIQUIDITY
-      )
-    } else {
-      const amount0 = JSBI.divide(JSBI.multiply(tokenAmounts[0].quotient, totalSupply.quotient), this.reserve0.quotient)
-      const amount1 = JSBI.divide(JSBI.multiply(tokenAmounts[1].quotient, totalSupply.quotient), this.reserve1.quotient)
-      liquidity = JSBI.lessThanOrEqual(amount0, amount1) ? amount0 : amount1
+
+    if (this.curveId === 0) {
+      if (JSBI.equal(totalSupply.quotient, ZERO)) {
+        liquidity = JSBI.subtract(
+            sqrt(JSBI.multiply(tokenAmounts[0].quotient, tokenAmounts[1].quotient)),
+            MINIMUM_LIQUIDITY
+        )
+      } else {
+        const amount0 = JSBI.divide(JSBI.multiply(tokenAmounts[0].quotient, totalSupply.quotient), this.reserve0.quotient)
+        const amount1 = JSBI.divide(JSBI.multiply(tokenAmounts[1].quotient, totalSupply.quotient), this.reserve1.quotient)
+        liquidity = JSBI.lessThanOrEqual(amount0, amount1) ? amount0 : amount1
+      }
+      if (!JSBI.greaterThan(liquidity, ZERO)) {
+        throw new InsufficientInputAmountError()
+      }
     }
-    if (!JSBI.greaterThan(liquidity, ZERO)) {
-      throw new InsufficientInputAmountError()
+    // stable case
+    else {
+      if (JSBI.equal(totalSupply.quotient, ZERO)) {
+        // calculate initial stable liq
+        const newLiq = calculateInvariant(
+            tokenAmounts[0].toExact(),
+            tokenAmounts[1].toExact(),
+            DEFAULT_AMPLIFICATION_COEFFICIENT_PRECISE.toString() // might want to read this from the factory
+        )
+        liquidity = JSBI.subtract(JSBI.BigInt(newLiq), MINIMUM_LIQUIDITY)
+      } else {
+        invariant(this.amplificationCoefficient !== null)
+
+        const oldLiq = JSBI.BigInt(
+          calculateInvariant(
+            this.tokenAmounts[0].toExact(),
+            this.tokenAmounts[1].toExact(),
+            this.amplificationCoefficient.toString()
+          ).toString()
+        )
+
+        const newLiq = JSBI.BigInt(
+          calculateInvariant(
+            this.tokenAmounts[0].add(tokenAmounts[0]).toExact(),
+            this.tokenAmounts[1].add(tokenAmounts[1]).toExact(),
+            this.amplificationCoefficient.toString()
+          ).toString()
+        )
+
+        liquidity = JSBI.divide(JSBI.multiply(JSBI.subtract(newLiq, oldLiq), totalSupply.quotient), oldLiq)
+      }
+      if (!JSBI.greaterThan(liquidity, ZERO)) {
+        throw new InsufficientInputAmountError()
+      }
     }
     return CurrencyAmount.fromRawAmount(this.liquidityToken, liquidity)
   }
