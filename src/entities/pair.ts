@@ -338,7 +338,7 @@ export class Pair {
     return CurrencyAmount.fromRawAmount(this.liquidityToken, liquidity)
   }
 
-  // TODO: KIV, might need to refactor for the stablePair
+  // TODO: to take into account the two types of platformFee calculations for the two curves
   public getLiquidityValue(
     token: Token,
     totalSupply: CurrencyAmount<Token>,
