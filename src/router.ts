@@ -1,9 +1,9 @@
 import { Token, Currency, CurrencyAmount, Percent, TradeType, validateAndParseAddress } from '@reservoir-labs/sdk-core'
 import { Pair, Trade } from './entities'
 import invariant from 'tiny-invariant'
-import {Multicall} from "multicall";
-import {Payments} from "payments";
-import JSBI from "jsbi";
+import { Multicall } from 'multicall'
+import { Payments } from 'payments'
+import JSBI from 'jsbi'
 
 /**
  * Options for producing the arguments to send call to the router.
@@ -106,12 +106,12 @@ export abstract class Router {
     // unwrap ETH
     // TODO: when do we have to "refund" ETH?
     if (etherOut) {
-      calldatas.push(Payments.encodeUnwrapWETH9(JSBI.BigInt( amountOut), options.recipient))
+      calldatas.push(Payments.encodeUnwrapWETH9(JSBI.BigInt(amountOut), options.recipient))
     }
 
     // only use multicall if there is more than one call to make
     if (calldatas.length > 1) {
-      methodName = "multicall"
+      methodName = 'multicall'
       args = Multicall.encodeMulticall(calldatas)
     }
 
