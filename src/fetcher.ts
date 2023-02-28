@@ -119,7 +119,9 @@ export abstract class Fetcher {
       nativeTokenBStable
     ].filter(address => address != null)
 
-    const result = new Set(relevantPairs) // de-duplicate addresses using a set
+    // de-duplicate addresses using a set
+    // TODO: doesn't really work at the moment. Cuz there can be two distinct objects pointing to the same pair
+    const result = new Set(relevantPairs)
 
     // @ts-ignore
     return Array.from(result)
@@ -181,7 +183,6 @@ export abstract class Fetcher {
 
     let ampCoefficient = null
     if (curveId == 1) {
-      // fetch amplification coefficient
       ampCoefficient = JSBI.BigInt(await new Contract(address, StablePair.abi, provider).getCurrentAPrecise())
     }
 

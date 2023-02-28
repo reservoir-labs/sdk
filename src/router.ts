@@ -1,6 +1,9 @@
 import { Token, Currency, CurrencyAmount, Percent, TradeType, validateAndParseAddress } from '@reservoir-labs/sdk-core'
 import { Pair, Trade } from './entities'
 import invariant from 'tiny-invariant'
+import {Multicall} from "multicall";
+import {Payments} from "payments";
+import JSBI from "jsbi";
 
 /**
  * Options for producing the arguments to send call to the router.
@@ -32,7 +35,7 @@ export interface SwapParameters {
   /**
    * The arguments to pass to the method, all hex encoded.
    */
-  args: (string | string[] | number[])[]
+  args: (string | string[] | number[])[] | string
   /**
    * The amount of wei to send in hex.
    */
@@ -59,11 +62,12 @@ export abstract class Router {
    * @param options options for the call parameters
    */
   public static swapCallParameters(trade: Trade<Currency, Currency, TradeType>, options: TradeOptions): SwapParameters {
-    // TODO: where do we insert in the multicall to wrap / unwrap things?
     const etherIn = trade.inputAmount.currency.isNative
     const etherOut = trade.outputAmount.currency.isNative
     // the router does not support both ether in and out
     invariant(!(etherIn && etherOut), 'ETHER_IN_OUT')
+
+    const calldatas: string[] = []
 
     const to: string = validateAndParseAddress(options.recipient)
     const amountIn: string = toHex(trade.maximumAmountIn(options.allowedSlippage))
@@ -72,24 +76,48 @@ export abstract class Router {
     const curveIds: number[] = trade.route.pairs.map((pair: Pair) => pair.curveId)
 
     let methodName: string
-    let args: (string | string[] | number[])[]
-    let value: string = ZERO_HEX
+    let args: (string | string[] | number[])[] | string
+
+    let value: string
+
+    // to change
+    if (etherIn) {
+      value = amountIn
+    } else {
+      value = ZERO_HEX
+    }
+
     switch (trade.tradeType) {
       case TradeType.EXACT_INPUT:
         methodName = 'swapExactForVariable'
         // uint amountIn, uint amountOutMin, address[] path, uint256[] curveIds, address to
         args = [amountIn, amountOut, path, curveIds, to]
+
+        calldatas.push()
         break
       case TradeType.EXACT_OUTPUT:
         methodName = 'swapVariableForExact'
         // uint amountOut, uint amountInMax, address[] path, uint256[] curveIds, address to
         args = [amountOut, amountIn, path, curveIds, to]
+        calldatas.push()
         break
     }
+
+    // unwrap ETH
+    // TODO: when do we have to "refund" ETH?
+    if (etherOut) {
+      calldatas.push(Payments.encodeUnwrapWETH9(JSBI.BigInt( amountOut), options.recipient))
+    }
+
+    // only use multicall if there is more than one call to make
+    if (calldatas.length > 1) {
+      methodName = "multicall"
+      args = Multicall.encodeMulticall(calldatas)
+    }
+
     return {
       methodName,
       args,
-      // TODO: should we remove value?
       value
     }
   }
