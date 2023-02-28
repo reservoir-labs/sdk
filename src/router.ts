@@ -69,7 +69,7 @@ export abstract class Router {
 
     const calldatas: string[] = []
 
-    let to: string = etherOut ? ROUTER_ADDRESS : validateAndParseAddress(options.recipient)
+    const to: string = etherOut ? ROUTER_ADDRESS : validateAndParseAddress(options.recipient)
     const amountIn: string = toHex(trade.maximumAmountIn(options.allowedSlippage))
     const amountOut: string = toHex(trade.minimumAmountOut(options.allowedSlippage))
     const path: string[] = trade.route.path.map((token: Token) => token.address)
@@ -78,12 +78,7 @@ export abstract class Router {
     let methodName: string
     let args: (string | string[] | number[])[] | string
 
-    let value: string
-    if (etherIn) {
-      value = amountIn
-    } else {
-      value = ZERO_HEX
-    }
+    const value: string = etherIn ? amountIn : ZERO_HEX
 
     let encodedSwapCall
     switch (trade.tradeType) {
