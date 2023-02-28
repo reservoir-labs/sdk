@@ -4,9 +4,9 @@ import { Pair, Trade } from './entities'
 import { Multicall } from './multicall'
 import { Payments } from './payments'
 import JSBI from 'jsbi'
-import {Interface} from "@ethersproject/abi";
+import { Interface } from '@ethersproject/abi'
 import IReservoirRouter from './abis/IReservoirRouter.json'
-import {ROUTER_ADDRESS} from "./constants";
+import { ROUTER_ADDRESS } from './constants'
 
 /**
  * Options for producing the arguments to send call to the router.
@@ -114,7 +114,7 @@ export abstract class Router {
 
     // encodeMulticall checks if the array is larger than 1
     const calldata = Multicall.encodeMulticall(calldatas)
-    console.log("final calldata", calldata)
+    console.log('final calldata', calldata)
 
     // the difference between a nativeIn swap vs a wrapped native token swap is that
     // the nativeIn swap would have value attached to it, but the wrapped one would not have value

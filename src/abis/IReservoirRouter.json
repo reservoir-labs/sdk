@@ -467,9 +467,7 @@
     "absolutePath": "src/interfaces/IReservoirRouter.sol",
     "id": 40781,
     "exportedSymbols": {
-      "IReservoirRouter": [
-        40780
-      ]
+      "IReservoirRouter": [40780]
     },
     "nodeType": "SourceUnit",
     "src": "0:1568:71",
@@ -479,12 +477,7 @@
         "nodeType": "PragmaDirective",
         "src": "0:23:71",
         "nodes": [],
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".0"
-        ]
+        "literals": ["solidity", "^", "0.8", ".0"]
       },
       {
         "id": 40780,
@@ -1537,9 +1530,7 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "linearizedBaseContracts": [
-          40780
-        ],
+        "linearizedBaseContracts": [40780],
         "name": "IReservoirRouter",
         "nameLocation": "35:16:71",
         "scope": 40781,
