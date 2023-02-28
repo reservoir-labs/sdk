@@ -98,11 +98,9 @@ export abstract class Router {
     }
     calldatas.push(encodedSwapCall)
 
-    // we have to refundETH whenever the native token is an input
-    if (etherIn) {
+    if (etherIn && trade.tradeType == TradeType.EXACT_OUTPUT) {
       calldatas.push(Payments.encodeRefundETH())
     }
-    // unwrap ETH
     if (etherOut) {
       calldatas.push(Payments.encodeUnwrapWETH(JSBI.BigInt(amountOut), options.recipient))
     }
