@@ -1,9 +1,12 @@
+import invariant from 'tiny-invariant'
 import { Token, Currency, CurrencyAmount, Percent, TradeType, validateAndParseAddress } from '@reservoir-labs/sdk-core'
 import { Pair, Trade } from './entities'
-import invariant from 'tiny-invariant'
-import { Multicall } from 'multicall'
-import { Payments } from 'payments'
+import { Multicall } from './multicall'
+import { Payments } from './payments'
 import JSBI from 'jsbi'
+import {Interface} from "@ethersproject/abi";
+import IReservoirRouter from './abis/IReservoirRouter.json'
+import {ROUTER_ADDRESS} from "./constants";
 
 /**
  * Options for producing the arguments to send call to the router.
@@ -29,13 +32,9 @@ export interface TradeOptions {
  */
 export interface SwapParameters {
   /**
-   * The method to call on the Uniswap V2 Router.
-   */
-  methodName: string
-  /**
    * The arguments to pass to the method, all hex encoded.
    */
-  args: (string | string[] | number[])[] | string
+  calldata: (string | string[] | number[])[] | string
   /**
    * The amount of wei to send in hex.
    */
@@ -56,6 +55,7 @@ export abstract class Router {
    * Cannot be constructed.
    */
   private constructor() {}
+  public static INTERFACE: Interface = new Interface(IReservoirRouter.abi)
   /**
    * Produces the on-chain method name to call and the hex encoded parameters to pass as arguments for a given trade.
    * @param trade to produce call parameters for
@@ -69,7 +69,7 @@ export abstract class Router {
 
     const calldatas: string[] = []
 
-    const to: string = validateAndParseAddress(options.recipient)
+    let to: string = etherOut ? ROUTER_ADDRESS : validateAndParseAddress(options.recipient)
     const amountIn: string = toHex(trade.maximumAmountIn(options.allowedSlippage))
     const amountOut: string = toHex(trade.minimumAmountOut(options.allowedSlippage))
     const path: string[] = trade.route.path.map((token: Token) => token.address)
@@ -79,46 +79,52 @@ export abstract class Router {
     let args: (string | string[] | number[])[] | string
 
     let value: string
-
-    // to change
     if (etherIn) {
       value = amountIn
     } else {
       value = ZERO_HEX
     }
 
+    let encodedSwapCall
     switch (trade.tradeType) {
       case TradeType.EXACT_INPUT:
         methodName = 'swapExactForVariable'
         // uint amountIn, uint amountOutMin, address[] path, uint256[] curveIds, address to
         args = [amountIn, amountOut, path, curveIds, to]
-
-        calldatas.push()
+        encodedSwapCall = Router.INTERFACE.encodeFunctionData(methodName, args)
         break
+
       case TradeType.EXACT_OUTPUT:
         methodName = 'swapVariableForExact'
         // uint amountOut, uint amountInMax, address[] path, uint256[] curveIds, address to
         args = [amountOut, amountIn, path, curveIds, to]
-        calldatas.push()
+        encodedSwapCall = Router.INTERFACE.encodeFunctionData(methodName, args)
         break
     }
+    calldatas.push(encodedSwapCall)
 
+    // we have to refundETH whenever the native token is an input
+    if (etherIn) {
+      calldatas.push(Payments.encodeRefundETH())
+    }
     // unwrap ETH
-    // TODO: when do we have to "refund" ETH?
     if (etherOut) {
-      calldatas.push(Payments.encodeUnwrapWETH9(JSBI.BigInt(amountOut), options.recipient))
+      calldatas.push(Payments.encodeUnwrapWETH(JSBI.BigInt(amountOut), options.recipient))
     }
 
-    // only use multicall if there is more than one call to make
-    if (calldatas.length > 1) {
-      methodName = 'multicall'
-      args = Multicall.encodeMulticall(calldatas)
-    }
+    // encodeMulticall checks if the array is larger than 1
+    const calldata = Multicall.encodeMulticall(calldatas)
+    console.log("final calldata", calldata)
 
+    // the difference between a nativeIn swap vs a wrapped native token swap is that
+    // the nativeIn swap would have value attached to it, but the wrapped one would not have value
     return {
-      methodName,
-      args,
+      calldata,
       value
     }
   }
+
+  public static addLiquidityParameters() {}
+
+  public static removeLiquidityParameters() {}
 }
