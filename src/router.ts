@@ -7,6 +7,7 @@ import JSBI from 'jsbi'
 import { Interface } from '@ethersproject/abi'
 import IReservoirRouter from './abis/IReservoirRouter.json'
 import { ROUTER_ADDRESS } from './constants'
+import {calculateSlippageAmount} from "./utils/math";
 
 /**
  * Options for producing the arguments to send call to the router.
@@ -119,24 +120,25 @@ export abstract class Router {
   }
 
   public static addLiquidityParameters(
-    tokenAAmount: CurrencyAmount<any>,
-    tokenBAmount: CurrencyAmount<any>,
+    tokenAmountA: CurrencyAmount<any>,
+    tokenAmountB: CurrencyAmount<any>,
     curveId: number,
     options: TradeOptions
   ): SwapParameters {
-    invariant(!tokenAAmount.currency.equals(tokenBAmount.currency), 'ATTEMPTING_TO_ADD_LIQ_FOR_SAME_TOKEN')
-    const etherIn = tokenAAmount.currency.isNative || tokenBAmount.currency.isNative
+    invariant(!tokenAmountA.currency.equals(tokenAmountB.currency), 'ATTEMPTING_TO_ADD_LIQ_FOR_SAME_TOKEN')
+    invariant(curveId === 0 || curveId === 1, 'INVALID_CURVE_ID')
+    const etherIn = tokenAmountA.currency.isNative || tokenAmountB.currency.isNative
     const calldatas: string[] = []
 
     const methodName = 'addLiquidity'
     const args = [
-      tokenAAmount.currency.address,
-      tokenBAmount.currency.address,
+      tokenAmountA.wrapped.currency.address,
+      tokenAmountB.wrapped.currency.address,
       curveId,
-      adesrired,
-      bdesired,
-      aMin,
-      bMin,
+      tokenAmountA.quotient,
+      tokenAmountB.quotient,
+      calculateSlippageAmount(tokenAmountA.quotient, options.allowedSlippage).lower,
+      calculateSlippageAmount(tokenAmountB.quotient, options.allowedSlippage).lower,
       options.recipient
     ]
     const encodedAddLiqCall = Router.INTERFACE.encodeFunctionData(methodName, args)
@@ -144,13 +146,13 @@ export abstract class Router {
     calldatas.push(encodedAddLiqCall)
 
     const calldata = Multicall.encodeMulticall(calldatas)
-
+    console.log('add liq calldata', calldata)
     let value: string = ZERO_HEX
     if (etherIn) {
-      value = tokenAAmount.currency.isNative ? tokenAAmount.quotient.toString() : tokenBAmount.quotient.toString()
+      value = tokenAmountA.currency.isNative ? tokenAmountA.quotient.toString() : tokenAmountB.quotient.toString()
       // are these needed??
       calldatas.push(Payments.encodeRefundETH())
-      calldatas.push(Payments.encodeSweepToken())
+      // calldatas.push(Payments.encodeSweepToken())
     }
 
     return {
@@ -160,14 +162,14 @@ export abstract class Router {
   }
 
   // actually for remove liq there will never be a case where value is non-zero?
-  public static removeLiquidityParameters(
-    tokenAAmt: CurrencyAmount,
-    tokenBAmt: CurrencyAmount,
-    curveId: number,
-    options: TradeOptions
-  ): SwapParameters {
-    return {
-      value: ZERO_HEX
-    }
-  }
+  // public static removeLiquidityParameters(
+  //   tokenAAmt: CurrencyAmount,
+  //   tokenBAmt: CurrencyAmount,
+  //   curveId: number,
+  //   options: TradeOptions
+  // ): SwapParameters {
+  //   return {
+  //     value: ZERO_HEX
+  //   }
+  // }
 }
