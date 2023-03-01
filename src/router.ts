@@ -118,13 +118,27 @@ export abstract class Router {
     }
   }
 
-  public static addLiquidityParameters(tokenAAmount: CurrencyAmount<any>, tokenBAmount: CurrencyAmount<any>, curveId: number, options: TradeOptions): SwapParameters {
+  public static addLiquidityParameters(
+    tokenAAmount: CurrencyAmount<any>,
+    tokenBAmount: CurrencyAmount<any>,
+    curveId: number,
+    options: TradeOptions
+  ): SwapParameters {
     invariant(!tokenAAmount.currency.equals(tokenBAmount.currency), 'ATTEMPTING_TO_ADD_LIQ_FOR_SAME_TOKEN')
     const etherIn = tokenAAmount.currency.isNative || tokenBAmount.currency.isNative
     const calldatas: string[] = []
 
     const methodName = 'addLiquidity'
-    const args = [tokenAAmount.currency.address, tokenBAmount.currency.address, curveId, adesrired, bdesired, aMin, bMin, options.recipient]
+    const args = [
+      tokenAAmount.currency.address,
+      tokenBAmount.currency.address,
+      curveId,
+      adesrired,
+      bdesired,
+      aMin,
+      bMin,
+      options.recipient
+    ]
     const encodedAddLiqCall = Router.INTERFACE.encodeFunctionData(methodName, args)
 
     calldatas.push(encodedAddLiqCall)
@@ -146,9 +160,12 @@ export abstract class Router {
   }
 
   // actually for remove liq there will never be a case where value is non-zero?
-  public static removeLiquidityParameters(tokenAAmt: CurrencyAmount, tokenBAmt: CurrencyAmount, curveId: number, options: TradeOptions): SwapParameters {
-
-
+  public static removeLiquidityParameters(
+    tokenAAmt: CurrencyAmount,
+    tokenBAmt: CurrencyAmount,
+    curveId: number,
+    options: TradeOptions
+  ): SwapParameters {
     return {
       value: ZERO_HEX
     }
