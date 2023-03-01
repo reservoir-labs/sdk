@@ -135,18 +135,16 @@ export abstract class Router {
       tokenAmountA.wrapped.currency.address,
       tokenAmountB.wrapped.currency.address,
       curveId,
-      tokenAmountA.quotient,
-      tokenAmountB.quotient,
-      calculateSlippageAmount(tokenAmountA.quotient, options.allowedSlippage).lower,
-      calculateSlippageAmount(tokenAmountB.quotient, options.allowedSlippage).lower,
+      tokenAmountA.quotient.toString(),
+      tokenAmountB.quotient.toString(),
+      calculateSlippageAmount(tokenAmountA.quotient, options.allowedSlippage).lower.toString(),
+      calculateSlippageAmount(tokenAmountB.quotient, options.allowedSlippage).lower.toString(),
       options.recipient
     ]
     const encodedAddLiqCall = Router.INTERFACE.encodeFunctionData(methodName, args)
 
     calldatas.push(encodedAddLiqCall)
 
-    const calldata = Multicall.encodeMulticall(calldatas)
-    console.log('add liq calldata', calldata)
     let value: string = ZERO_HEX
     if (etherIn) {
       value = tokenAmountA.currency.isNative ? tokenAmountA.quotient.toString() : tokenAmountB.quotient.toString()
@@ -154,6 +152,9 @@ export abstract class Router {
       calldatas.push(Payments.encodeRefundETH())
       // calldatas.push(Payments.encodeSweepToken())
     }
+
+    const calldata = Multicall.encodeMulticall(calldatas)
+    console.log('add liq calldata', calldata)
 
     return {
       calldata,
