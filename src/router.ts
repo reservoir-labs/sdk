@@ -7,7 +7,7 @@ import JSBI from 'jsbi'
 import { Interface } from '@ethersproject/abi'
 import IReservoirRouter from './abis/IReservoirRouter.json'
 import { ROUTER_ADDRESS } from './constants'
-import {calculateSlippageAmount} from "./utils/math";
+import { calculateSlippageAmount } from './utils/math'
 
 /**
  * Options for producing the arguments to send call to the router.
