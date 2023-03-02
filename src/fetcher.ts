@@ -101,30 +101,33 @@ export abstract class Fetcher {
     invariant(tokenA != tokenB, 'SAME_TOKEN')
 
     // get the pairs for the two curves
-    const constantProduct = await this._fetchPairIfExists(tokenA, tokenB, 0, provider)
-    const stable = await this._fetchPairIfExists(tokenA, tokenB, 1, provider)
+    const constantProduct = Pair.getAddress(tokenA, tokenB, 0)
+    const stable = Pair.getAddress(tokenA, tokenB, 1)
 
     // get native pairs
-    const nativeTokenAConstantProduct = await this._fetchPairIfExists(tokenA, WETH9[chainId], 0, provider)
-    const nativeTokenAStable = await this._fetchPairIfExists(tokenA, WETH9[chainId], 1, provider)
-    const nativeTokenBConstantProduct = await this._fetchPairIfExists(tokenB, WETH9[chainId], 0, provider)
-    const nativeTokenBStable = await this._fetchPairIfExists(tokenB, WETH9[chainId], 1, provider)
+    const nativeTokenAConstantProduct = Pair.getAddress(tokenA, WETH9[chainId], 0)
+    const nativeTokenAStable = Pair.getAddress(tokenA, WETH9[chainId], 1)
+    const nativeTokenBConstantProduct = Pair.getAddress(tokenB, WETH9[chainId], 0)
+    const nativeTokenBStable = Pair.getAddress(tokenB, WETH9[chainId], 1)
 
-    const relevantPairs = [
-      stable,
-      constantProduct,
-      nativeTokenAConstantProduct,
-      nativeTokenAStable,
-      nativeTokenBConstantProduct,
-      nativeTokenBStable
-    ].filter(address => address != null)
+    const relevantPairs = new Set()
+    relevantPairs.add(constantProduct)
+    relevantPairs.add(stable)
+    relevantPairs.add(nativeTokenAConstantProduct)
+    relevantPairs.add(nativeTokenAStable)
+    relevantPairs.add(nativeTokenBConstantProduct)
+    relevantPairs.add(nativeTokenBStable)
 
-    // de-duplicate addresses using a set
-    // TODO: doesn't really work at the moment. Cuz there can be two distinct objects pointing to the same pair
-    const result = new Set(relevantPairs)
+    const fetchedPairs = Array.from(relevantPairs).map(async (value: string) => {
+      try {
+        return await this.fetchPairDataUsingAddress(chainId, value, provider)
+      } catch {
+        return null
+      }
+    })
 
     // @ts-ignore
-    return Array.from(result)
+    return fetchedPairs.filter(pair => pair != null)
   }
 
   /**
