@@ -1,5 +1,13 @@
 import invariant from 'tiny-invariant'
-import { Token, Currency, CurrencyAmount, Percent, TradeType, validateAndParseAddress } from '@reservoir-labs/sdk-core'
+import {
+  Token,
+  Currency,
+  CurrencyAmount,
+  Percent,
+  TradeType,
+  validateAndParseAddress,
+  BigintIsh
+} from '@reservoir-labs/sdk-core'
 import { Pair, Trade } from './entities'
 import { Multicall } from './multicall'
 import { Payments } from './payments'
@@ -81,25 +89,23 @@ export abstract class Router {
 
     const value: string = etherIn ? amountIn : ZERO_HEX
 
-    let encodedSwapCall
     switch (trade.tradeType) {
       case TradeType.EXACT_INPUT:
         methodName = 'swapExactForVariable'
         // uint amountIn, uint amountOutMin, address[] path, uint256[] curveIds, address to
         args = [amountIn, amountOut, path, curveIds, to]
-        encodedSwapCall = Router.INTERFACE.encodeFunctionData(methodName, args)
         break
 
       case TradeType.EXACT_OUTPUT:
         methodName = 'swapVariableForExact'
         // uint amountOut, uint amountInMax, address[] path, uint256[] curveIds, address to
         args = [amountOut, amountIn, path, curveIds, to]
-        encodedSwapCall = Router.INTERFACE.encodeFunctionData(methodName, args)
         break
     }
+    const encodedSwapCall = Router.INTERFACE.encodeFunctionData(methodName, args)
     calldatas.push(encodedSwapCall)
 
-    if (etherIn && trade.tradeType == TradeType.EXACT_OUTPUT) {
+    if (etherIn && trade.tradeType === TradeType.EXACT_OUTPUT) {
       calldatas.push(Payments.encodeRefundETH())
     }
     if (etherOut) {
@@ -139,10 +145,9 @@ export abstract class Router {
       tokenAmountB.quotient.toString(),
       calculateSlippageAmount(tokenAmountA.quotient, options.allowedSlippage).lower.toString(),
       calculateSlippageAmount(tokenAmountB.quotient, options.allowedSlippage).lower.toString(),
-      options.recipient
+      validateAndParseAddress(options.recipient)
     ]
     const encodedAddLiqCall = Router.INTERFACE.encodeFunctionData(methodName, args)
-
     calldatas.push(encodedAddLiqCall)
 
     let value: string = ZERO_HEX
@@ -162,15 +167,55 @@ export abstract class Router {
     }
   }
 
-  // actually for remove liq there will never be a case where value is non-zero?
-  // public static removeLiquidityParameters(
-  //   tokenAAmt: CurrencyAmount,
-  //   tokenBAmt: CurrencyAmount,
-  //   curveId: number,
-  //   options: TradeOptions
-  // ): SwapParameters {
-  //   return {
-  //     value: ZERO_HEX
-  //   }
-  // }
+  public static removeLiquidityParameters(
+    tokenAmountA: CurrencyAmount<Currency>,
+    tokenAmountB: CurrencyAmount<Currency>,
+    curveId: number,
+    liquidityAmount: BigintIsh,
+    options: TradeOptions
+  ): SwapParameters {
+    invariant(!tokenAmountA.currency.equals(tokenAmountB.currency), 'ATTEMPTING_TO_REMOVE_LIQ_FOR_SAME_TOKEN')
+    const etherOut = tokenAmountA.currency.isNative || tokenAmountB.currency.isNative
+    const validatedRecipient = validateAndParseAddress(options.recipient)
+    const calldatas: string[] = []
+
+    const methodName = 'removeLiquidity'
+    const to = etherOut ? ROUTER_ADDRESS : validatedRecipient
+    const tokenAMinimumAmount = calculateSlippageAmount(tokenAmountA.quotient, options.allowedSlippage).lower
+    const tokenBMinimumAmount = calculateSlippageAmount(tokenAmountB.quotient, options.allowedSlippage).lower
+    const args = [
+      tokenAmountA.wrapped.currency.address,
+      tokenAmountB.wrapped.currency.address,
+      curveId,
+      liquidityAmount.toString(),
+      tokenAMinimumAmount.toString(),
+      tokenBMinimumAmount.toString(),
+      to
+    ]
+    const encodedRemoveLiqCall = Router.INTERFACE.encodeFunctionData(methodName, args)
+    calldatas.push(encodedRemoveLiqCall)
+
+    if (etherOut) {
+      calldatas.push(
+        Payments.encodeUnwrapWETH(
+          tokenAmountA.currency.isNative ? tokenAMinimumAmount : tokenBMinimumAmount,
+          validatedRecipient
+        )
+      )
+      calldatas.push(
+        Payments.encodeSweepToken(
+          tokenAmountA.currency.isNative ? tokenAmountB.wrapped.currency : tokenAmountA.wrapped.currency,
+          tokenAmountA.currency.isNative ? tokenBMinimumAmount : tokenAMinimumAmount,
+          validatedRecipient
+        )
+      )
+    }
+
+    const calldata = Multicall.encodeMulticall(calldatas)
+
+    return {
+      calldata,
+      value: ZERO_HEX // value will always be zero when removing liq
+    }
+  }
 }
