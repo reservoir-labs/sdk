@@ -9,7 +9,6 @@ import GenericFactory from './abis/GenericFactory.json'
 import ReservoirPair from './abis/ReservoirPair.json'
 import StablePair from './abis/StablePair.json'
 import JSBI from 'jsbi'
-import { AddressZero } from '@ethersproject/constants'
 
 let TOKEN_DECIMALS_CACHE: { [chainId: number]: { [address: string]: number } } = {
   [SupportedChainId.MAINNET]: {
@@ -72,19 +71,19 @@ export abstract class Fetcher {
     return await new Contract(FACTORY_ADDRESS, GenericFactory.abi, provider).allPairs()
   }
 
-  private static async _fetchPairIfExists(
-    tokenA: Token,
-    tokenB: Token,
-    curveId: number,
-    provider = getDefaultProvider(getNetwork(tokenA.chainId))
-  ): Promise<Pair | null> {
-    const factory = new Contract(FACTORY_ADDRESS, GenericFactory.abi, provider)
-    const pair = await factory.getPair(tokenA.address, tokenB.address, curveId)
-
-    if (pair === AddressZero) return null
-
-    return Fetcher.fetchPairData(tokenA, tokenB, curveId, provider)
-  }
+  // private static async _fetchPairIfExists(
+  //   tokenA: Token,
+  //   tokenB: Token,
+  //   curveId: number,
+  //   provider = getDefaultProvider(getNetwork(tokenA.chainId))
+  // ): Promise<Pair | null> {
+  //   const factory = new Contract(FACTORY_ADDRESS, GenericFactory.abi, provider)
+  //   const pair = await factory.getPair(tokenA.address, tokenB.address, curveId)
+  //
+  //   if (pair === AddressZero) return null
+  //
+  //   return Fetcher.fetchPairData(tokenA, tokenB, curveId, provider)
+  // }
 
   // returns the pairs that should be considered in the routing of trades
   // only returns pairs that have been instantiated already
@@ -118,13 +117,16 @@ export abstract class Fetcher {
     relevantPairs.add(nativeTokenBConstantProduct)
     relevantPairs.add(nativeTokenBStable)
 
-    const fetchedPairs = Array.from(relevantPairs).map(async (value: string) => {
+    // @ts-ignore
+    const promises = Array.from(relevantPairs).map(async (value: string) => {
       try {
         return await this.fetchPairDataUsingAddress(chainId, value, provider)
       } catch {
         return null
       }
     })
+
+    const fetchedPairs = await Promise.all(promises)
 
     // @ts-ignore
     return fetchedPairs.filter(pair => pair != null)
