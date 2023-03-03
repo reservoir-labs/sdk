@@ -1,4 +1,4 @@
-export { FACTORY_ADDRESS, MINIMUM_LIQUIDITY } from './constants'
+export { FACTORY_ADDRESS, MINIMUM_LIQUIDITY, FEE_ACCURACY } from './constants'
 
 export * from './errors'
 export * from './entities'
