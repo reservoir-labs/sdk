@@ -99,7 +99,7 @@ export abstract class Fetcher {
     invariant(tokenA.chainId == tokenB.chainId, 'CHAIN_ID')
     invariant(tokenA != tokenB, 'SAME_TOKEN')
 
-    const relevantPairs = new Set()
+    const relevantPairs: Set<string> = new Set()
 
     // get the pairs for the two curves
     const constantProduct = Pair.getAddress(tokenA, tokenB, 0)
@@ -123,19 +123,17 @@ export abstract class Fetcher {
       relevantPairs.add(nativeTokenBStable)
     }
 
-    // @ts-ignore
-    const promises = Array.from(relevantPairs).map(async (value: string) => {
+    const promises = Array.from(relevantPairs).map(async value => {
       try {
-        return await this.fetchPairDataUsingAddress(chainId, value, provider)
+        return [await this.fetchPairDataUsingAddress(chainId, value, provider)]
       } catch {
-        return null
+        return []
       }
     })
 
     const fetchedPairs = await Promise.all(promises)
 
-    // @ts-ignore
-    return fetchedPairs.filter(pair => pair != null)
+    return fetchedPairs.flat(1)
   }
 
   /**
