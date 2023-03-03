@@ -99,23 +99,29 @@ export abstract class Fetcher {
     invariant(tokenA.chainId == tokenB.chainId, 'CHAIN_ID')
     invariant(tokenA != tokenB, 'SAME_TOKEN')
 
+    const relevantPairs = new Set()
+
     // get the pairs for the two curves
     const constantProduct = Pair.getAddress(tokenA, tokenB, 0)
     const stable = Pair.getAddress(tokenA, tokenB, 1)
 
-    // get native pairs
-    const nativeTokenAConstantProduct = Pair.getAddress(tokenA, WETH9[chainId], 0)
-    const nativeTokenAStable = Pair.getAddress(tokenA, WETH9[chainId], 1)
-    const nativeTokenBConstantProduct = Pair.getAddress(tokenB, WETH9[chainId], 0)
-    const nativeTokenBStable = Pair.getAddress(tokenB, WETH9[chainId], 1)
-
-    const relevantPairs = new Set()
     relevantPairs.add(constantProduct)
     relevantPairs.add(stable)
-    relevantPairs.add(nativeTokenAConstantProduct)
-    relevantPairs.add(nativeTokenAStable)
-    relevantPairs.add(nativeTokenBConstantProduct)
-    relevantPairs.add(nativeTokenBStable)
+
+    // get native pairs
+    if (!tokenA.equals(WETH9[chainId])) {
+      const nativeTokenAConstantProduct = Pair.getAddress(tokenA, WETH9[chainId], 0)
+      const nativeTokenAStable = Pair.getAddress(tokenA, WETH9[chainId], 1)
+      relevantPairs.add(nativeTokenAConstantProduct)
+      relevantPairs.add(nativeTokenAStable)
+    }
+
+    if (!tokenB.equals(WETH9[chainId])) {
+      const nativeTokenBConstantProduct = Pair.getAddress(tokenB, WETH9[chainId], 0)
+      const nativeTokenBStable = Pair.getAddress(tokenB, WETH9[chainId], 1)
+      relevantPairs.add(nativeTokenBConstantProduct)
+      relevantPairs.add(nativeTokenBStable)
+    }
 
     // @ts-ignore
     const promises = Array.from(relevantPairs).map(async (value: string) => {
