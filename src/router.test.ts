@@ -1,8 +1,8 @@
 import JSBI from 'jsbi'
 import { Pair, Route, Trade } from './entities'
 import { Router } from './router'
-import {CurrencyAmount, Percent, Ether, Token/*, WETH9*/} from '@reservoir-labs/sdk-core'
-import {AddressZero} from "@ethersproject/constants";
+import { CurrencyAmount, Percent, Ether, Token /*, WETH9*/ } from '@reservoir-labs/sdk-core'
+import { AddressZero } from '@ethersproject/constants'
 
 describe('Router', () => {
   const ETHER = Ether.onChain(1)
@@ -137,9 +137,12 @@ describe('Router', () => {
         const tokenAmountB: CurrencyAmount<Token> = CurrencyAmount.fromRawAmount(token0, '312983109283213')
 
         const liqAmount = '12312312312'
-        const parameters = Router.removeLiquidityParameters(tokenAmountA, tokenAmountB, 1, liqAmount, { allowedSlippage: new Percent(1, 100), recipient: AddressZero})
+        const parameters = Router.removeLiquidityParameters(tokenAmountA, tokenAmountB, 1, liqAmount, {
+          allowedSlippage: new Percent(1, 100),
+          recipient: AddressZero
+        })
 
-        expect(parameters.calldata.slice(end = 10)).toEqual('0xac9650d8')
+        expect(parameters.calldata.slice((end = 10))).toEqual('0xac9650d8')
       })
     })
     describe('only erc20 out', () => {
@@ -148,7 +151,10 @@ describe('Router', () => {
         const tokenAmountB: CurrencyAmount<Token> = CurrencyAmount.fromRawAmount(token0, '312983109283213')
 
         const liqAmount = '12312312312'
-        const parameters = Router.removeLiquidityParameters(tokenAmountA, tokenAmountB, 1, liqAmount, { allowedSlippage: new Percent(1, 1000), recipient: AddressZero})
+        const parameters = Router.removeLiquidityParameters(tokenAmountA, tokenAmountB, 1, liqAmount, {
+          allowedSlippage: new Percent(1, 1000),
+          recipient: AddressZero
+        })
         expect(parameters.calldata.slice(undefined, 10)).toEqual('0xea904f3d')
       })
     })
