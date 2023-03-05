@@ -1,7 +1,7 @@
-import { BigintIsh, Token } from '@uniswap/sdk-core'
+import { BigintIsh, Token } from '@reservoir-labs/sdk-core'
 import { Interface } from '@ethersproject/abi'
-import ISelfPermit from '@uniswap/v3-periphery/artifacts/contracts/interfaces/ISelfPermit.sol/ISelfPermit.json'
-import { toHex } from './utils'
+import ISelfPermit from './abis/ISelfPermit.json'
+import { toHex } from './utils/calldata'
 
 export interface StandardPermitArguments {
   v: 0 | 1 | 27 | 28
