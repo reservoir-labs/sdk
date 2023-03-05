@@ -70,7 +70,10 @@ export abstract class Router {
    * @param trade to produce call parameters for
    * @param options options for the call parameters
    */
-  public static swapCallParameters(trade: Trade<Currency, Currency, TradeType>, options: TradeOptions): MethodParameters {
+  public static swapCallParameters(
+    trade: Trade<Currency, Currency, TradeType>,
+    options: TradeOptions
+  ): MethodParameters {
     const etherIn = trade.inputAmount.currency.isNative
     const etherOut = trade.outputAmount.currency.isNative
     // the router does not support both ether in and out
