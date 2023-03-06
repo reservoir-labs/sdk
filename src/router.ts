@@ -16,7 +16,7 @@ import { Interface } from '@ethersproject/abi'
 import IReservoirRouter from './abis/IReservoirRouter.json'
 import { ROUTER_ADDRESS } from './constants'
 import { calculateSlippageAmount } from './utils/math'
-import {PermitOptions, SelfPermit} from "./selfPermit";
+import { PermitOptions, SelfPermit } from './selfPermit'
 
 /**
  * Options for producing the arguments to send call to the router.
