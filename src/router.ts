@@ -6,7 +6,6 @@ import {
   Percent,
   TradeType,
   validateAndParseAddress,
-  BigintIsh
 } from '@reservoir-labs/sdk-core'
 import { Pair, Trade } from './entities'
 import { Multicall } from './multicall'
@@ -127,7 +126,6 @@ export abstract class Router {
     // encodeMulticall checks if the array is larger than 1
     // so if no native tokens are involved multicall would not be used
     const calldata = Multicall.encodeMulticall(calldatas)
-    console.log('final calldata', calldata)
 
     // the difference between a nativeIn swap vs a wrapped native token swap is that
     // the nativeIn swap would have value attached to it, but the wrapped one would not have value
@@ -141,12 +139,21 @@ export abstract class Router {
     tokenAmountA: CurrencyAmount<Currency>,
     tokenAmountB: CurrencyAmount<Currency>,
     curveId: number,
-    options: TradeOptions
+    options: TradeOptions,
+    tokenAPermit?: PermitOptions,
+    tokenBPermit?: PermitOptions
   ): MethodParameters {
     invariant(!tokenAmountA.currency.equals(tokenAmountB.currency), 'ATTEMPTING_TO_ADD_LIQ_FOR_SAME_TOKEN')
     invariant(curveId === 0 || curveId === 1, 'INVALID_CURVE_ID')
     const etherIn = tokenAmountA.currency.isNative || tokenAmountB.currency.isNative
     const calldatas: string[] = []
+
+    if (tokenAPermit) {
+      calldatas.push(SelfPermit.encodePermit(tokenAmountA.wrapped.currency, tokenAPermit))
+    }
+    if (tokenBPermit) {
+      calldatas.push(SelfPermit.encodePermit(tokenAmountB.wrapped.currency, tokenBPermit))
+    }
 
     const methodName = 'addLiquidity'
     const args = [
@@ -183,13 +190,18 @@ export abstract class Router {
     tokenAmountA: CurrencyAmount<Currency>,
     tokenAmountB: CurrencyAmount<Currency>,
     curveId: number,
-    liquidityAmount: BigintIsh,
-    options: TradeOptions
+    liquidityAmount: CurrencyAmount<Token>,
+    options: TradeOptions,
+    liquidityTokenPermit?: PermitOptions
   ): MethodParameters {
     invariant(!tokenAmountA.currency.equals(tokenAmountB.currency), 'ATTEMPTING_TO_REMOVE_LIQ_FOR_SAME_TOKEN')
     const etherOut = tokenAmountA.currency.isNative || tokenAmountB.currency.isNative
     const validatedRecipient = validateAndParseAddress(options.recipient)
     const calldatas: string[] = []
+
+    if (liquidityTokenPermit) {
+      calldatas.push(SelfPermit.encodePermit(liquidityAmount.currency, liquidityTokenPermit))
+    }
 
     const methodName = 'removeLiquidity'
     const to = etherOut ? ROUTER_ADDRESS : validatedRecipient
@@ -199,7 +211,7 @@ export abstract class Router {
       tokenAmountA.wrapped.currency.address,
       tokenAmountB.wrapped.currency.address,
       curveId,
-      liquidityAmount.toString(),
+      liquidityAmount.quotient.toString(),
       tokenAMinimumAmount.toString(),
       tokenBMinimumAmount.toString(),
       to
