@@ -1,12 +1,5 @@
 import invariant from 'tiny-invariant'
-import {
-  Token,
-  Currency,
-  CurrencyAmount,
-  Percent,
-  TradeType,
-  validateAndParseAddress,
-} from '@reservoir-labs/sdk-core'
+import { Token, Currency, CurrencyAmount, Percent, TradeType, validateAndParseAddress } from '@reservoir-labs/sdk-core'
 import { Pair, Trade } from './entities'
 import { Multicall } from './multicall'
 import { Payments } from './payments'
