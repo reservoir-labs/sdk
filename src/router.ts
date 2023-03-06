@@ -43,7 +43,7 @@ export interface MethodParameters {
   /**
    * The arguments to pass to the method, all hex encoded.
    */
-  calldata: (string | string[] | number[])[] | string
+  calldata: string
   /**
    * The amount of wei to send in hex.
    */
