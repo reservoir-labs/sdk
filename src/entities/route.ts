@@ -47,7 +47,7 @@ export class Route<TInput extends Currency, TOutput extends Currency> {
     return (this._midPrice = new Price(this.input, this.output, reduced.denominator, reduced.numerator))
   }
 
-  private _getPrice(token: Token, pair: Pair) : Price<Currency, Currency> {
+  private _getPrice(token: Token, pair: Pair): Price<Currency, Currency> {
     let price
     if (pair.curveId === 0) {
       price = token.equals(pair.token0)
