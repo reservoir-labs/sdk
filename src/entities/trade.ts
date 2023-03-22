@@ -176,11 +176,11 @@ export class Trade<TInput extends Currency, TOutput extends Currency, TTradeType
       this.inputAmount.quotient,
       this.outputAmount.quotient
     )
-    console.log("midP", route.midPrice.toSignificant(3))
-    console.log("inputA", this.inputAmount.toExact())
-    console.log("outputA", this.outputAmount.toExact())
+    console.log('midP', route.midPrice.toSignificant(3))
+    console.log('inputA', this.inputAmount.toExact())
+    console.log('outputA', this.outputAmount.toExact())
     this.priceImpact = computePriceImpact(route.midPrice, this.inputAmount, this.outputAmount)
-    console.log("priceImp", this.priceImpact.toSignificant(5))
+    console.log('priceImp', this.priceImpact.toSignificant(5))
   }
 
   /**
