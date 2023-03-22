@@ -2,6 +2,8 @@ import invariant from 'tiny-invariant'
 import { Currency, Price, Token } from '@reservoir-labs/sdk-core'
 
 import { Pair } from './pair'
+import {calculateStableSpotPrice} from "../lib/stableMath";
+import {decimal} from "../lib/numbers";
 
 export class Route<TInput extends Currency, TOutput extends Currency> {
   public readonly pairs: Pair[]
@@ -41,6 +43,7 @@ export class Route<TInput extends Currency, TOutput extends Currency> {
     if (this._midPrice !== null) return this._midPrice
     const prices: Price<Currency, Currency>[] = []
     for (const [i, pair] of this.pairs.entries()) {
+      console.log("inside")
       prices.push(this._getPrice(this.path[i], pair))
     }
     const reduced = prices.slice(1).reduce((accumulator, currentValue) => accumulator.multiply(currentValue), prices[0])
@@ -48,14 +51,20 @@ export class Route<TInput extends Currency, TOutput extends Currency> {
   }
 
   private _getPrice(token: Token, pair: Pair): Price<Currency, Currency> {
+    invariant(pair, "PAIR NULL")
     let price
     if (pair.curveId === 0) {
       price = token.equals(pair.token0)
         ? new Price(pair.reserve0.currency, pair.reserve1.currency, pair.reserve0.quotient, pair.reserve1.quotient)
         : new Price(pair.reserve1.currency, pair.reserve0.currency, pair.reserve1.quotient, pair.reserve0.quotient)
-    } else if (pair.curveId === 1) {
-      price = token.equals(pair.token0) ? pair.token0Price : pair.token1Price
+    } else {
+      price = token.equals(pair.token0)
+        // @ts-ignore
+        ? new Price(pair.reserve0.currency, pair.reserve1.currency, 1, calculateStableSpotPrice(pair.reserve0.toExact(), pair.reserve1.toExact(), pair.amplificationCoefficient.toString()).mul(decimal(10).pow(18)).toDP(0).toString())
+        // @ts-ignore
+        : new Price(pair.reserve1.currency, pair.reserve0.currency, 1, calculateStableSpotPrice(pair.reserve1.toExact(), pair.reserve0.toExact(), pair.amplificationCoefficient.toString()).mul(decimal(10).pow(18)).toDP(0).toString())
     }
+    console.log("price", price.toSignificant(4))
     return price
   }
 

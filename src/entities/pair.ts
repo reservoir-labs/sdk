@@ -17,7 +17,7 @@ import { InsufficientReservesError, InsufficientInputAmountError } from '../erro
 import ConstantProductPair from '../abis/ConstantProductPair.json'
 import StablePair from '../abis/StablePair.json'
 import { defaultAbiCoder } from '@ethersproject/abi'
-import { calcInGivenOut, calcOutGivenIn, calculateInvariant } from '../lib/balancer-math'
+import { calcInGivenOut, calcOutGivenIn, calculateInvariant } from '../lib/stableMath'
 import { decimal } from '../lib/numbers'
 
 export const computePairAddress = ({
