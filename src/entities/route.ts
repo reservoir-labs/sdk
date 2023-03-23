@@ -43,7 +43,7 @@ export class Route<TInput extends Currency, TOutput extends Currency> {
     if (this._midPrice !== null) return this._midPrice
     const prices: Price<Currency, Currency>[] = []
     for (const [i, pair] of this.pairs.entries()) {
-      console.log("inside")
+      console.log('inside')
       prices.push(this._getPrice(this.path[i], pair))
     }
     const reduced = prices.slice(1).reduce((accumulator, currentValue) => accumulator.multiply(currentValue), prices[0])
