@@ -138,28 +138,42 @@ function _getTokenBalanceGivenInvariantAndAllOtherBalances(
 export function calculateStableSpotPrice(
   scaledReserve0: BigNumberish,
   scaledReserve1: BigNumberish,
-  amplificationCoefficient: BigNumberish,
+  amplificationCoefficient: BigNumberish
 ): Decimal {
   const invariant = fromFp(calculateInvariant(scaledReserve0, scaledReserve1, amplificationCoefficient))
-  const a = decimal(amplificationCoefficient).mul(2).div(A_PRECISION)
+  const a = decimal(amplificationCoefficient)
+    .mul(2)
+    .div(A_PRECISION)
+  console.log('invar', invariant.toString())
+  console.log('a', a.toString())
 
   const b = invariant.mul(a).sub(invariant)
 
   const bal0 = decimal(scaledReserve0)
   const bal1 = decimal(scaledReserve1)
 
-  const axy2 = a.mul(2).mul(bal0).mul(bal1).div(1e18)
+  const axy2 = a
+    .mul(2)
+    .mul(bal0)
+    .mul(bal1)
+    .div(1e18)
 
-  const derivativeX = axy2.add(a.mul(bal1).mul(bal1).div(1e18)).sub(b.mul(bal1).div(1e18))
-  const derivativeY = axy2.add(a.mul(bal0).mul(bal0).div(1e18)).sub(b.mul(bal0).div(1e18))
+  const derivativeX = axy2
+    .add(
+      a
+        .mul(bal1)
+        .mul(bal1)
+        .div(1e18)
+    )
+    .sub(b.mul(bal1).div(1e18))
+  const derivativeY = axy2
+    .add(
+      a
+        .mul(bal0)
+        .mul(bal0)
+        .div(1e18)
+    )
+    .sub(b.mul(bal0).div(1e18))
 
   return derivativeX.div(derivativeY)
 }
-
-
-
-
-
-
-
-
