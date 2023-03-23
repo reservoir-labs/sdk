@@ -180,7 +180,6 @@ export class Pair {
       if (JSBI.equal(outputAmount.quotient, ZERO)) {
         throw new InsufficientInputAmountError()
       }
-      // console.log("exact output CP", outputAmount.toExact())
     } else if (this.curveId == 1) {
       invariant(this.amplificationCoefficient != null)
       const feeDeductedAmountIn = inputAmount.multiply(JSBI.subtract(FEE_ACCURACY, this.swapFee)).divide(FEE_ACCURACY)
@@ -193,13 +192,10 @@ export class Pair {
       )
       outputAmount = outputAmount.mul(decimal(10).pow(outputReserve.currency.decimals)).toDP(0)
 
-      // console.log("raw output amt", outputAmount.toString())
-
       outputAmount = CurrencyAmount.fromRawAmount(
         inputAmount.currency.equals(this.token0) ? this.token1 : this.token0,
         JSBI.BigInt(outputAmount.toString())
       )
-      // console.log("exact output stab", outputAmount.toExact())
     }
 
     // @ts-ignore

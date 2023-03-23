@@ -43,7 +43,6 @@ export class Route<TInput extends Currency, TOutput extends Currency> {
     if (this._midPrice !== null) return this._midPrice
     const prices: Price<Currency, Currency>[] = []
     for (const [i, pair] of this.pairs.entries()) {
-      console.log("inside")
       prices.push(this._getPrice(this.path[i], pair))
     }
     const reduced = prices.slice(1).reduce((accumulator, currentValue) => accumulator.multiply(currentValue), prices[0])
@@ -60,11 +59,10 @@ export class Route<TInput extends Currency, TOutput extends Currency> {
     } else {
       price = token.equals(pair.token0)
         // @ts-ignore
-        ? new Price(pair.reserve0.currency, pair.reserve1.currency, 1, calculateStableSpotPrice(pair.reserve0.toExact(), pair.reserve1.toExact(), pair.amplificationCoefficient.toString()).mul(decimal(10).pow(18)).toDP(0).toString())
+        ? new Price(pair.reserve0.currency, pair.reserve1.currency, 1e18, calculateStableSpotPrice(pair.reserve0.toExact(), pair.reserve1.toExact(), pair.amplificationCoefficient.toString()).mul(decimal(10).pow(18)).toDP(0).toString())
         // @ts-ignore
-        : new Price(pair.reserve1.currency, pair.reserve0.currency, 1, calculateStableSpotPrice(pair.reserve1.toExact(), pair.reserve0.toExact(), pair.amplificationCoefficient.toString()).mul(decimal(10).pow(18)).toDP(0).toString())
+        : new Price(pair.reserve1.currency, pair.reserve0.currency, 1e18, calculateStableSpotPrice(pair.reserve1.toExact(), pair.reserve0.toExact(), pair.amplificationCoefficient.toString()).mul(decimal(10).pow(18)).toDP(0).toString())
     }
-    console.log("price", price.toSignificant(4))
     return price
   }
 

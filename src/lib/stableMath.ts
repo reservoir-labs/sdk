@@ -142,12 +142,8 @@ export function calculateStableSpotPrice(
 ): Decimal {
   const invariant = fromFp(calculateInvariant(scaledReserve0, scaledReserve1, amplificationCoefficient))
   const a = decimal(amplificationCoefficient).mul(2).div(A_PRECISION)
-  console.log("invar", invariant.toString())
-  console.log("a", a.toString())
 
   const b = invariant.mul(a).sub(invariant)
-
-  console.log('b', b.toString())
 
   const bal0 = decimal(scaledReserve0)
   const bal1 = decimal(scaledReserve1)
