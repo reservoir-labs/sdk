@@ -144,8 +144,6 @@ export function calculateStableSpotPrice(
   const a = decimal(amplificationCoefficient)
     .mul(2)
     .div(A_PRECISION)
-  console.log('invar', invariant.toString())
-  console.log('a', a.toString())
 
   const b = invariant.mul(a).sub(invariant)
 
