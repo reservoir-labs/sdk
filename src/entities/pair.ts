@@ -130,8 +130,8 @@ export class Pair {
   public liqRatio(token: Token): Price<Token, Token> {
     invariant(this.involvesToken(token), 'TOKEN')
     return token.equals(this.token0)
-        ? new Price(this.token0, this.token1, this.tokenAmounts[0].quotient, this.tokenAmounts[1].quotient)
-        : new Price(this.token1, this.token0, this.tokenAmounts[1].quotient, this.tokenAmounts[0].quotient)
+      ? new Price(this.token0, this.token1, this.tokenAmounts[0].quotient, this.tokenAmounts[1].quotient)
+      : new Price(this.token1, this.token0, this.tokenAmounts[1].quotient, this.tokenAmounts[0].quotient)
   }
 
   /**
