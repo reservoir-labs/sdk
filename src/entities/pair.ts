@@ -124,6 +124,17 @@ export class Pair {
   }
 
   /**
+   * Returns the quote token's liq expressed in terms of the base token's liq
+   * @param token base token
+   */
+  public liqRatio(token: Token): Price<Token, Token> {
+    invariant(this.involvesToken(token), 'TOKEN')
+    return token.equals(this.token0)
+        ? new Price(this.token0, this.token1, this.tokenAmounts[0].quotient, this.tokenAmounts[1].quotient)
+        : new Price(this.token1, this.token0, this.tokenAmounts[1].quotient, this.tokenAmounts[0].quotient)
+  }
+
+  /**
    * Return the price of the given token in terms of the other token in the pair.
    * @param token token to return price of
    */

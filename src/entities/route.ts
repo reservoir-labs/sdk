@@ -58,29 +58,27 @@ export class Route<TInput extends Currency, TOutput extends Currency> {
         : new Price(pair.reserve1.currency, pair.reserve0.currency, pair.reserve1.quotient, pair.reserve0.quotient)
     } else {
       price = token.equals(pair.token0)
-        ? // @ts-ignore
-          new Price(
+        ? new Price(
             pair.reserve0.currency,
             pair.reserve1.currency,
             1e18,
             calculateStableSpotPrice(
               pair.reserve0.toExact(),
               pair.reserve1.toExact(),
-              pair.amplificationCoefficient.toString()
+              pair.amplificationCoefficient!.toString()
             )
               .mul(decimal(10).pow(18))
               .toDP(0)
               .toString()
           )
-        : // @ts-ignore
-          new Price(
+        : new Price(
             pair.reserve1.currency,
             pair.reserve0.currency,
             1e18,
             calculateStableSpotPrice(
               pair.reserve1.toExact(),
               pair.reserve0.toExact(),
-              pair.amplificationCoefficient.toString()
+              pair.amplificationCoefficient!.toString()
             )
               .mul(decimal(10).pow(18))
               .toDP(0)
