@@ -1,8 +1,8 @@
 import { calculateStableSpotPrice } from './stableMath'
-import {DEFAULT_AMPLIFICATION_COEFFICIENT_PRECISE, /*ONE_ETHER*/} from '../constants'
+import { DEFAULT_AMPLIFICATION_COEFFICIENT_PRECISE /*ONE_ETHER*/ } from '../constants'
 import { Decimal } from 'decimal.js'
-import {decimal} from "./numbers";
-import {Price, Token} from "@reservoir-labs/sdk-core";
+import { decimal } from './numbers'
+import { Price, Token } from '@reservoir-labs/sdk-core'
 
 describe('stableMath', () => {
   const token0 = new Token(1, '0x0000000000000000000000000000000000000001', 18, 't0')
@@ -30,11 +30,14 @@ describe('stableMath', () => {
     console.log(result)
 
     const frac = result.toFraction()
-    console.log("0", frac[0].toString())
+    console.log('0', frac[0].toString())
     console.log(frac[1].toString())
 
-    const resultString = result.mul(decimal(10).pow(18)).trunc().valueOf()
-    console.log("res", resultString)
+    const resultString = result
+      .mul(decimal(10).pow(18))
+      .trunc()
+      .valueOf()
+    console.log('res', resultString)
 
     // this is one way to fix the problem
     new Price(token0, token1, frac[1].toString(), frac[0].toString())

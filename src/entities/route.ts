@@ -59,9 +59,9 @@ export class Route<TInput extends Currency, TOutput extends Currency> {
     } else {
       if (token.equals(pair.token0)) {
         const stableSpotPrice = calculateStableSpotPrice(
-            pair.reserve0.toExact(),
-            pair.reserve1.toExact(),
-            pair.amplificationCoefficient!.toString()
+          pair.reserve0.toExact(),
+          pair.reserve1.toExact(),
+          pair.amplificationCoefficient!.toString()
         )
         // we express the price as a fraction with the numerator at index 0 and denominator at index 1
         // to feed into the `Price` constructor
@@ -69,9 +69,9 @@ export class Route<TInput extends Currency, TOutput extends Currency> {
         price = new Price(pair.reserve0.currency, pair.reserve1.currency, frac[1].toString(), frac[0].toString())
       } else {
         const stableSpotPrice = calculateStableSpotPrice(
-            pair.reserve1.toExact(),
-            pair.reserve0.toExact(),
-            pair.amplificationCoefficient!.toString()
+          pair.reserve1.toExact(),
+          pair.reserve0.toExact(),
+          pair.amplificationCoefficient!.toString()
         )
         const frac = stableSpotPrice.toFraction()
         price = new Price(pair.reserve1.currency, pair.reserve0.currency, frac[1].toString(), frac[0].toString())
