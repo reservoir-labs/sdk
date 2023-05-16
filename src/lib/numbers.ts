@@ -3,6 +3,11 @@ import { BigNumber } from '@ethersproject/bignumber'
 
 const SCALING_FACTOR = 1e18
 
+// 78 is the length of max uint256
+// this is to ensure that all the decimals outputs in string are given in raw form instead of in exponential form
+// which can caues problems for BigInt
+Decimal.set({ toExpPos: 78 })
+
 export type BigNumberish = string | number | BigNumber
 
 export const decimal = (x: BigNumberish | Decimal): Decimal => new Decimal(x.toString())

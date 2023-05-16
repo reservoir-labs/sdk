@@ -13,7 +13,7 @@ describe('stableMath', () => {
 
     const result = calculateStableSpotPrice(scaledReserve0, scaledReserve1, amplificationCoefficient.toString())
 
-    expect(result.toString()).toEqual('1.2987033193626902185')
+    expect(result.toString()).toEqual('1.2987033193626896932')
   })
 
   it('output of calculateStableSpotPrice feeds nicely into Price', () => {
@@ -27,6 +27,6 @@ describe('stableMath', () => {
     // this is one way to fix the problem
     const price = new Price(token0, token1, frac[1].toString(), frac[0].toString())
 
-    expect(price.toFixed(10)).toEqual('5051125.1559835483')
+    expect(price.toFixed(10)).toEqual('5051125.1559835484')
   })
 })
