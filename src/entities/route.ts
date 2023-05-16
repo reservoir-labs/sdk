@@ -3,7 +3,6 @@ import { Currency, Price, Token } from '@reservoir-labs/sdk-core'
 
 import { Pair } from './pair'
 import { calculateStableSpotPrice } from '../lib/stableMath'
-import { decimal } from '../lib/numbers'
 
 export class Route<TInput extends Currency, TOutput extends Currency> {
   public readonly pairs: Pair[]
