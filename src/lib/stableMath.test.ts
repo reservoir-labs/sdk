@@ -1,7 +1,5 @@
 import { calculateStableSpotPrice } from './stableMath'
 import { DEFAULT_AMPLIFICATION_COEFFICIENT_PRECISE /*ONE_ETHER*/ } from '../constants'
-import { Decimal } from 'decimal.js'
-import { decimal } from './numbers'
 import { Price, Token } from '@reservoir-labs/sdk-core'
 
 describe('stableMath', () => {
@@ -18,31 +16,17 @@ describe('stableMath', () => {
     expect(result.toString()).toEqual('1.2987033193626902185')
   })
 
-  it('asd', () => {
+  it('output of calculateStableSpotPrice feeds nicely into Price', () => {
     const scaledReserve0 = '150006'
     const scaledReserve1 = '0.014163206786684748'
     const amplificationCoefficient = DEFAULT_AMPLIFICATION_COEFFICIENT_PRECISE
 
-    Decimal.set({ toExpPos: 50 })
-
     const result = calculateStableSpotPrice(scaledReserve1, scaledReserve0, amplificationCoefficient.toString())
-
-    console.log(result)
-
     const frac = result.toFraction()
-    console.log('0', frac[0].toString())
-    console.log(frac[1].toString())
-
-    const resultString = result
-      .mul(decimal(10).pow(18))
-      .trunc()
-      .valueOf()
-    console.log('res', resultString)
 
     // this is one way to fix the problem
-    new Price(token0, token1, frac[1].toString(), frac[0].toString())
+    const price = new Price(token0, token1, frac[1].toString(), frac[0].toString())
 
-    // another way to fix it is to set the expPos to a very large number
-    // Decimal.set({ toExpPos: 30 })
+    expect(price.toFixed(10)).toEqual('5051125.1559835483')
   })
 })
