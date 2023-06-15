@@ -1,9 +1,4 @@
-export {
-  FACTORY_ADDRESS,
-  ROUTER_ADDRESS,
-  MINIMUM_LIQUIDITY,
-  FEE_ACCURACY
-} from './constants'
+export { FACTORY_ADDRESS, ROUTER_ADDRESS, MINIMUM_LIQUIDITY, FEE_ACCURACY } from './constants'
 
 export * from './errors'
 export * from './entities'
