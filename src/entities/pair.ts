@@ -3,7 +3,7 @@ import invariant from 'tiny-invariant'
 import JSBI from 'jsbi'
 import { keccak256, pack } from '@ethersproject/solidity'
 import { getCreate2Address } from '@ethersproject/address'
-
+import { HashZero } from '@ethersproject/constants'
 import {
   FACTORY_ADDRESS,
   MINIMUM_LIQUIDITY,
@@ -49,7 +49,7 @@ export const computePairAddress = ({
 
   const initCodeWithTokenWithExtra32Zeros = pack(
     ['bytes', 'bytes'],
-    [initCodeWithTokens, '0x0000000000000000000000000000000000000000000000000000000000000000']
+    [initCodeWithTokens, HashZero]
   )
 
   // console.log("facaddress", factoryAddress)
@@ -61,8 +61,7 @@ export const computePairAddress = ({
   // N.B: we do not use a salt as the initCode is unique with token0 and token1 appended to it
   return getCreate2Address(
     factoryAddress,
-    // TODO: to replace this zero bytes32 with a constant instead of using a string literal
-    pack(['bytes32'], ['0x0000000000000000000000000000000000000000000000000000000000000000']),
+    pack(['bytes32'], [HashZero]),
     keccak256(['bytes'], [initCodeWithTokenWithExtra32Zeros])
   )
 }
