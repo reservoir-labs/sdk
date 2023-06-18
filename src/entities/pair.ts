@@ -47,10 +47,7 @@ export const computePairAddress = ({
   const encodedTokenAddresses = defaultAbiCoder.encode(['address', 'address'], [token0.address, token1.address])
   const initCodeWithTokens = pack(['bytes', 'bytes'], [initCode, encodedTokenAddresses])
 
-  const initCodeWithTokenWithExtra32Zeros = pack(
-    ['bytes', 'bytes'],
-    [initCodeWithTokens, HashZero]
-  )
+  const initCodeWithTokenWithExtra32Zeros = pack(['bytes', 'bytes'], [initCodeWithTokens, HashZero])
 
   // console.log("facaddress", factoryAddress)
   // console.log("initCode", initCode)
