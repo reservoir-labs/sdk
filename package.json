@@ -1,7 +1,7 @@
 {
   "name": "@reservoir-labs/sdk",
   "license": "MIT",
-  "version": "0.2.1",
+  "version": "0.2.15",
   "description": "🛠 An SDK for building applications on top of Reservoir",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -22,8 +22,8 @@
     "prepublishOnly": "tsdx build",
     "anvil": "anvil",
     "anvil:avax": "anvil -f https://api.avax.network/ext/bc/C/rpc --mnemonic 'fresh gas cattle foster delay vacuum typical negative push churn brush wheel'",
-    "setupTest": "cd lib/v3-periphery && forge script scripts/setup_scaffold.s.sol --target-contract SetupScaffold --fork-url \"http://127.0.0.1:8545\" --broadcast --skip-simulation --slow -vvv",
-    "deployStablePair": "cd lib/v3-periphery && forge script scripts/deploy_stablepair.s.sol --target-contract DeployStablePair --fork-url \"http://127.0.0.1:8545\" --broadcast -vvv"
+    "setupTest": "cd lib/v3-periphery && forge script script/setup_scaffold.s.sol --target-contract SetupScaffold --fork-url \"http://127.0.0.1:8545\" --broadcast --skip-simulation --slow -vvv",
+    "deployStablePair": "cd lib/v3-periphery && forge script script/deploy_stablepair.s.sol --target-contract DeployStablePair --fork-url \"http://127.0.0.1:8545\" --broadcast -vvv"
   },
   "dependencies": {
     "@ethersproject/address": "^5.0.0",

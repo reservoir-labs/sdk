@@ -1,5 +1,13 @@
 import invariant from 'tiny-invariant'
-import { Token, Currency, CurrencyAmount, Percent, TradeType, validateAndParseAddress } from '@reservoir-labs/sdk-core'
+import {
+  Token,
+  Currency,
+  CurrencyAmount,
+  Percent,
+  TradeType,
+  validateAndParseAddress,
+  SupportedChainId
+} from '@reservoir-labs/sdk-core'
 import { Pair, Trade } from './entities'
 import { Multicall } from './multicall'
 import { Payments } from './payments'
@@ -82,7 +90,9 @@ export abstract class Router {
       calldatas.push(encodedPermit)
     }
 
-    const to: string = etherOut ? ROUTER_ADDRESS : validateAndParseAddress(options.recipient)
+    // assumed that the chainId is part of the SupportedChainId
+    // @ts-ignore
+    const to: string = etherOut ? ROUTER_ADDRESS[trade.route.chainId] : validateAndParseAddress(options.recipient)
     const amountIn: string = toHex(trade.maximumAmountIn(options.allowedSlippage))
     const amountOut: string = toHex(trade.minimumAmountOut(options.allowedSlippage))
     const path: string[] = trade.route.path.map((token: Token) => token.address)
@@ -185,6 +195,7 @@ export abstract class Router {
     liquidityTokenPermit?: PermitOptions
   ): MethodParameters {
     invariant(!tokenAmountA.currency.equals(tokenAmountB.currency), 'ATTEMPTING_TO_REMOVE_LIQ_FOR_SAME_TOKEN')
+    invariant(liquidityAmount.currency.chainId in SupportedChainId, 'CHAIN_ID')
     const etherOut = tokenAmountA.currency.isNative || tokenAmountB.currency.isNative
     const validatedRecipient = validateAndParseAddress(options.recipient)
     const calldatas: string[] = []
@@ -194,7 +205,10 @@ export abstract class Router {
     }
 
     const methodName = 'removeLiquidity'
-    const to = etherOut ? ROUTER_ADDRESS : validatedRecipient
+
+    // we can assume that the chainId is part of the SupportedChainId, as checked in the invariant above
+    // @ts-ignore
+    const to: string = etherOut ? ROUTER_ADDRESS[liquidityAmount.currency.chainId] : validatedRecipient
     const tokenAMinimumAmount = calculateSlippageAmount(tokenAmountA.quotient, options.allowedSlippage).lower
     const tokenBMinimumAmount = calculateSlippageAmount(tokenAmountB.quotient, options.allowedSlippage).lower
     const args = [

@@ -9,8 +9,8 @@ export const FACTORY_ADDRESS = {
 }
 
 export const ROUTER_ADDRESS = {
-  [SupportedChainId.AVAX]: '0xd627FdC984a249E9b5F2df263A37368f4e459726',
-  [SupportedChainId.AVAX_TESTNET]: '0x67bc78378723acd8876FCA16d9c6C24ff79acb8e'
+  [SupportedChainId.AVAX]: '0x67bc78378723acd8876FCA16d9c6C24ff79acb8e',
+  [SupportedChainId.AVAX_TESTNET]: '0xd627FdC984a249E9b5F2df263A37368f4e459726'
 }
 export const MINIMUM_LIQUIDITY = JSBI.BigInt(1000)
 export const FEE_ACCURACY = JSBI.BigInt(1_000_000) // 100%

@@ -3,7 +3,7 @@ import invariant from 'tiny-invariant'
 import JSBI from 'jsbi'
 import { keccak256, pack } from '@ethersproject/solidity'
 import { getCreate2Address } from '@ethersproject/address'
-
+import { HashZero } from '@ethersproject/constants'
 import {
   FACTORY_ADDRESS,
   MINIMUM_LIQUIDITY,
@@ -47,12 +47,19 @@ export const computePairAddress = ({
   const encodedTokenAddresses = defaultAbiCoder.encode(['address', 'address'], [token0.address, token1.address])
   const initCodeWithTokens = pack(['bytes', 'bytes'], [initCode, encodedTokenAddresses])
 
+  const initCodeWithTokenWithExtra32Zeros = pack(['bytes', 'bytes'], [initCodeWithTokens, HashZero])
+
+  // console.log("facaddress", factoryAddress)
+  // console.log("initCode", initCode)
+  // console.log("encodedtoken addresses", encodedTokenAddresses)
+  // console.log("initCodewithtoken", initCodeWithTokens)
+  // console.log("initCodewithtokenWithExtraShit", initCodeWithTokenWithExtra32Zeros)
+
   // N.B: we do not use a salt as the initCode is unique with token0 and token1 appended to it
   return getCreate2Address(
     factoryAddress,
-    // TODO: to replace this zero bytes32 with a constant instead of using a string literal
-    pack(['bytes32'], ['0x0000000000000000000000000000000000000000000000000000000000000000']),
-    keccak256(['bytes'], [initCodeWithTokens])
+    pack(['bytes32'], [HashZero]),
+    keccak256(['bytes'], [initCodeWithTokenWithExtra32Zeros])
   )
 }
 export class Pair {
