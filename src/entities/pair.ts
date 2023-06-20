@@ -54,11 +54,7 @@ export const computePairAddress = ({
   // console.log("initCodewithtokenWithExtraShit", initCodeWithTokenWithExtra32Zeros)
 
   // N.B: we do not use a salt as the initCode is unique with token0 and token1 appended to it
-  return getCreate2Address(
-    factoryAddress,
-    pack(['bytes32'], [HashZero]),
-    keccak256(['bytes'], [initCodeWithTokens])
-  )
+  return getCreate2Address(factoryAddress, pack(['bytes32'], [HashZero]), keccak256(['bytes'], [initCodeWithTokens]))
 }
 export class Pair {
   public readonly liquidityToken: Token
