@@ -4,8 +4,7 @@ import { SupportedChainId } from '@reservoir-labs/sdk-core'
 export const FACTORY_ADDRESS = {
   // this is deployed using the ReservoirDeployer
   [SupportedChainId.AVAX]: '0xDd723D9273642D82c5761a4467fD5265d94a22da',
-  // this is deployed manually as it wasn't necessary to use the ReservoirDeployer at that time
-  [SupportedChainId.AVAX_TESTNET]: '0xCae997a6f253814441B878868fd6DBB32a52816f'
+  [SupportedChainId.AVAX_TESTNET]: '0xDd723D9273642D82c5761a4467fD5265d94a22da'
 }
 
 export const ROUTER_ADDRESS = {
