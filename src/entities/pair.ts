@@ -47,12 +47,6 @@ export const computePairAddress = ({
   const encodedTokenAddresses = defaultAbiCoder.encode(['address', 'address'], [token0.address, token1.address])
   const initCodeWithTokens = pack(['bytes', 'bytes'], [initCode, encodedTokenAddresses])
 
-  // console.log("facaddress", factoryAddress)
-  // console.log("initCode", initCode)
-  // console.log("encodedtoken addresses", encodedTokenAddresses)
-  // console.log("initCodewithtoken", initCodeWithTokens)
-  // console.log("initCodewithtokenWithExtraShit", initCodeWithTokenWithExtra32Zeros)
-
   // N.B: we do not use a salt as the initCode is unique with token0 and token1 appended to it
   return getCreate2Address(factoryAddress, pack(['bytes32'], [HashZero]), keccak256(['bytes'], [initCodeWithTokens]))
 }
