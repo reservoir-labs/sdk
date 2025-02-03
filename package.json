@@ -15,11 +15,11 @@
   ],
   "module": "dist/sdk.esm.js",
   "scripts": {
-    "lint": "tsdx lint src test",
-    "build": "tsdx build",
-    "start": "tsdx watch",
-    "test": "tsdx test",
-    "prepublishOnly": "tsdx build",
+    "lint": "eslint src test",
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "start": "tsup src/index.ts --watch",
+    "test": "jest",
+    "prepublishOnly": "npm run build",
     "publish": "npm publish --access public",
     "anvil": "anvil",
     "anvil:avax": "anvil -f https://api.avax.network/ext/bc/C/rpc --mnemonic 'fresh gas cattle foster delay vacuum typical negative push churn brush wheel'",
@@ -43,7 +43,8 @@
   "devDependencies": {
     "@types/big.js": "^4.0.5",
     "@types/jest": "^24.0.25",
-    "tsdx": "^0.14.1"
+    "tsup": "^6.0.0",
+    "dts-cli": "^1.0.0"
   },
   "engines": {
     "node": ">=10"
