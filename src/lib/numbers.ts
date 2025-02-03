@@ -25,20 +25,11 @@ export const bn = (x: BigNumberish | Decimal): BigNumber => {
   return BigNumber.from(integer)
 }
 
-export const maxUint = (e: number): BigNumber =>
-  bn(2)
-    .pow(e)
-    .sub(1)
+export const maxUint = (e: number): BigNumber => bn(2).pow(e).sub(1)
 
-export const maxInt = (e: number): BigNumber =>
-  bn(2)
-    .pow(bn(e).sub(1))
-    .sub(1)
+export const maxInt = (e: number): BigNumber => bn(2).pow(bn(e).sub(1)).sub(1)
 
-export const minInt = (e: number): BigNumber =>
-  bn(2)
-    .pow(bn(e).sub(1))
-    .mul(-1)
+export const minInt = (e: number): BigNumber => bn(2).pow(bn(e).sub(1)).mul(-1)
 
 export const pct = (x: BigNumberish, pct: BigNumberish): BigNumber => bn(decimal(x).mul(decimal(pct)))
 
@@ -94,18 +85,10 @@ export function randomFromInterval(min: number, max: number): number {
 
 export function within1(x: Decimal, y: Decimal): boolean {
   if (x.gt(y)) {
-    if (
-      fp(x)
-        .sub(fp(y))
-        .lte(1)
-    ) {
+    if (fp(x).sub(fp(y)).lte(1)) {
       return true
     }
-  } else if (
-    fp(y)
-      .sub(fp(x))
-      .lte(1)
-  ) {
+  } else if (fp(y).sub(fp(x)).lte(1)) {
     return true
   }
   return false
