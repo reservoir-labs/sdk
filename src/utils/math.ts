@@ -8,10 +8,7 @@ export const calculateSlippageAmount = (value: JSBI, slippage: Percent): { lower
     throw Error(`Unexpected slippage value: ${slippage}`)
   }
   return {
-    lower: new Fraction(ONE)
-      .add(slippage)
-      .invert()
-      .multiply(value).quotient,
-    upper: new Fraction(ONE).add(slippage).multiply(value).quotient
+    lower: new Fraction(ONE).add(slippage).invert().multiply(value).quotient,
+    upper: new Fraction(ONE).add(slippage).multiply(value).quotient,
   }
 }
