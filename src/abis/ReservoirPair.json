@@ -1,1 +1,1348 @@
-{"abi":[{"type":"function","name":"DOMAIN_SEPARATOR","inputs":[],"outputs":[{"name":"result","type":"bytes32","internalType":"bytes32"}],"stateMutability":"view"},{"type":"function","name":"FEE_ACCURACY","inputs":[],"outputs":[{"name":"","type":"uint256","internalType":"uint256"}],"stateMutability":"view"},{"type":"function","name":"MAX_PLATFORM_FEE","inputs":[],"outputs":[{"name":"","type":"uint256","internalType":"uint256"}],"stateMutability":"view"},{"type":"function","name":"MAX_SWAP_FEE","inputs":[],"outputs":[{"name":"","type":"uint256","internalType":"uint256"}],"stateMutability":"view"},{"type":"function","name":"MINIMUM_LIQUIDITY","inputs":[],"outputs":[{"name":"","type":"uint256","internalType":"uint256"}],"stateMutability":"view"},{"type":"function","name":"_observations","inputs":[{"name":"","type":"uint256","internalType":"uint256"}],"outputs":[{"name":"logInstantRawPrice","type":"int24","internalType":"int24"},{"name":"logInstantClampedPrice","type":"int24","internalType":"int24"},{"name":"logAccRawPrice","type":"int88","internalType":"int88"},{"name":"logAccClampedPrice","type":"int88","internalType":"int88"},{"name":"timestamp","type":"uint32","internalType":"uint32"}],"stateMutability":"view"},{"type":"function","name":"adjustManagement","inputs":[{"name":"aToken0Change","type":"int256","internalType":"int256"},{"name":"aToken1Change","type":"int256","internalType":"int256"}],"outputs":[],"stateMutability":"nonpayable"},{"type":"function","name":"allowance","inputs":[{"name":"owner","type":"address","internalType":"address"},{"name":"spender","type":"address","internalType":"address"}],"outputs":[{"name":"result","type":"uint256","internalType":"uint256"}],"stateMutability":"view"},{"type":"function","name":"approve","inputs":[{"name":"spender","type":"address","internalType":"address"},{"name":"amount","type":"uint256","internalType":"uint256"}],"outputs":[{"name":"","type":"bool","internalType":"bool"}],"stateMutability":"nonpayable"},{"type":"function","name":"assetManager","inputs":[],"outputs":[{"name":"","type":"address","internalType":"contract IAssetManager"}],"stateMutability":"view"},{"type":"function","name":"balanceOf","inputs":[{"name":"owner","type":"address","internalType":"address"}],"outputs":[{"name":"result","type":"uint256","internalType":"uint256"}],"stateMutability":"view"},{"type":"function","name":"burn","inputs":[{"name":"aTo","type":"address","internalType":"address"}],"outputs":[{"name":"amount0","type":"uint256","internalType":"uint256"},{"name":"amount1","type":"uint256","internalType":"uint256"}],"stateMutability":"nonpayable"},{"type":"function","name":"customPlatformFee","inputs":[],"outputs":[{"name":"","type":"uint256","internalType":"uint256"}],"stateMutability":"view"},{"type":"function","name":"customSwapFee","inputs":[],"outputs":[{"name":"","type":"uint256","internalType":"uint256"}],"stateMutability":"view"},{"type":"function","name":"decimals","inputs":[],"outputs":[{"name":"","type":"uint8","internalType":"uint8"}],"stateMutability":"view"},{"type":"function","name":"factory","inputs":[],"outputs":[{"name":"","type":"address","internalType":"contract IGenericFactory"}],"stateMutability":"view"},{"type":"function","name":"getReserves","inputs":[],"outputs":[{"name":"rReserve0","type":"uint104","internalType":"uint104"},{"name":"rReserve1","type":"uint104","internalType":"uint104"},{"name":"rBlockTimestampLast","type":"uint32","internalType":"uint32"},{"name":"rIndex","type":"uint16","internalType":"uint16"}],"stateMutability":"view"},{"type":"function","name":"maxChangePerTrade","inputs":[],"outputs":[{"name":"","type":"uint128","internalType":"uint128"}],"stateMutability":"view"},{"type":"function","name":"maxChangeRate","inputs":[],"outputs":[{"name":"","type":"uint128","internalType":"uint128"}],"stateMutability":"view"},{"type":"function","name":"mint","inputs":[{"name":"aTo","type":"address","internalType":"address"}],"outputs":[{"name":"liquidity","type":"uint256","internalType":"uint256"}],"stateMutability":"nonpayable"},{"type":"function","name":"name","inputs":[],"outputs":[{"name":"","type":"string","internalType":"string"}],"stateMutability":"pure"},{"type":"function","name":"nonces","inputs":[{"name":"owner","type":"address","internalType":"address"}],"outputs":[{"name":"result","type":"uint256","internalType":"uint256"}],"stateMutability":"view"},{"type":"function","name":"observation","inputs":[{"name":"aIndex","type":"uint256","internalType":"uint256"}],"outputs":[{"name":"","type":"tuple","internalType":"struct Observation","components":[{"name":"logInstantRawPrice","type":"int24","internalType":"int24"},{"name":"logInstantClampedPrice","type":"int24","internalType":"int24"},{"name":"logAccRawPrice","type":"int88","internalType":"int88"},{"name":"logAccClampedPrice","type":"int88","internalType":"int88"},{"name":"timestamp","type":"uint32","internalType":"uint32"}]}],"stateMutability":"view"},{"type":"function","name":"permit","inputs":[{"name":"owner","type":"address","internalType":"address"},{"name":"spender","type":"address","internalType":"address"},{"name":"value","type":"uint256","internalType":"uint256"},{"name":"deadline","type":"uint256","internalType":"uint256"},{"name":"v","type":"uint8","internalType":"uint8"},{"name":"r","type":"bytes32","internalType":"bytes32"},{"name":"s","type":"bytes32","internalType":"bytes32"}],"outputs":[],"stateMutability":"nonpayable"},{"type":"function","name":"platformFee","inputs":[],"outputs":[{"name":"","type":"uint256","internalType":"uint256"}],"stateMutability":"view"},{"type":"function","name":"recoverToken","inputs":[{"name":"aToken","type":"address","internalType":"contract IERC20"}],"outputs":[],"stateMutability":"nonpayable"},{"type":"function","name":"setClampParams","inputs":[{"name":"aMaxChangeRate","type":"uint128","internalType":"uint128"},{"name":"aMaxChangePerTrade","type":"uint128","internalType":"uint128"}],"outputs":[],"stateMutability":"nonpayable"},{"type":"function","name":"setCustomPlatformFee","inputs":[{"name":"aCustomPlatformFee","type":"uint256","internalType":"uint256"}],"outputs":[],"stateMutability":"nonpayable"},{"type":"function","name":"setCustomSwapFee","inputs":[{"name":"aCustomSwapFee","type":"uint256","internalType":"uint256"}],"outputs":[],"stateMutability":"nonpayable"},{"type":"function","name":"setManager","inputs":[{"name":"manager","type":"address","internalType":"contract IAssetManager"}],"outputs":[],"stateMutability":"nonpayable"},{"type":"function","name":"skim","inputs":[{"name":"aTo","type":"address","internalType":"address"}],"outputs":[],"stateMutability":"nonpayable"},{"type":"function","name":"skimExcessManaged","inputs":[{"name":"aToken","type":"address","internalType":"contract IERC20"}],"outputs":[{"name":"rAmtSkimmed","type":"uint256","internalType":"uint256"}],"stateMutability":"nonpayable"},{"type":"function","name":"swap","inputs":[{"name":"aAmount","type":"int256","internalType":"int256"},{"name":"aExactIn","type":"bool","internalType":"bool"},{"name":"aTo","type":"address","internalType":"address"},{"name":"aData","type":"bytes","internalType":"bytes"}],"outputs":[{"name":"rAmountOut","type":"uint256","internalType":"uint256"}],"stateMutability":"nonpayable"},{"type":"function","name":"swapFee","inputs":[],"outputs":[{"name":"","type":"uint256","internalType":"uint256"}],"stateMutability":"view"},{"type":"function","name":"symbol","inputs":[],"outputs":[{"name":"","type":"string","internalType":"string"}],"stateMutability":"pure"},{"type":"function","name":"sync","inputs":[],"outputs":[],"stateMutability":"nonpayable"},{"type":"function","name":"token0","inputs":[],"outputs":[{"name":"","type":"address","internalType":"contract IERC20"}],"stateMutability":"view"},{"type":"function","name":"token0Managed","inputs":[],"outputs":[{"name":"","type":"uint104","internalType":"uint104"}],"stateMutability":"view"},{"type":"function","name":"token0PrecisionMultiplier","inputs":[],"outputs":[{"name":"","type":"uint128","internalType":"uint128"}],"stateMutability":"view"},{"type":"function","name":"token1","inputs":[],"outputs":[{"name":"","type":"address","internalType":"contract IERC20"}],"stateMutability":"view"},{"type":"function","name":"token1Managed","inputs":[],"outputs":[{"name":"","type":"uint104","internalType":"uint104"}],"stateMutability":"view"},{"type":"function","name":"token1PrecisionMultiplier","inputs":[],"outputs":[{"name":"","type":"uint128","internalType":"uint128"}],"stateMutability":"view"},{"type":"function","name":"totalSupply","inputs":[],"outputs":[{"name":"result","type":"uint256","internalType":"uint256"}],"stateMutability":"view"},{"type":"function","name":"transfer","inputs":[{"name":"to","type":"address","internalType":"address"},{"name":"amount","type":"uint256","internalType":"uint256"}],"outputs":[{"name":"","type":"bool","internalType":"bool"}],"stateMutability":"nonpayable"},{"type":"function","name":"transferFrom","inputs":[{"name":"from","type":"address","internalType":"address"},{"name":"to","type":"address","internalType":"address"},{"name":"amount","type":"uint256","internalType":"uint256"}],"outputs":[{"name":"","type":"bool","internalType":"bool"}],"stateMutability":"nonpayable"},{"type":"function","name":"updatePlatformFee","inputs":[],"outputs":[],"stateMutability":"nonpayable"},{"type":"function","name":"updateSwapFee","inputs":[],"outputs":[],"stateMutability":"nonpayable"},{"type":"event","name":"AfterLiquidityEventFailed","inputs":[{"name":"revert","type":"bytes","indexed":false,"internalType":"bytes"}],"anonymous":false},{"type":"event","name":"Approval","inputs":[{"name":"owner","type":"address","indexed":true,"internalType":"address"},{"name":"spender","type":"address","indexed":true,"internalType":"address"},{"name":"amount","type":"uint256","indexed":false,"internalType":"uint256"}],"anonymous":false},{"type":"event","name":"AssetManager","inputs":[{"name":"manager","type":"address","indexed":false,"internalType":"contract IAssetManager"}],"anonymous":false},{"type":"event","name":"Burn","inputs":[{"name":"sender","type":"address","indexed":true,"internalType":"address"},{"name":"amount0","type":"uint256","indexed":false,"internalType":"uint256"},{"name":"amount1","type":"uint256","indexed":false,"internalType":"uint256"}],"anonymous":false},{"type":"event","name":"ClampParams","inputs":[{"name":"newMaxChangeRatePerSecond","type":"uint128","indexed":false,"internalType":"uint128"},{"name":"newMaxChangePerTrade","type":"uint128","indexed":false,"internalType":"uint128"}],"anonymous":false},{"type":"event","name":"CustomPlatformFee","inputs":[{"name":"newCustomPlatformFee","type":"uint256","indexed":false,"internalType":"uint256"}],"anonymous":false},{"type":"event","name":"CustomSwapFee","inputs":[{"name":"newCustomSwapFee","type":"uint256","indexed":false,"internalType":"uint256"}],"anonymous":false},{"type":"event","name":"Loss","inputs":[{"name":"token","type":"address","indexed":false,"internalType":"contract IERC20"},{"name":"amount","type":"uint256","indexed":false,"internalType":"uint256"}],"anonymous":false},{"type":"event","name":"Mint","inputs":[{"name":"sender","type":"address","indexed":true,"internalType":"address"},{"name":"amount0","type":"uint256","indexed":false,"internalType":"uint256"},{"name":"amount1","type":"uint256","indexed":false,"internalType":"uint256"}],"anonymous":false},{"type":"event","name":"PlatformFee","inputs":[{"name":"newPlatformFee","type":"uint256","indexed":false,"internalType":"uint256"}],"anonymous":false},{"type":"event","name":"Profit","inputs":[{"name":"token","type":"address","indexed":false,"internalType":"contract IERC20"},{"name":"amount","type":"uint256","indexed":false,"internalType":"uint256"}],"anonymous":false},{"type":"event","name":"Swap","inputs":[{"name":"sender","type":"address","indexed":true,"internalType":"address"},{"name":"zeroForOne","type":"bool","indexed":false,"internalType":"bool"},{"name":"amountIn","type":"uint256","indexed":false,"internalType":"uint256"},{"name":"amountOut","type":"uint256","indexed":false,"internalType":"uint256"},{"name":"to","type":"address","indexed":true,"internalType":"address"}],"anonymous":false},{"type":"event","name":"SwapFee","inputs":[{"name":"newSwapFee","type":"uint256","indexed":false,"internalType":"uint256"}],"anonymous":false},{"type":"event","name":"Sync","inputs":[{"name":"reserve0","type":"uint104","indexed":false,"internalType":"uint104"},{"name":"reserve1","type":"uint104","indexed":false,"internalType":"uint104"}],"anonymous":false},{"type":"event","name":"Transfer","inputs":[{"name":"from","type":"address","indexed":true,"internalType":"address"},{"name":"to","type":"address","indexed":true,"internalType":"address"},{"name":"amount","type":"uint256","indexed":false,"internalType":"uint256"}],"anonymous":false},{"type":"error","name":"AllowanceOverflow","inputs":[]},{"type":"error","name":"AllowanceUnderflow","inputs":[]},{"type":"error","name":"AmountZero","inputs":[]},{"type":"error","name":"AssetManagerStillActive","inputs":[]},{"type":"error","name":"Forbidden","inputs":[]},{"type":"error","name":"InsufficientAllowance","inputs":[]},{"type":"error","name":"InsufficientAmtIn","inputs":[]},{"type":"error","name":"InsufficientBalance","inputs":[]},{"type":"error","name":"InsufficientLiq","inputs":[]},{"type":"error","name":"InsufficientLiqMinted","inputs":[]},{"type":"error","name":"InvalidChangePerSecond","inputs":[]},{"type":"error","name":"InvalidChangePerTrade","inputs":[]},{"type":"error","name":"InvalidPermit","inputs":[]},{"type":"error","name":"InvalidPlatformFee","inputs":[]},{"type":"error","name":"InvalidSkimToken","inputs":[]},{"type":"error","name":"InvalidSwapFee","inputs":[]},{"type":"error","name":"InvalidTokenToRecover","inputs":[]},{"type":"error","name":"LEM_InvalidExponent","inputs":[]},{"type":"error","name":"LEM_OutOfBounds","inputs":[]},{"type":"error","name":"NotManager","inputs":[]},{"type":"error","name":"Overflow","inputs":[]},{"type":"error","name":"Permit2AllowanceIsFixedAtInfinity","inputs":[]},{"type":"error","name":"PermitExpired","inputs":[]},{"type":"error","name":"Reentrancy","inputs":[]},{"type":"error","name":"SafeCastOverflowedUintDowncast","inputs":[{"name":"bits","type":"uint8","internalType":"uint8"},{"name":"value","type":"uint256","internalType":"uint256"}]},{"type":"error","name":"TotalSupplyOverflow","inputs":[]},{"type":"error","name":"TransferFailed","inputs":[]}],"bytecode":{"object":"0x","sourceMap":"","linkReferences":{}},"deployedBytecode":{"object":"0x","sourceMap":"","linkReferences":{}},"methodIdentifiers":{"DOMAIN_SEPARATOR()":"3644e515","FEE_ACCURACY()":"db6488dc","MAX_PLATFORM_FEE()":"3998a681","MAX_SWAP_FEE()":"ab3d8544","MINIMUM_LIQUIDITY()":"ba9a7a56","_observations(uint256)":"bb625478","adjustManagement(int256,int256)":"97e37764","allowance(address,address)":"dd62ed3e","approve(address,uint256)":"095ea7b3","assetManager()":"94217ad1","balanceOf(address)":"70a08231","burn(address)":"89afcb44","customPlatformFee()":"7c3cbc7c","customSwapFee()":"c58771ef","decimals()":"313ce567","factory()":"c45a0155","getReserves()":"0902f1ac","maxChangePerTrade()":"4a1d6fa7","maxChangeRate()":"85faf624","mint(address)":"6a627842","name()":"06fdde03","nonces(address)":"7ecebe00","observation(uint256)":"9d62a694","permit(address,address,uint256,uint256,uint8,bytes32,bytes32)":"d505accf","platformFee()":"26232a2e","recoverToken(address)":"9be65a60","setClampParams(uint128,uint128)":"6156385d","setCustomPlatformFee(uint256)":"afb4a43b","setCustomSwapFee(uint256)":"9568e73b","setManager(address)":"d0ebdbe7","skim(address)":"bc25cf77","skimExcessManaged(address)":"7aec721b","swap(int256,bool,address,bytes)":"e12bd9d8","swapFee()":"54cf2aeb","symbol()":"95d89b41","sync()":"fff6cae9","token0()":"0dfe1681","token0Managed()":"e9bdf7b8","token0PrecisionMultiplier()":"baa8c7cb","token1()":"d21220a7","token1Managed()":"ad7853e9","token1PrecisionMultiplier()":"4e25dc47","totalSupply()":"18160ddd","transfer(address,uint256)":"a9059cbb","transferFrom(address,address,uint256)":"23b872dd","updatePlatformFee()":"dbc781bc","updateSwapFee()":"0c472afd"},"rawMetadata":"{\"compiler\":{\"version\":\"0.8.28+commit.7893614a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"AllowanceOverflow\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"AllowanceUnderflow\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"AmountZero\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"AssetManagerStillActive\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"Forbidden\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InsufficientAllowance\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InsufficientAmtIn\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InsufficientBalance\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InsufficientLiq\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InsufficientLiqMinted\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidChangePerSecond\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidChangePerTrade\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidPermit\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidPlatformFee\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidSkimToken\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidSwapFee\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidTokenToRecover\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"LEM_InvalidExponent\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"LEM_OutOfBounds\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NotManager\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"Overflow\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"Permit2AllowanceIsFixedAtInfinity\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"PermitExpired\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"Reentrancy\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"bits\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"SafeCastOverflowedUintDowncast\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"TotalSupplyOverflow\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"TransferFailed\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"revert\",\"type\":\"bytes\"}],\"name\":\"AfterLiquidityEventFailed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Approval\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"contract IAssetManager\",\"name\":\"manager\",\"type\":\"address\"}],\"name\":\"AssetManager\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount0\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount1\",\"type\":\"uint256\"}],\"name\":\"Burn\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint128\",\"name\":\"newMaxChangeRatePerSecond\",\"type\":\"uint128\"},{\"indexed\":false,\"internalType\":\"uint128\",\"name\":\"newMaxChangePerTrade\",\"type\":\"uint128\"}],\"name\":\"ClampParams\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"newCustomPlatformFee\",\"type\":\"uint256\"}],\"name\":\"CustomPlatformFee\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"newCustomSwapFee\",\"type\":\"uint256\"}],\"name\":\"CustomSwapFee\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"contract IERC20\",\"name\":\"token\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Loss\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount0\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount1\",\"type\":\"uint256\"}],\"name\":\"Mint\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"newPlatformFee\",\"type\":\"uint256\"}],\"name\":\"PlatformFee\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"contract IERC20\",\"name\":\"token\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Profit\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"zeroForOne\",\"type\":\"bool\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amountIn\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amountOut\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"}],\"name\":\"Swap\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"newSwapFee\",\"type\":\"uint256\"}],\"name\":\"SwapFee\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint104\",\"name\":\"reserve0\",\"type\":\"uint104\"},{\"indexed\":false,\"internalType\":\"uint104\",\"name\":\"reserve1\",\"type\":\"uint104\"}],\"name\":\"Sync\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"DOMAIN_SEPARATOR\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"result\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"FEE_ACCURACY\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"MAX_PLATFORM_FEE\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"MAX_SWAP_FEE\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"MINIMUM_LIQUIDITY\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"_observations\",\"outputs\":[{\"internalType\":\"int24\",\"name\":\"logInstantRawPrice\",\"type\":\"int24\"},{\"internalType\":\"int24\",\"name\":\"logInstantClampedPrice\",\"type\":\"int24\"},{\"internalType\":\"int88\",\"name\":\"logAccRawPrice\",\"type\":\"int88\"},{\"internalType\":\"int88\",\"name\":\"logAccClampedPrice\",\"type\":\"int88\"},{\"internalType\":\"uint32\",\"name\":\"timestamp\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"int256\",\"name\":\"aToken0Change\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"aToken1Change\",\"type\":\"int256\"}],\"name\":\"adjustManagement\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"}],\"name\":\"allowance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"result\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"assetManager\",\"outputs\":[{\"internalType\":\"contract IAssetManager\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"result\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"aTo\",\"type\":\"address\"}],\"name\":\"burn\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"amount0\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"amount1\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"customPlatformFee\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"customSwapFee\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"decimals\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"factory\",\"outputs\":[{\"internalType\":\"contract IGenericFactory\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getReserves\",\"outputs\":[{\"internalType\":\"uint104\",\"name\":\"rReserve0\",\"type\":\"uint104\"},{\"internalType\":\"uint104\",\"name\":\"rReserve1\",\"type\":\"uint104\"},{\"internalType\":\"uint32\",\"name\":\"rBlockTimestampLast\",\"type\":\"uint32\"},{\"internalType\":\"uint16\",\"name\":\"rIndex\",\"type\":\"uint16\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"maxChangePerTrade\",\"outputs\":[{\"internalType\":\"uint128\",\"name\":\"\",\"type\":\"uint128\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"maxChangeRate\",\"outputs\":[{\"internalType\":\"uint128\",\"name\":\"\",\"type\":\"uint128\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"aTo\",\"type\":\"address\"}],\"name\":\"mint\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"liquidity\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"name\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"nonces\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"result\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"aIndex\",\"type\":\"uint256\"}],\"name\":\"observation\",\"outputs\":[{\"components\":[{\"internalType\":\"int24\",\"name\":\"logInstantRawPrice\",\"type\":\"int24\"},{\"internalType\":\"int24\",\"name\":\"logInstantClampedPrice\",\"type\":\"int24\"},{\"internalType\":\"int88\",\"name\":\"logAccRawPrice\",\"type\":\"int88\"},{\"internalType\":\"int88\",\"name\":\"logAccClampedPrice\",\"type\":\"int88\"},{\"internalType\":\"uint32\",\"name\":\"timestamp\",\"type\":\"uint32\"}],\"internalType\":\"struct Observation\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"deadline\",\"type\":\"uint256\"},{\"internalType\":\"uint8\",\"name\":\"v\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"r\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"s\",\"type\":\"bytes32\"}],\"name\":\"permit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"platformFee\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"aToken\",\"type\":\"address\"}],\"name\":\"recoverToken\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint128\",\"name\":\"aMaxChangeRate\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"aMaxChangePerTrade\",\"type\":\"uint128\"}],\"name\":\"setClampParams\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"aCustomPlatformFee\",\"type\":\"uint256\"}],\"name\":\"setCustomPlatformFee\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"aCustomSwapFee\",\"type\":\"uint256\"}],\"name\":\"setCustomSwapFee\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract IAssetManager\",\"name\":\"manager\",\"type\":\"address\"}],\"name\":\"setManager\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"aTo\",\"type\":\"address\"}],\"name\":\"skim\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"aToken\",\"type\":\"address\"}],\"name\":\"skimExcessManaged\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"rAmtSkimmed\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"int256\",\"name\":\"aAmount\",\"type\":\"int256\"},{\"internalType\":\"bool\",\"name\":\"aExactIn\",\"type\":\"bool\"},{\"internalType\":\"address\",\"name\":\"aTo\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"aData\",\"type\":\"bytes\"}],\"name\":\"swap\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"rAmountOut\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"swapFee\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"symbol\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"sync\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"token0\",\"outputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"token0Managed\",\"outputs\":[{\"internalType\":\"uint104\",\"name\":\"\",\"type\":\"uint104\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"token0PrecisionMultiplier\",\"outputs\":[{\"internalType\":\"uint128\",\"name\":\"\",\"type\":\"uint128\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"token1\",\"outputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"token1Managed\",\"outputs\":[{\"internalType\":\"uint104\",\"name\":\"\",\"type\":\"uint104\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"token1PrecisionMultiplier\",\"outputs\":[{\"internalType\":\"uint128\",\"name\":\"\",\"type\":\"uint128\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"result\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transfer\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transferFrom\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"updatePlatformFee\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"updateSwapFee\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"errors\":{\"AllowanceOverflow()\":[{\"details\":\"The allowance has overflowed.\"}],\"AllowanceUnderflow()\":[{\"details\":\"The allowance has underflowed.\"}],\"InsufficientAllowance()\":[{\"details\":\"Insufficient allowance.\"}],\"InsufficientBalance()\":[{\"details\":\"Insufficient balance.\"}],\"InvalidPermit()\":[{\"details\":\"The permit is invalid.\"}],\"Permit2AllowanceIsFixedAtInfinity()\":[{\"details\":\"The allowance of Permit2 is fixed at infinity.\"}],\"PermitExpired()\":[{\"details\":\"The permit has expired.\"}],\"Reentrancy()\":[{\"details\":\"Unauthorized reentrant call.\"}],\"SafeCastOverflowedUintDowncast(uint8,uint256)\":[{\"details\":\"Value doesn't fit in an uint of `bits` size.\"}],\"TotalSupplyOverflow()\":[{\"details\":\"The total supply has overflowed.\"}]},\"events\":{\"Approval(address,address,uint256)\":{\"details\":\"Emitted when `amount` tokens is approved by `owner` to be used by `spender`.\"},\"Transfer(address,address,uint256)\":{\"details\":\"Emitted when `amount` tokens is transferred from `from` to `to`.\"}},\"kind\":\"dev\",\"methods\":{\"DOMAIN_SEPARATOR()\":{\"details\":\"Returns the EIP-712 domain separator for the EIP-2612 permit.\"},\"allowance(address,address)\":{\"details\":\"Returns the amount of tokens that `spender` can spend on behalf of `owner`.\"},\"approve(address,uint256)\":{\"details\":\"Sets `amount` as the allowance of `spender` over the caller's tokens. Emits a {Approval} event.\"},\"balanceOf(address)\":{\"details\":\"Returns the amount of tokens owned by `owner`.\"},\"burn(address)\":{\"details\":\"Burns LP tokens sent to this contract.\"},\"decimals()\":{\"details\":\"Returns the decimals places of the token.\"},\"mint(address)\":{\"details\":\"Mints LP tokens using tokens sent to this contract.\"},\"name()\":{\"details\":\"Returns the name of the token.\"},\"nonces(address)\":{\"details\":\"Returns the current nonce for `owner`. This value is used to compute the signature for EIP-2612 permit.\"},\"permit(address,address,uint256,uint256,uint8,bytes32,bytes32)\":{\"details\":\"Sets `value` as the allowance of `spender` over the tokens of `owner`, authorized by a signed approval by `owner`. Emits a {Approval} event.\"},\"swap(int256,bool,address,bytes)\":{\"params\":{\"aAmount\":\"positive to indicate token0, negative to indicate token1\",\"aData\":\"calls to with this data, in the event of a flash swap\",\"aExactIn\":\"true to indicate an exact in trade, false to indicate an exact out trade\",\"aTo\":\"address to send the output token and leftover input tokens, callee for the flash swap\"}},\"symbol()\":{\"details\":\"Returns the symbol of the token.\"},\"totalSupply()\":{\"details\":\"Returns the amount of tokens in existence.\"},\"transfer(address,uint256)\":{\"details\":\"Transfer `amount` tokens from the caller to `to`. Requirements: - `from` must at least have `amount`. Emits a {Transfer} event.\"},\"transferFrom(address,address,uint256)\":{\"details\":\"Transfers `amount` tokens from `from` to `to`. Note: Does not update the allowance if it is the maximum uint256 value. Requirements: - `from` must at least have `amount`. - The caller must have at least `amount` of allowance to transfer the tokens of `from`. Emits a {Transfer} event.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"MAX_PLATFORM_FEE()\":{\"notice\":\"Maximum allowed platform fee, which is 100%.\"},\"MAX_SWAP_FEE()\":{\"notice\":\"Maximum allowed swap fee, which is 2%.\"},\"customPlatformFee()\":{\"notice\":\"Custom platformFee override for the pair, max uint256 indicates no override.\"},\"customSwapFee()\":{\"notice\":\"Custom swap fee override for the pair, max uint256 indicates no override.\"},\"platformFee()\":{\"notice\":\"Current platformFee.\"},\"skim(address)\":{\"notice\":\"Force balances to match reserves.\"},\"swap(int256,bool,address,bytes)\":{\"notice\":\"Swaps one token for another. The router must prefund this contract and ensure there isn't too much         slippage.\"},\"swapFee()\":{\"notice\":\"Current swap fee.\"},\"sync()\":{\"notice\":\"Force reserves to match balances.\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/ReservoirPair.sol\":\"ReservoirPair\"},\"evmVersion\":\"cancun\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":1000000},\"remappings\":[\":@openzeppelin/=lib/openzeppelin-contracts/contracts/\",\":@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":forge-std/=lib/forge-std/src/\",\":openzeppelin-contracts/=lib/openzeppelin-contracts/\",\":solady/=lib/solady/src/\",\":solmate/=lib/solmate/src/\"],\"viaIR\":true},\"sources\":{\"lib/forge-std/src/interfaces/IERC20.sol\":{\"keccak256\":\"0x4cab887298790f908c27de107e4e2907ca5413aee482ef776f8d2f353c5ef947\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://bb715e0c4a2bdbe432bb624501506041f06e878e0b72675aebba30ad2c2b72e7\",\"dweb:/ipfs/QmWhhLSvkxS2NrukJJHqFY8gDVE5r9rD4PfHvR24pwdKv9\"]},\"lib/openzeppelin-contracts/contracts/utils/math/SafeCast.sol\":{\"keccak256\":\"0x195533c86d0ef72bcc06456a4f66a9b941f38eb403739b00f21fd7c1abd1ae54\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b1d578337048cad08c1c03041cca5978eff5428aa130c781b271ad9e5566e1f8\",\"dweb:/ipfs/QmPFKL2r9CBsMwmUqqdcFPfHZB2qcs9g1HDrPxzWSxomvy\"]},\"lib/solady/src/tokens/ERC20.sol\":{\"keccak256\":\"0x1c3cdf5158b29b16ba2d2c7ff1f6d4304754605441257e198b46803f0fa9df1a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://f6ed3d15fd372495ff76439878fb5e007ae0b39da3ce3d9fd877ee8147647bb2\",\"dweb:/ipfs/QmZ1zC91VhPHMXAdcY8SahJMwDsC2B5q9uXFF16R5eHmkV\"]},\"lib/solady/src/utils/FixedPointMathLib.sol\":{\"keccak256\":\"0x4913fe355ada3849fca527195135bb659092778113984a6590669d2a80106bc8\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3f403357b46f778250e8b07430409185f99231c67dee43b65ba231fb2c383be8\",\"dweb:/ipfs/QmUTNSrSBJSJdJUc539FFLb7pC6c7h6nmSPYG4Qb11Viq4\"]},\"lib/solady/src/utils/ReentrancyGuardTransient.sol\":{\"keccak256\":\"0x21b2e5cba720b937bd97897bf355b889442494c8ad5932f8e5a11beb0dc1d7eb\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://78cc5d5f88b0c20427f1c47897204abfbc89213dc781c0c062ced62b4b4648e5\",\"dweb:/ipfs/QmVbKbd6cZX95SaNiCShpRz799sZ7bV2LPGmc3ht62vmfr\"]},\"lib/solady/src/utils/SafeTransferLib.sol\":{\"keccak256\":\"0x7d0de1ff3be5dc32635283280b000d4794015a1b61d7dae7f3ff7b0721b07210\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e307c9eece677565e7d584ee77c56134b5db38a70f557f9d2b1b308219276c0c\",\"dweb:/ipfs/QmTEtqaTFgRBFGpJyb5o4v2w8yrSpcNThov4bNpcLr2tTR\"]},\"src/ReservoirERC20.sol\":{\"keccak256\":\"0x3a3307f2e8edc10acf1f3e63abec3cf7a5de0123b57726a8ac7ce5fe137c6aab\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://2136c2fd195459f7f337450560f238841a3525d1e5f8c22405ade996ea68c6e8\",\"dweb:/ipfs/QmaQdccYBfQzGZA17CokiYwC52VhtbV5negVXrrXZFj3Cd\"]},\"src/ReservoirPair.sol\":{\"keccak256\":\"0x6fe04ca3a81640112755b8fe108c886e4215aff21ca4f235c8dae24dcebe8d87\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://59d4e457d7ce057885c2c392bae19a96f3436280fa2309042a088f57eb2034e8\",\"dweb:/ipfs/QmW82J9FayWSjLAweNkEJRZjwGMWro3wgSA8eJv3B1YZ2E\"]},\"src/interfaces/IAssetManagedPair.sol\":{\"keccak256\":\"0x6a79e8ad5d1c9328e260fa5386551498c3d3c4791648a6188374f8a81a2cbe40\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://637b8e4e090ed0b2d05159c25bf5ef1fcec8cb9075969d6ec8f2ed373fad1b5f\",\"dweb:/ipfs/QmdRjNbCrdELMSVPQ3gokkHmNNKqG2D9h4xkZmK5FtyJ7n\"]},\"src/interfaces/IAssetManager.sol\":{\"keccak256\":\"0x3fdea28d3453b5830d86fb5459d54fbaf2c8711be8b128dff14a00d8887991ae\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://bea007a3ef8cd9274b3751562e4004b56a9992146cb07bfa74a79bf8eb9f485a\",\"dweb:/ipfs/QmR68Ky1ZvoeiB5awoymoVjoDyJhwb9VyRLvqFLykQxwsE\"]},\"src/interfaces/IGenericFactory.sol\":{\"keccak256\":\"0xe5b021953da6a62119f9fb0fc895aadb4a03079c086bb5d338ef4b19577ee0ef\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://6f20d0adfc51e8fda64eaf55996a4f8af4e240e64391d829f0b49481c8a92849\",\"dweb:/ipfs/QmQCr4UP7RCjuGBEzQEP7e5qvSh9Bb4smLqJPrN1bvDHg5\"]},\"src/libraries/Buffer.sol\":{\"keccak256\":\"0x622ff37ade002a172eb544735948e779cd093ac952496ccfa6ac550378164126\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://facc9a0f9a5f30a9bbc4545cc1298546805f493641b3058f19237be49cab2681\",\"dweb:/ipfs/QmTdRjfUDrSNfQ3dwUWELESTCBAjPdUhCPAJ8zgpyUUjj3\"]},\"src/libraries/Bytes32.sol\":{\"keccak256\":\"0xc1c2963b7ea38aa63c8be9cd44262f3b90cb071ba997c352b9a27752fba3ee33\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://4061bcec09acf1cb5d3356b286a9df30a45ad14e1754485c8b575f5b893cd06e\",\"dweb:/ipfs/QmRQhCY48KvZNaH8YfQG8voWQriHc9KyE3enM7RfGAk2By\"]},\"src/libraries/FactoryStore.sol\":{\"keccak256\":\"0xa1615d1a12d2fd9a9e84248ccffa14dd4c3c0dafc3768b2b77bf5a8c648b598b\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://ae61c89ab7700ef10186029889836e34b3762b3cd338a7a7388043759c3cf714\",\"dweb:/ipfs/QmbHMg8vjxbtnrJTLNbxZowe1daVZSuogD56xVYCh6cVeZ\"]},\"src/libraries/LogCompression.sol\":{\"keccak256\":\"0x7dc113de57f76fe376de48b53cb2f2b160f5bf3d907d0fe4f80da0246903002d\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://816d00c5234217b172d826b9d7280b8aadc5a4f861cad20990df9220afa5e6da\",\"dweb:/ipfs/QmQBNTzxAHQJcoUkmZHdd2mvaVmkMQG8ptgrsqsdH58UdR\"]},\"src/libraries/LogExpMath.sol\":{\"keccak256\":\"0x382873320d14f42300c10fd4d328404712876dd41e4ebb67e1aec9daaa57410b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ed59f05c1e663cb4d2b54c44648645643cdfee70e5e01c4ca9c3fa7a77f88a91\",\"dweb:/ipfs/QmRLTg2UjCpstTL4GQX1TPzKcMX6uoUnVsRRNAGQjR4zsH\"]},\"src/libraries/StdMath.sol\":{\"keccak256\":\"0x68124bea69fb24b3d27ffb5dd755ab6877e3fdd2e7f54b84bbae42b5d1e836a1\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://34264ecc6587b9dc8a1dfec4a62b53bf4ec96fc223680171c77e5599c92a9ff9\",\"dweb:/ipfs/QmPPqRiVB7uAxgVyukgcwNWqvtK2JhG4ksUJqUEyFyNbZH\"]},\"src/structs/Observation.sol\":{\"keccak256\":\"0x7de4375cdf88ee805feef1617ad3b46511da3682738e64c486ba861a9b1fa0a4\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://7cfd1b8c15464ae675fe8be60a31a7cddce62bb7a71595552a453607be21f467\",\"dweb:/ipfs/QmZ66mB8PhwvzpHQR5keHV8XQDYqALvPypGhufNy21ggcD\"]},\"src/structs/Slot0.sol\":{\"keccak256\":\"0xbd4915c0d7e7443bf18a618c6a9d65dd4f8387b4d1c4fa68e6dce211548e2c6c\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://b06d990dcae37d2ac5e8a0e4e9e691da43996a60f0ac1b17c9d03f9b02e14a54\",\"dweb:/ipfs/QmP2KQmtYBZ8a3aBj4UtFaQtWTWFFZo74k7WQf412YAntG\"]}},\"version\":1}","metadata":{"compiler":{"version":"0.8.28+commit.7893614a"},"language":"Solidity","output":{"abi":[{"inputs":[],"type":"error","name":"AllowanceOverflow"},{"inputs":[],"type":"error","name":"AllowanceUnderflow"},{"inputs":[],"type":"error","name":"AmountZero"},{"inputs":[],"type":"error","name":"AssetManagerStillActive"},{"inputs":[],"type":"error","name":"Forbidden"},{"inputs":[],"type":"error","name":"InsufficientAllowance"},{"inputs":[],"type":"error","name":"InsufficientAmtIn"},{"inputs":[],"type":"error","name":"InsufficientBalance"},{"inputs":[],"type":"error","name":"InsufficientLiq"},{"inputs":[],"type":"error","name":"InsufficientLiqMinted"},{"inputs":[],"type":"error","name":"InvalidChangePerSecond"},{"inputs":[],"type":"error","name":"InvalidChangePerTrade"},{"inputs":[],"type":"error","name":"InvalidPermit"},{"inputs":[],"type":"error","name":"InvalidPlatformFee"},{"inputs":[],"type":"error","name":"InvalidSkimToken"},{"inputs":[],"type":"error","name":"InvalidSwapFee"},{"inputs":[],"type":"error","name":"InvalidTokenToRecover"},{"inputs":[],"type":"error","name":"LEM_InvalidExponent"},{"inputs":[],"type":"error","name":"LEM_OutOfBounds"},{"inputs":[],"type":"error","name":"NotManager"},{"inputs":[],"type":"error","name":"Overflow"},{"inputs":[],"type":"error","name":"Permit2AllowanceIsFixedAtInfinity"},{"inputs":[],"type":"error","name":"PermitExpired"},{"inputs":[],"type":"error","name":"Reentrancy"},{"inputs":[{"internalType":"uint8","name":"bits","type":"uint8"},{"internalType":"uint256","name":"value","type":"uint256"}],"type":"error","name":"SafeCastOverflowedUintDowncast"},{"inputs":[],"type":"error","name":"TotalSupplyOverflow"},{"inputs":[],"type":"error","name":"TransferFailed"},{"inputs":[{"internalType":"bytes","name":"revert","type":"bytes","indexed":false}],"type":"event","name":"AfterLiquidityEventFailed","anonymous":false},{"inputs":[{"internalType":"address","name":"owner","type":"address","indexed":true},{"internalType":"address","name":"spender","type":"address","indexed":true},{"internalType":"uint256","name":"amount","type":"uint256","indexed":false}],"type":"event","name":"Approval","anonymous":false},{"inputs":[{"internalType":"contract IAssetManager","name":"manager","type":"address","indexed":false}],"type":"event","name":"AssetManager","anonymous":false},{"inputs":[{"internalType":"address","name":"sender","type":"address","indexed":true},{"internalType":"uint256","name":"amount0","type":"uint256","indexed":false},{"internalType":"uint256","name":"amount1","type":"uint256","indexed":false}],"type":"event","name":"Burn","anonymous":false},{"inputs":[{"internalType":"uint128","name":"newMaxChangeRatePerSecond","type":"uint128","indexed":false},{"internalType":"uint128","name":"newMaxChangePerTrade","type":"uint128","indexed":false}],"type":"event","name":"ClampParams","anonymous":false},{"inputs":[{"internalType":"uint256","name":"newCustomPlatformFee","type":"uint256","indexed":false}],"type":"event","name":"CustomPlatformFee","anonymous":false},{"inputs":[{"internalType":"uint256","name":"newCustomSwapFee","type":"uint256","indexed":false}],"type":"event","name":"CustomSwapFee","anonymous":false},{"inputs":[{"internalType":"contract IERC20","name":"token","type":"address","indexed":false},{"internalType":"uint256","name":"amount","type":"uint256","indexed":false}],"type":"event","name":"Loss","anonymous":false},{"inputs":[{"internalType":"address","name":"sender","type":"address","indexed":true},{"internalType":"uint256","name":"amount0","type":"uint256","indexed":false},{"internalType":"uint256","name":"amount1","type":"uint256","indexed":false}],"type":"event","name":"Mint","anonymous":false},{"inputs":[{"internalType":"uint256","name":"newPlatformFee","type":"uint256","indexed":false}],"type":"event","name":"PlatformFee","anonymous":false},{"inputs":[{"internalType":"contract IERC20","name":"token","type":"address","indexed":false},{"internalType":"uint256","name":"amount","type":"uint256","indexed":false}],"type":"event","name":"Profit","anonymous":false},{"inputs":[{"internalType":"address","name":"sender","type":"address","indexed":true},{"internalType":"bool","name":"zeroForOne","type":"bool","indexed":false},{"internalType":"uint256","name":"amountIn","type":"uint256","indexed":false},{"internalType":"uint256","name":"amountOut","type":"uint256","indexed":false},{"internalType":"address","name":"to","type":"address","indexed":true}],"type":"event","name":"Swap","anonymous":false},{"inputs":[{"internalType":"uint256","name":"newSwapFee","type":"uint256","indexed":false}],"type":"event","name":"SwapFee","anonymous":false},{"inputs":[{"internalType":"uint104","name":"reserve0","type":"uint104","indexed":false},{"internalType":"uint104","name":"reserve1","type":"uint104","indexed":false}],"type":"event","name":"Sync","anonymous":false},{"inputs":[{"internalType":"address","name":"from","type":"address","indexed":true},{"internalType":"address","name":"to","type":"address","indexed":true},{"internalType":"uint256","name":"amount","type":"uint256","indexed":false}],"type":"event","name":"Transfer","anonymous":false},{"inputs":[],"stateMutability":"view","type":"function","name":"DOMAIN_SEPARATOR","outputs":[{"internalType":"bytes32","name":"result","type":"bytes32"}]},{"inputs":[],"stateMutability":"view","type":"function","name":"FEE_ACCURACY","outputs":[{"internalType":"uint256","name":"","type":"uint256"}]},{"inputs":[],"stateMutability":"view","type":"function","name":"MAX_PLATFORM_FEE","outputs":[{"internalType":"uint256","name":"","type":"uint256"}]},{"inputs":[],"stateMutability":"view","type":"function","name":"MAX_SWAP_FEE","outputs":[{"internalType":"uint256","name":"","type":"uint256"}]},{"inputs":[],"stateMutability":"view","type":"function","name":"MINIMUM_LIQUIDITY","outputs":[{"internalType":"uint256","name":"","type":"uint256"}]},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function","name":"_observations","outputs":[{"internalType":"int24","name":"logInstantRawPrice","type":"int24"},{"internalType":"int24","name":"logInstantClampedPrice","type":"int24"},{"internalType":"int88","name":"logAccRawPrice","type":"int88"},{"internalType":"int88","name":"logAccClampedPrice","type":"int88"},{"internalType":"uint32","name":"timestamp","type":"uint32"}]},{"inputs":[{"internalType":"int256","name":"aToken0Change","type":"int256"},{"internalType":"int256","name":"aToken1Change","type":"int256"}],"stateMutability":"nonpayable","type":"function","name":"adjustManagement"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"spender","type":"address"}],"stateMutability":"view","type":"function","name":"allowance","outputs":[{"internalType":"uint256","name":"result","type":"uint256"}]},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"stateMutability":"nonpayable","type":"function","name":"approve","outputs":[{"internalType":"bool","name":"","type":"bool"}]},{"inputs":[],"stateMutability":"view","type":"function","name":"assetManager","outputs":[{"internalType":"contract IAssetManager","name":"","type":"address"}]},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"stateMutability":"view","type":"function","name":"balanceOf","outputs":[{"internalType":"uint256","name":"result","type":"uint256"}]},{"inputs":[{"internalType":"address","name":"aTo","type":"address"}],"stateMutability":"nonpayable","type":"function","name":"burn","outputs":[{"internalType":"uint256","name":"amount0","type":"uint256"},{"internalType":"uint256","name":"amount1","type":"uint256"}]},{"inputs":[],"stateMutability":"view","type":"function","name":"customPlatformFee","outputs":[{"internalType":"uint256","name":"","type":"uint256"}]},{"inputs":[],"stateMutability":"view","type":"function","name":"customSwapFee","outputs":[{"internalType":"uint256","name":"","type":"uint256"}]},{"inputs":[],"stateMutability":"view","type":"function","name":"decimals","outputs":[{"internalType":"uint8","name":"","type":"uint8"}]},{"inputs":[],"stateMutability":"view","type":"function","name":"factory","outputs":[{"internalType":"contract IGenericFactory","name":"","type":"address"}]},{"inputs":[],"stateMutability":"view","type":"function","name":"getReserves","outputs":[{"internalType":"uint104","name":"rReserve0","type":"uint104"},{"internalType":"uint104","name":"rReserve1","type":"uint104"},{"internalType":"uint32","name":"rBlockTimestampLast","type":"uint32"},{"internalType":"uint16","name":"rIndex","type":"uint16"}]},{"inputs":[],"stateMutability":"view","type":"function","name":"maxChangePerTrade","outputs":[{"internalType":"uint128","name":"","type":"uint128"}]},{"inputs":[],"stateMutability":"view","type":"function","name":"maxChangeRate","outputs":[{"internalType":"uint128","name":"","type":"uint128"}]},{"inputs":[{"internalType":"address","name":"aTo","type":"address"}],"stateMutability":"nonpayable","type":"function","name":"mint","outputs":[{"internalType":"uint256","name":"liquidity","type":"uint256"}]},{"inputs":[],"stateMutability":"pure","type":"function","name":"name","outputs":[{"internalType":"string","name":"","type":"string"}]},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"stateMutability":"view","type":"function","name":"nonces","outputs":[{"internalType":"uint256","name":"result","type":"uint256"}]},{"inputs":[{"internalType":"uint256","name":"aIndex","type":"uint256"}],"stateMutability":"view","type":"function","name":"observation","outputs":[{"internalType":"struct Observation","name":"","type":"tuple","components":[{"internalType":"int24","name":"logInstantRawPrice","type":"int24"},{"internalType":"int24","name":"logInstantClampedPrice","type":"int24"},{"internalType":"int88","name":"logAccRawPrice","type":"int88"},{"internalType":"int88","name":"logAccClampedPrice","type":"int88"},{"internalType":"uint32","name":"timestamp","type":"uint32"}]}]},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"value","type":"uint256"},{"internalType":"uint256","name":"deadline","type":"uint256"},{"internalType":"uint8","name":"v","type":"uint8"},{"internalType":"bytes32","name":"r","type":"bytes32"},{"internalType":"bytes32","name":"s","type":"bytes32"}],"stateMutability":"nonpayable","type":"function","name":"permit"},{"inputs":[],"stateMutability":"view","type":"function","name":"platformFee","outputs":[{"internalType":"uint256","name":"","type":"uint256"}]},{"inputs":[{"internalType":"contract IERC20","name":"aToken","type":"address"}],"stateMutability":"nonpayable","type":"function","name":"recoverToken"},{"inputs":[{"internalType":"uint128","name":"aMaxChangeRate","type":"uint128"},{"internalType":"uint128","name":"aMaxChangePerTrade","type":"uint128"}],"stateMutability":"nonpayable","type":"function","name":"setClampParams"},{"inputs":[{"internalType":"uint256","name":"aCustomPlatformFee","type":"uint256"}],"stateMutability":"nonpayable","type":"function","name":"setCustomPlatformFee"},{"inputs":[{"internalType":"uint256","name":"aCustomSwapFee","type":"uint256"}],"stateMutability":"nonpayable","type":"function","name":"setCustomSwapFee"},{"inputs":[{"internalType":"contract IAssetManager","name":"manager","type":"address"}],"stateMutability":"nonpayable","type":"function","name":"setManager"},{"inputs":[{"internalType":"address","name":"aTo","type":"address"}],"stateMutability":"nonpayable","type":"function","name":"skim"},{"inputs":[{"internalType":"contract IERC20","name":"aToken","type":"address"}],"stateMutability":"nonpayable","type":"function","name":"skimExcessManaged","outputs":[{"internalType":"uint256","name":"rAmtSkimmed","type":"uint256"}]},{"inputs":[{"internalType":"int256","name":"aAmount","type":"int256"},{"internalType":"bool","name":"aExactIn","type":"bool"},{"internalType":"address","name":"aTo","type":"address"},{"internalType":"bytes","name":"aData","type":"bytes"}],"stateMutability":"nonpayable","type":"function","name":"swap","outputs":[{"internalType":"uint256","name":"rAmountOut","type":"uint256"}]},{"inputs":[],"stateMutability":"view","type":"function","name":"swapFee","outputs":[{"internalType":"uint256","name":"","type":"uint256"}]},{"inputs":[],"stateMutability":"pure","type":"function","name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}]},{"inputs":[],"stateMutability":"nonpayable","type":"function","name":"sync"},{"inputs":[],"stateMutability":"view","type":"function","name":"token0","outputs":[{"internalType":"contract IERC20","name":"","type":"address"}]},{"inputs":[],"stateMutability":"view","type":"function","name":"token0Managed","outputs":[{"internalType":"uint104","name":"","type":"uint104"}]},{"inputs":[],"stateMutability":"view","type":"function","name":"token0PrecisionMultiplier","outputs":[{"internalType":"uint128","name":"","type":"uint128"}]},{"inputs":[],"stateMutability":"view","type":"function","name":"token1","outputs":[{"internalType":"contract IERC20","name":"","type":"address"}]},{"inputs":[],"stateMutability":"view","type":"function","name":"token1Managed","outputs":[{"internalType":"uint104","name":"","type":"uint104"}]},{"inputs":[],"stateMutability":"view","type":"function","name":"token1PrecisionMultiplier","outputs":[{"internalType":"uint128","name":"","type":"uint128"}]},{"inputs":[],"stateMutability":"view","type":"function","name":"totalSupply","outputs":[{"internalType":"uint256","name":"result","type":"uint256"}]},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"stateMutability":"nonpayable","type":"function","name":"transfer","outputs":[{"internalType":"bool","name":"","type":"bool"}]},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"stateMutability":"nonpayable","type":"function","name":"transferFrom","outputs":[{"internalType":"bool","name":"","type":"bool"}]},{"inputs":[],"stateMutability":"nonpayable","type":"function","name":"updatePlatformFee"},{"inputs":[],"stateMutability":"nonpayable","type":"function","name":"updateSwapFee"}],"devdoc":{"kind":"dev","methods":{"DOMAIN_SEPARATOR()":{"details":"Returns the EIP-712 domain separator for the EIP-2612 permit."},"allowance(address,address)":{"details":"Returns the amount of tokens that `spender` can spend on behalf of `owner`."},"approve(address,uint256)":{"details":"Sets `amount` as the allowance of `spender` over the caller's tokens. Emits a {Approval} event."},"balanceOf(address)":{"details":"Returns the amount of tokens owned by `owner`."},"burn(address)":{"details":"Burns LP tokens sent to this contract."},"decimals()":{"details":"Returns the decimals places of the token."},"mint(address)":{"details":"Mints LP tokens using tokens sent to this contract."},"name()":{"details":"Returns the name of the token."},"nonces(address)":{"details":"Returns the current nonce for `owner`. This value is used to compute the signature for EIP-2612 permit."},"permit(address,address,uint256,uint256,uint8,bytes32,bytes32)":{"details":"Sets `value` as the allowance of `spender` over the tokens of `owner`, authorized by a signed approval by `owner`. Emits a {Approval} event."},"swap(int256,bool,address,bytes)":{"params":{"aAmount":"positive to indicate token0, negative to indicate token1","aData":"calls to with this data, in the event of a flash swap","aExactIn":"true to indicate an exact in trade, false to indicate an exact out trade","aTo":"address to send the output token and leftover input tokens, callee for the flash swap"}},"symbol()":{"details":"Returns the symbol of the token."},"totalSupply()":{"details":"Returns the amount of tokens in existence."},"transfer(address,uint256)":{"details":"Transfer `amount` tokens from the caller to `to`. Requirements: - `from` must at least have `amount`. Emits a {Transfer} event."},"transferFrom(address,address,uint256)":{"details":"Transfers `amount` tokens from `from` to `to`. Note: Does not update the allowance if it is the maximum uint256 value. Requirements: - `from` must at least have `amount`. - The caller must have at least `amount` of allowance to transfer the tokens of `from`. Emits a {Transfer} event."}},"version":1},"userdoc":{"kind":"user","methods":{"MAX_PLATFORM_FEE()":{"notice":"Maximum allowed platform fee, which is 100%."},"MAX_SWAP_FEE()":{"notice":"Maximum allowed swap fee, which is 2%."},"customPlatformFee()":{"notice":"Custom platformFee override for the pair, max uint256 indicates no override."},"customSwapFee()":{"notice":"Custom swap fee override for the pair, max uint256 indicates no override."},"platformFee()":{"notice":"Current platformFee."},"skim(address)":{"notice":"Force balances to match reserves."},"swap(int256,bool,address,bytes)":{"notice":"Swaps one token for another. The router must prefund this contract and ensure there isn't too much         slippage."},"swapFee()":{"notice":"Current swap fee."},"sync()":{"notice":"Force reserves to match balances."}},"version":1}},"settings":{"remappings":["@openzeppelin/=lib/openzeppelin-contracts/contracts/","@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/","ds-test/=lib/forge-std/lib/ds-test/src/","forge-std/=lib/forge-std/src/","openzeppelin-contracts/=lib/openzeppelin-contracts/","solady/=lib/solady/src/","solmate/=lib/solmate/src/"],"optimizer":{"enabled":true,"runs":1000000},"metadata":{"bytecodeHash":"ipfs"},"compilationTarget":{"src/ReservoirPair.sol":"ReservoirPair"},"evmVersion":"cancun","libraries":{},"viaIR":true},"sources":{"lib/forge-std/src/interfaces/IERC20.sol":{"keccak256":"0x4cab887298790f908c27de107e4e2907ca5413aee482ef776f8d2f353c5ef947","urls":["bzz-raw://bb715e0c4a2bdbe432bb624501506041f06e878e0b72675aebba30ad2c2b72e7","dweb:/ipfs/QmWhhLSvkxS2NrukJJHqFY8gDVE5r9rD4PfHvR24pwdKv9"],"license":"MIT"},"lib/openzeppelin-contracts/contracts/utils/math/SafeCast.sol":{"keccak256":"0x195533c86d0ef72bcc06456a4f66a9b941f38eb403739b00f21fd7c1abd1ae54","urls":["bzz-raw://b1d578337048cad08c1c03041cca5978eff5428aa130c781b271ad9e5566e1f8","dweb:/ipfs/QmPFKL2r9CBsMwmUqqdcFPfHZB2qcs9g1HDrPxzWSxomvy"],"license":"MIT"},"lib/solady/src/tokens/ERC20.sol":{"keccak256":"0x1c3cdf5158b29b16ba2d2c7ff1f6d4304754605441257e198b46803f0fa9df1a","urls":["bzz-raw://f6ed3d15fd372495ff76439878fb5e007ae0b39da3ce3d9fd877ee8147647bb2","dweb:/ipfs/QmZ1zC91VhPHMXAdcY8SahJMwDsC2B5q9uXFF16R5eHmkV"],"license":"MIT"},"lib/solady/src/utils/FixedPointMathLib.sol":{"keccak256":"0x4913fe355ada3849fca527195135bb659092778113984a6590669d2a80106bc8","urls":["bzz-raw://3f403357b46f778250e8b07430409185f99231c67dee43b65ba231fb2c383be8","dweb:/ipfs/QmUTNSrSBJSJdJUc539FFLb7pC6c7h6nmSPYG4Qb11Viq4"],"license":"MIT"},"lib/solady/src/utils/ReentrancyGuardTransient.sol":{"keccak256":"0x21b2e5cba720b937bd97897bf355b889442494c8ad5932f8e5a11beb0dc1d7eb","urls":["bzz-raw://78cc5d5f88b0c20427f1c47897204abfbc89213dc781c0c062ced62b4b4648e5","dweb:/ipfs/QmVbKbd6cZX95SaNiCShpRz799sZ7bV2LPGmc3ht62vmfr"],"license":"MIT"},"lib/solady/src/utils/SafeTransferLib.sol":{"keccak256":"0x7d0de1ff3be5dc32635283280b000d4794015a1b61d7dae7f3ff7b0721b07210","urls":["bzz-raw://e307c9eece677565e7d584ee77c56134b5db38a70f557f9d2b1b308219276c0c","dweb:/ipfs/QmTEtqaTFgRBFGpJyb5o4v2w8yrSpcNThov4bNpcLr2tTR"],"license":"MIT"},"src/ReservoirERC20.sol":{"keccak256":"0x3a3307f2e8edc10acf1f3e63abec3cf7a5de0123b57726a8ac7ce5fe137c6aab","urls":["bzz-raw://2136c2fd195459f7f337450560f238841a3525d1e5f8c22405ade996ea68c6e8","dweb:/ipfs/QmaQdccYBfQzGZA17CokiYwC52VhtbV5negVXrrXZFj3Cd"],"license":"GPL-3.0-or-later"},"src/ReservoirPair.sol":{"keccak256":"0x6fe04ca3a81640112755b8fe108c886e4215aff21ca4f235c8dae24dcebe8d87","urls":["bzz-raw://59d4e457d7ce057885c2c392bae19a96f3436280fa2309042a088f57eb2034e8","dweb:/ipfs/QmW82J9FayWSjLAweNkEJRZjwGMWro3wgSA8eJv3B1YZ2E"],"license":"GPL-3.0-or-later"},"src/interfaces/IAssetManagedPair.sol":{"keccak256":"0x6a79e8ad5d1c9328e260fa5386551498c3d3c4791648a6188374f8a81a2cbe40","urls":["bzz-raw://637b8e4e090ed0b2d05159c25bf5ef1fcec8cb9075969d6ec8f2ed373fad1b5f","dweb:/ipfs/QmdRjNbCrdELMSVPQ3gokkHmNNKqG2D9h4xkZmK5FtyJ7n"],"license":"GPL-3.0-or-later"},"src/interfaces/IAssetManager.sol":{"keccak256":"0x3fdea28d3453b5830d86fb5459d54fbaf2c8711be8b128dff14a00d8887991ae","urls":["bzz-raw://bea007a3ef8cd9274b3751562e4004b56a9992146cb07bfa74a79bf8eb9f485a","dweb:/ipfs/QmR68Ky1ZvoeiB5awoymoVjoDyJhwb9VyRLvqFLykQxwsE"],"license":"GPL-3.0-or-later"},"src/interfaces/IGenericFactory.sol":{"keccak256":"0xe5b021953da6a62119f9fb0fc895aadb4a03079c086bb5d338ef4b19577ee0ef","urls":["bzz-raw://6f20d0adfc51e8fda64eaf55996a4f8af4e240e64391d829f0b49481c8a92849","dweb:/ipfs/QmQCr4UP7RCjuGBEzQEP7e5qvSh9Bb4smLqJPrN1bvDHg5"],"license":"GPL-3.0-or-later"},"src/libraries/Buffer.sol":{"keccak256":"0x622ff37ade002a172eb544735948e779cd093ac952496ccfa6ac550378164126","urls":["bzz-raw://facc9a0f9a5f30a9bbc4545cc1298546805f493641b3058f19237be49cab2681","dweb:/ipfs/QmTdRjfUDrSNfQ3dwUWELESTCBAjPdUhCPAJ8zgpyUUjj3"],"license":"GPL-3.0-or-later"},"src/libraries/Bytes32.sol":{"keccak256":"0xc1c2963b7ea38aa63c8be9cd44262f3b90cb071ba997c352b9a27752fba3ee33","urls":["bzz-raw://4061bcec09acf1cb5d3356b286a9df30a45ad14e1754485c8b575f5b893cd06e","dweb:/ipfs/QmRQhCY48KvZNaH8YfQG8voWQriHc9KyE3enM7RfGAk2By"],"license":"GPL-3.0-or-later"},"src/libraries/FactoryStore.sol":{"keccak256":"0xa1615d1a12d2fd9a9e84248ccffa14dd4c3c0dafc3768b2b77bf5a8c648b598b","urls":["bzz-raw://ae61c89ab7700ef10186029889836e34b3762b3cd338a7a7388043759c3cf714","dweb:/ipfs/QmbHMg8vjxbtnrJTLNbxZowe1daVZSuogD56xVYCh6cVeZ"],"license":"GPL-3.0-or-later"},"src/libraries/LogCompression.sol":{"keccak256":"0x7dc113de57f76fe376de48b53cb2f2b160f5bf3d907d0fe4f80da0246903002d","urls":["bzz-raw://816d00c5234217b172d826b9d7280b8aadc5a4f861cad20990df9220afa5e6da","dweb:/ipfs/QmQBNTzxAHQJcoUkmZHdd2mvaVmkMQG8ptgrsqsdH58UdR"],"license":"GPL-3.0-or-later"},"src/libraries/LogExpMath.sol":{"keccak256":"0x382873320d14f42300c10fd4d328404712876dd41e4ebb67e1aec9daaa57410b","urls":["bzz-raw://ed59f05c1e663cb4d2b54c44648645643cdfee70e5e01c4ca9c3fa7a77f88a91","dweb:/ipfs/QmRLTg2UjCpstTL4GQX1TPzKcMX6uoUnVsRRNAGQjR4zsH"],"license":"MIT"},"src/libraries/StdMath.sol":{"keccak256":"0x68124bea69fb24b3d27ffb5dd755ab6877e3fdd2e7f54b84bbae42b5d1e836a1","urls":["bzz-raw://34264ecc6587b9dc8a1dfec4a62b53bf4ec96fc223680171c77e5599c92a9ff9","dweb:/ipfs/QmPPqRiVB7uAxgVyukgcwNWqvtK2JhG4ksUJqUEyFyNbZH"],"license":"GPL-3.0-or-later"},"src/structs/Observation.sol":{"keccak256":"0x7de4375cdf88ee805feef1617ad3b46511da3682738e64c486ba861a9b1fa0a4","urls":["bzz-raw://7cfd1b8c15464ae675fe8be60a31a7cddce62bb7a71595552a453607be21f467","dweb:/ipfs/QmZ66mB8PhwvzpHQR5keHV8XQDYqALvPypGhufNy21ggcD"],"license":"GPL-3.0-or-later"},"src/structs/Slot0.sol":{"keccak256":"0xbd4915c0d7e7443bf18a618c6a9d65dd4f8387b4d1c4fa68e6dce211548e2c6c","urls":["bzz-raw://b06d990dcae37d2ac5e8a0e4e9e691da43996a60f0ac1b17c9d03f9b02e14a54","dweb:/ipfs/QmP2KQmtYBZ8a3aBj4UtFaQtWTWFFZo74k7WQf412YAntG"],"license":"GPL-3.0-or-later"}},"version":1},"id":42}
+{
+  "abi": [
+    {
+      "type": "function",
+      "name": "DOMAIN_SEPARATOR",
+      "inputs": [],
+      "outputs": [{ "name": "result", "type": "bytes32", "internalType": "bytes32" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "FEE_ACCURACY",
+      "inputs": [],
+      "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "MAX_PLATFORM_FEE",
+      "inputs": [],
+      "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "MAX_SWAP_FEE",
+      "inputs": [],
+      "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "MINIMUM_LIQUIDITY",
+      "inputs": [],
+      "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "_observations",
+      "inputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+      "outputs": [
+        { "name": "logInstantRawPrice", "type": "int24", "internalType": "int24" },
+        { "name": "logInstantClampedPrice", "type": "int24", "internalType": "int24" },
+        { "name": "logAccRawPrice", "type": "int88", "internalType": "int88" },
+        { "name": "logAccClampedPrice", "type": "int88", "internalType": "int88" },
+        { "name": "timestamp", "type": "uint32", "internalType": "uint32" }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "adjustManagement",
+      "inputs": [
+        { "name": "aToken0Change", "type": "int256", "internalType": "int256" },
+        { "name": "aToken1Change", "type": "int256", "internalType": "int256" }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "allowance",
+      "inputs": [
+        { "name": "owner", "type": "address", "internalType": "address" },
+        { "name": "spender", "type": "address", "internalType": "address" }
+      ],
+      "outputs": [{ "name": "result", "type": "uint256", "internalType": "uint256" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "approve",
+      "inputs": [
+        { "name": "spender", "type": "address", "internalType": "address" },
+        { "name": "amount", "type": "uint256", "internalType": "uint256" }
+      ],
+      "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "assetManager",
+      "inputs": [],
+      "outputs": [{ "name": "", "type": "address", "internalType": "contract IAssetManager" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "balanceOf",
+      "inputs": [{ "name": "owner", "type": "address", "internalType": "address" }],
+      "outputs": [{ "name": "result", "type": "uint256", "internalType": "uint256" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "burn",
+      "inputs": [{ "name": "aTo", "type": "address", "internalType": "address" }],
+      "outputs": [
+        { "name": "amount0", "type": "uint256", "internalType": "uint256" },
+        { "name": "amount1", "type": "uint256", "internalType": "uint256" }
+      ],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "customPlatformFee",
+      "inputs": [],
+      "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "customSwapFee",
+      "inputs": [],
+      "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "decimals",
+      "inputs": [],
+      "outputs": [{ "name": "", "type": "uint8", "internalType": "uint8" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "factory",
+      "inputs": [],
+      "outputs": [{ "name": "", "type": "address", "internalType": "contract IGenericFactory" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getReserves",
+      "inputs": [],
+      "outputs": [
+        { "name": "rReserve0", "type": "uint104", "internalType": "uint104" },
+        { "name": "rReserve1", "type": "uint104", "internalType": "uint104" },
+        { "name": "rBlockTimestampLast", "type": "uint32", "internalType": "uint32" },
+        { "name": "rIndex", "type": "uint16", "internalType": "uint16" }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "maxChangePerTrade",
+      "inputs": [],
+      "outputs": [{ "name": "", "type": "uint128", "internalType": "uint128" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "maxChangeRate",
+      "inputs": [],
+      "outputs": [{ "name": "", "type": "uint128", "internalType": "uint128" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "mint",
+      "inputs": [{ "name": "aTo", "type": "address", "internalType": "address" }],
+      "outputs": [{ "name": "liquidity", "type": "uint256", "internalType": "uint256" }],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "name",
+      "inputs": [],
+      "outputs": [{ "name": "", "type": "string", "internalType": "string" }],
+      "stateMutability": "pure"
+    },
+    {
+      "type": "function",
+      "name": "nonces",
+      "inputs": [{ "name": "owner", "type": "address", "internalType": "address" }],
+      "outputs": [{ "name": "result", "type": "uint256", "internalType": "uint256" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "observation",
+      "inputs": [{ "name": "aIndex", "type": "uint256", "internalType": "uint256" }],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "internalType": "struct Observation",
+          "components": [
+            { "name": "logInstantRawPrice", "type": "int24", "internalType": "int24" },
+            { "name": "logInstantClampedPrice", "type": "int24", "internalType": "int24" },
+            { "name": "logAccRawPrice", "type": "int88", "internalType": "int88" },
+            { "name": "logAccClampedPrice", "type": "int88", "internalType": "int88" },
+            { "name": "timestamp", "type": "uint32", "internalType": "uint32" }
+          ]
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "permit",
+      "inputs": [
+        { "name": "owner", "type": "address", "internalType": "address" },
+        { "name": "spender", "type": "address", "internalType": "address" },
+        { "name": "value", "type": "uint256", "internalType": "uint256" },
+        { "name": "deadline", "type": "uint256", "internalType": "uint256" },
+        { "name": "v", "type": "uint8", "internalType": "uint8" },
+        { "name": "r", "type": "bytes32", "internalType": "bytes32" },
+        { "name": "s", "type": "bytes32", "internalType": "bytes32" }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "platformFee",
+      "inputs": [],
+      "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "recoverToken",
+      "inputs": [{ "name": "aToken", "type": "address", "internalType": "contract IERC20" }],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "setClampParams",
+      "inputs": [
+        { "name": "aMaxChangeRate", "type": "uint128", "internalType": "uint128" },
+        { "name": "aMaxChangePerTrade", "type": "uint128", "internalType": "uint128" }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "setCustomPlatformFee",
+      "inputs": [{ "name": "aCustomPlatformFee", "type": "uint256", "internalType": "uint256" }],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "setCustomSwapFee",
+      "inputs": [{ "name": "aCustomSwapFee", "type": "uint256", "internalType": "uint256" }],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "setManager",
+      "inputs": [{ "name": "manager", "type": "address", "internalType": "contract IAssetManager" }],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "skim",
+      "inputs": [{ "name": "aTo", "type": "address", "internalType": "address" }],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "skimExcessManaged",
+      "inputs": [{ "name": "aToken", "type": "address", "internalType": "contract IERC20" }],
+      "outputs": [{ "name": "rAmtSkimmed", "type": "uint256", "internalType": "uint256" }],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "swap",
+      "inputs": [
+        { "name": "aAmount", "type": "int256", "internalType": "int256" },
+        { "name": "aExactIn", "type": "bool", "internalType": "bool" },
+        { "name": "aTo", "type": "address", "internalType": "address" },
+        { "name": "aData", "type": "bytes", "internalType": "bytes" }
+      ],
+      "outputs": [{ "name": "rAmountOut", "type": "uint256", "internalType": "uint256" }],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "swapFee",
+      "inputs": [],
+      "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "symbol",
+      "inputs": [],
+      "outputs": [{ "name": "", "type": "string", "internalType": "string" }],
+      "stateMutability": "pure"
+    },
+    { "type": "function", "name": "sync", "inputs": [], "outputs": [], "stateMutability": "nonpayable" },
+    {
+      "type": "function",
+      "name": "token0",
+      "inputs": [],
+      "outputs": [{ "name": "", "type": "address", "internalType": "contract IERC20" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "token0Managed",
+      "inputs": [],
+      "outputs": [{ "name": "", "type": "uint104", "internalType": "uint104" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "token0PrecisionMultiplier",
+      "inputs": [],
+      "outputs": [{ "name": "", "type": "uint128", "internalType": "uint128" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "token1",
+      "inputs": [],
+      "outputs": [{ "name": "", "type": "address", "internalType": "contract IERC20" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "token1Managed",
+      "inputs": [],
+      "outputs": [{ "name": "", "type": "uint104", "internalType": "uint104" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "token1PrecisionMultiplier",
+      "inputs": [],
+      "outputs": [{ "name": "", "type": "uint128", "internalType": "uint128" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "totalSupply",
+      "inputs": [],
+      "outputs": [{ "name": "result", "type": "uint256", "internalType": "uint256" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "transfer",
+      "inputs": [
+        { "name": "to", "type": "address", "internalType": "address" },
+        { "name": "amount", "type": "uint256", "internalType": "uint256" }
+      ],
+      "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "transferFrom",
+      "inputs": [
+        { "name": "from", "type": "address", "internalType": "address" },
+        { "name": "to", "type": "address", "internalType": "address" },
+        { "name": "amount", "type": "uint256", "internalType": "uint256" }
+      ],
+      "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
+      "stateMutability": "nonpayable"
+    },
+    { "type": "function", "name": "updatePlatformFee", "inputs": [], "outputs": [], "stateMutability": "nonpayable" },
+    { "type": "function", "name": "updateSwapFee", "inputs": [], "outputs": [], "stateMutability": "nonpayable" },
+    {
+      "type": "event",
+      "name": "AfterLiquidityEventFailed",
+      "inputs": [{ "name": "revert", "type": "bytes", "indexed": false, "internalType": "bytes" }],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "Approval",
+      "inputs": [
+        { "name": "owner", "type": "address", "indexed": true, "internalType": "address" },
+        { "name": "spender", "type": "address", "indexed": true, "internalType": "address" },
+        { "name": "amount", "type": "uint256", "indexed": false, "internalType": "uint256" }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "AssetManager",
+      "inputs": [{ "name": "manager", "type": "address", "indexed": false, "internalType": "contract IAssetManager" }],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "Burn",
+      "inputs": [
+        { "name": "sender", "type": "address", "indexed": true, "internalType": "address" },
+        { "name": "amount0", "type": "uint256", "indexed": false, "internalType": "uint256" },
+        { "name": "amount1", "type": "uint256", "indexed": false, "internalType": "uint256" }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "ClampParams",
+      "inputs": [
+        { "name": "newMaxChangeRatePerSecond", "type": "uint128", "indexed": false, "internalType": "uint128" },
+        { "name": "newMaxChangePerTrade", "type": "uint128", "indexed": false, "internalType": "uint128" }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "CustomPlatformFee",
+      "inputs": [{ "name": "newCustomPlatformFee", "type": "uint256", "indexed": false, "internalType": "uint256" }],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "CustomSwapFee",
+      "inputs": [{ "name": "newCustomSwapFee", "type": "uint256", "indexed": false, "internalType": "uint256" }],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "Loss",
+      "inputs": [
+        { "name": "token", "type": "address", "indexed": false, "internalType": "contract IERC20" },
+        { "name": "amount", "type": "uint256", "indexed": false, "internalType": "uint256" }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "Mint",
+      "inputs": [
+        { "name": "sender", "type": "address", "indexed": true, "internalType": "address" },
+        { "name": "amount0", "type": "uint256", "indexed": false, "internalType": "uint256" },
+        { "name": "amount1", "type": "uint256", "indexed": false, "internalType": "uint256" }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "PlatformFee",
+      "inputs": [{ "name": "newPlatformFee", "type": "uint256", "indexed": false, "internalType": "uint256" }],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "Profit",
+      "inputs": [
+        { "name": "token", "type": "address", "indexed": false, "internalType": "contract IERC20" },
+        { "name": "amount", "type": "uint256", "indexed": false, "internalType": "uint256" }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "Swap",
+      "inputs": [
+        { "name": "sender", "type": "address", "indexed": true, "internalType": "address" },
+        { "name": "zeroForOne", "type": "bool", "indexed": false, "internalType": "bool" },
+        { "name": "amountIn", "type": "uint256", "indexed": false, "internalType": "uint256" },
+        { "name": "amountOut", "type": "uint256", "indexed": false, "internalType": "uint256" },
+        { "name": "to", "type": "address", "indexed": true, "internalType": "address" }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "SwapFee",
+      "inputs": [{ "name": "newSwapFee", "type": "uint256", "indexed": false, "internalType": "uint256" }],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "Sync",
+      "inputs": [
+        { "name": "reserve0", "type": "uint104", "indexed": false, "internalType": "uint104" },
+        { "name": "reserve1", "type": "uint104", "indexed": false, "internalType": "uint104" }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "Transfer",
+      "inputs": [
+        { "name": "from", "type": "address", "indexed": true, "internalType": "address" },
+        { "name": "to", "type": "address", "indexed": true, "internalType": "address" },
+        { "name": "amount", "type": "uint256", "indexed": false, "internalType": "uint256" }
+      ],
+      "anonymous": false
+    },
+    { "type": "error", "name": "AllowanceOverflow", "inputs": [] },
+    { "type": "error", "name": "AllowanceUnderflow", "inputs": [] },
+    { "type": "error", "name": "AmountZero", "inputs": [] },
+    { "type": "error", "name": "AssetManagerStillActive", "inputs": [] },
+    { "type": "error", "name": "Forbidden", "inputs": [] },
+    { "type": "error", "name": "InsufficientAllowance", "inputs": [] },
+    { "type": "error", "name": "InsufficientAmtIn", "inputs": [] },
+    { "type": "error", "name": "InsufficientBalance", "inputs": [] },
+    { "type": "error", "name": "InsufficientLiq", "inputs": [] },
+    { "type": "error", "name": "InsufficientLiqMinted", "inputs": [] },
+    { "type": "error", "name": "InvalidChangePerSecond", "inputs": [] },
+    { "type": "error", "name": "InvalidChangePerTrade", "inputs": [] },
+    { "type": "error", "name": "InvalidPermit", "inputs": [] },
+    { "type": "error", "name": "InvalidPlatformFee", "inputs": [] },
+    { "type": "error", "name": "InvalidSkimToken", "inputs": [] },
+    { "type": "error", "name": "InvalidSwapFee", "inputs": [] },
+    { "type": "error", "name": "InvalidTokenToRecover", "inputs": [] },
+    { "type": "error", "name": "LEM_InvalidExponent", "inputs": [] },
+    { "type": "error", "name": "LEM_OutOfBounds", "inputs": [] },
+    { "type": "error", "name": "NotManager", "inputs": [] },
+    { "type": "error", "name": "Overflow", "inputs": [] },
+    { "type": "error", "name": "Permit2AllowanceIsFixedAtInfinity", "inputs": [] },
+    { "type": "error", "name": "PermitExpired", "inputs": [] },
+    { "type": "error", "name": "Reentrancy", "inputs": [] },
+    {
+      "type": "error",
+      "name": "SafeCastOverflowedUintDowncast",
+      "inputs": [
+        { "name": "bits", "type": "uint8", "internalType": "uint8" },
+        { "name": "value", "type": "uint256", "internalType": "uint256" }
+      ]
+    },
+    { "type": "error", "name": "TotalSupplyOverflow", "inputs": [] },
+    { "type": "error", "name": "TransferFailed", "inputs": [] }
+  ],
+  "bytecode": { "object": "0x", "sourceMap": "", "linkReferences": {} },
+  "deployedBytecode": { "object": "0x", "sourceMap": "", "linkReferences": {} },
+  "methodIdentifiers": {
+    "DOMAIN_SEPARATOR()": "3644e515",
+    "FEE_ACCURACY()": "db6488dc",
+    "MAX_PLATFORM_FEE()": "3998a681",
+    "MAX_SWAP_FEE()": "ab3d8544",
+    "MINIMUM_LIQUIDITY()": "ba9a7a56",
+    "_observations(uint256)": "bb625478",
+    "adjustManagement(int256,int256)": "97e37764",
+    "allowance(address,address)": "dd62ed3e",
+    "approve(address,uint256)": "095ea7b3",
+    "assetManager()": "94217ad1",
+    "balanceOf(address)": "70a08231",
+    "burn(address)": "89afcb44",
+    "customPlatformFee()": "7c3cbc7c",
+    "customSwapFee()": "c58771ef",
+    "decimals()": "313ce567",
+    "factory()": "c45a0155",
+    "getReserves()": "0902f1ac",
+    "maxChangePerTrade()": "4a1d6fa7",
+    "maxChangeRate()": "85faf624",
+    "mint(address)": "6a627842",
+    "name()": "06fdde03",
+    "nonces(address)": "7ecebe00",
+    "observation(uint256)": "9d62a694",
+    "permit(address,address,uint256,uint256,uint8,bytes32,bytes32)": "d505accf",
+    "platformFee()": "26232a2e",
+    "recoverToken(address)": "9be65a60",
+    "setClampParams(uint128,uint128)": "6156385d",
+    "setCustomPlatformFee(uint256)": "afb4a43b",
+    "setCustomSwapFee(uint256)": "9568e73b",
+    "setManager(address)": "d0ebdbe7",
+    "skim(address)": "bc25cf77",
+    "skimExcessManaged(address)": "7aec721b",
+    "swap(int256,bool,address,bytes)": "e12bd9d8",
+    "swapFee()": "54cf2aeb",
+    "symbol()": "95d89b41",
+    "sync()": "fff6cae9",
+    "token0()": "0dfe1681",
+    "token0Managed()": "e9bdf7b8",
+    "token0PrecisionMultiplier()": "baa8c7cb",
+    "token1()": "d21220a7",
+    "token1Managed()": "ad7853e9",
+    "token1PrecisionMultiplier()": "4e25dc47",
+    "totalSupply()": "18160ddd",
+    "transfer(address,uint256)": "a9059cbb",
+    "transferFrom(address,address,uint256)": "23b872dd",
+    "updatePlatformFee()": "dbc781bc",
+    "updateSwapFee()": "0c472afd"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.28+commit.7893614a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"AllowanceOverflow\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"AllowanceUnderflow\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"AmountZero\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"AssetManagerStillActive\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"Forbidden\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InsufficientAllowance\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InsufficientAmtIn\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InsufficientBalance\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InsufficientLiq\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InsufficientLiqMinted\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidChangePerSecond\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidChangePerTrade\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidPermit\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidPlatformFee\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidSkimToken\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidSwapFee\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidTokenToRecover\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"LEM_InvalidExponent\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"LEM_OutOfBounds\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NotManager\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"Overflow\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"Permit2AllowanceIsFixedAtInfinity\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"PermitExpired\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"Reentrancy\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"bits\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"SafeCastOverflowedUintDowncast\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"TotalSupplyOverflow\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"TransferFailed\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"revert\",\"type\":\"bytes\"}],\"name\":\"AfterLiquidityEventFailed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Approval\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"contract IAssetManager\",\"name\":\"manager\",\"type\":\"address\"}],\"name\":\"AssetManager\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount0\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount1\",\"type\":\"uint256\"}],\"name\":\"Burn\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint128\",\"name\":\"newMaxChangeRatePerSecond\",\"type\":\"uint128\"},{\"indexed\":false,\"internalType\":\"uint128\",\"name\":\"newMaxChangePerTrade\",\"type\":\"uint128\"}],\"name\":\"ClampParams\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"newCustomPlatformFee\",\"type\":\"uint256\"}],\"name\":\"CustomPlatformFee\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"newCustomSwapFee\",\"type\":\"uint256\"}],\"name\":\"CustomSwapFee\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"contract IERC20\",\"name\":\"token\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Loss\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount0\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount1\",\"type\":\"uint256\"}],\"name\":\"Mint\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"newPlatformFee\",\"type\":\"uint256\"}],\"name\":\"PlatformFee\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"contract IERC20\",\"name\":\"token\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Profit\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"zeroForOne\",\"type\":\"bool\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amountIn\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amountOut\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"}],\"name\":\"Swap\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"newSwapFee\",\"type\":\"uint256\"}],\"name\":\"SwapFee\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint104\",\"name\":\"reserve0\",\"type\":\"uint104\"},{\"indexed\":false,\"internalType\":\"uint104\",\"name\":\"reserve1\",\"type\":\"uint104\"}],\"name\":\"Sync\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"DOMAIN_SEPARATOR\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"result\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"FEE_ACCURACY\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"MAX_PLATFORM_FEE\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"MAX_SWAP_FEE\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"MINIMUM_LIQUIDITY\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"_observations\",\"outputs\":[{\"internalType\":\"int24\",\"name\":\"logInstantRawPrice\",\"type\":\"int24\"},{\"internalType\":\"int24\",\"name\":\"logInstantClampedPrice\",\"type\":\"int24\"},{\"internalType\":\"int88\",\"name\":\"logAccRawPrice\",\"type\":\"int88\"},{\"internalType\":\"int88\",\"name\":\"logAccClampedPrice\",\"type\":\"int88\"},{\"internalType\":\"uint32\",\"name\":\"timestamp\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"int256\",\"name\":\"aToken0Change\",\"type\":\"int256\"},{\"internalType\":\"int256\",\"name\":\"aToken1Change\",\"type\":\"int256\"}],\"name\":\"adjustManagement\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"}],\"name\":\"allowance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"result\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"assetManager\",\"outputs\":[{\"internalType\":\"contract IAssetManager\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"result\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"aTo\",\"type\":\"address\"}],\"name\":\"burn\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"amount0\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"amount1\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"customPlatformFee\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"customSwapFee\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"decimals\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"factory\",\"outputs\":[{\"internalType\":\"contract IGenericFactory\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getReserves\",\"outputs\":[{\"internalType\":\"uint104\",\"name\":\"rReserve0\",\"type\":\"uint104\"},{\"internalType\":\"uint104\",\"name\":\"rReserve1\",\"type\":\"uint104\"},{\"internalType\":\"uint32\",\"name\":\"rBlockTimestampLast\",\"type\":\"uint32\"},{\"internalType\":\"uint16\",\"name\":\"rIndex\",\"type\":\"uint16\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"maxChangePerTrade\",\"outputs\":[{\"internalType\":\"uint128\",\"name\":\"\",\"type\":\"uint128\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"maxChangeRate\",\"outputs\":[{\"internalType\":\"uint128\",\"name\":\"\",\"type\":\"uint128\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"aTo\",\"type\":\"address\"}],\"name\":\"mint\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"liquidity\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"name\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"nonces\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"result\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"aIndex\",\"type\":\"uint256\"}],\"name\":\"observation\",\"outputs\":[{\"components\":[{\"internalType\":\"int24\",\"name\":\"logInstantRawPrice\",\"type\":\"int24\"},{\"internalType\":\"int24\",\"name\":\"logInstantClampedPrice\",\"type\":\"int24\"},{\"internalType\":\"int88\",\"name\":\"logAccRawPrice\",\"type\":\"int88\"},{\"internalType\":\"int88\",\"name\":\"logAccClampedPrice\",\"type\":\"int88\"},{\"internalType\":\"uint32\",\"name\":\"timestamp\",\"type\":\"uint32\"}],\"internalType\":\"struct Observation\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"deadline\",\"type\":\"uint256\"},{\"internalType\":\"uint8\",\"name\":\"v\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"r\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"s\",\"type\":\"bytes32\"}],\"name\":\"permit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"platformFee\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"aToken\",\"type\":\"address\"}],\"name\":\"recoverToken\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint128\",\"name\":\"aMaxChangeRate\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"aMaxChangePerTrade\",\"type\":\"uint128\"}],\"name\":\"setClampParams\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"aCustomPlatformFee\",\"type\":\"uint256\"}],\"name\":\"setCustomPlatformFee\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"aCustomSwapFee\",\"type\":\"uint256\"}],\"name\":\"setCustomSwapFee\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract IAssetManager\",\"name\":\"manager\",\"type\":\"address\"}],\"name\":\"setManager\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"aTo\",\"type\":\"address\"}],\"name\":\"skim\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"aToken\",\"type\":\"address\"}],\"name\":\"skimExcessManaged\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"rAmtSkimmed\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"int256\",\"name\":\"aAmount\",\"type\":\"int256\"},{\"internalType\":\"bool\",\"name\":\"aExactIn\",\"type\":\"bool\"},{\"internalType\":\"address\",\"name\":\"aTo\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"aData\",\"type\":\"bytes\"}],\"name\":\"swap\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"rAmountOut\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"swapFee\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"symbol\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"sync\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"token0\",\"outputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"token0Managed\",\"outputs\":[{\"internalType\":\"uint104\",\"name\":\"\",\"type\":\"uint104\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"token0PrecisionMultiplier\",\"outputs\":[{\"internalType\":\"uint128\",\"name\":\"\",\"type\":\"uint128\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"token1\",\"outputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"token1Managed\",\"outputs\":[{\"internalType\":\"uint104\",\"name\":\"\",\"type\":\"uint104\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"token1PrecisionMultiplier\",\"outputs\":[{\"internalType\":\"uint128\",\"name\":\"\",\"type\":\"uint128\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"result\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transfer\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transferFrom\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"updatePlatformFee\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"updateSwapFee\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"errors\":{\"AllowanceOverflow()\":[{\"details\":\"The allowance has overflowed.\"}],\"AllowanceUnderflow()\":[{\"details\":\"The allowance has underflowed.\"}],\"InsufficientAllowance()\":[{\"details\":\"Insufficient allowance.\"}],\"InsufficientBalance()\":[{\"details\":\"Insufficient balance.\"}],\"InvalidPermit()\":[{\"details\":\"The permit is invalid.\"}],\"Permit2AllowanceIsFixedAtInfinity()\":[{\"details\":\"The allowance of Permit2 is fixed at infinity.\"}],\"PermitExpired()\":[{\"details\":\"The permit has expired.\"}],\"Reentrancy()\":[{\"details\":\"Unauthorized reentrant call.\"}],\"SafeCastOverflowedUintDowncast(uint8,uint256)\":[{\"details\":\"Value doesn't fit in an uint of `bits` size.\"}],\"TotalSupplyOverflow()\":[{\"details\":\"The total supply has overflowed.\"}]},\"events\":{\"Approval(address,address,uint256)\":{\"details\":\"Emitted when `amount` tokens is approved by `owner` to be used by `spender`.\"},\"Transfer(address,address,uint256)\":{\"details\":\"Emitted when `amount` tokens is transferred from `from` to `to`.\"}},\"kind\":\"dev\",\"methods\":{\"DOMAIN_SEPARATOR()\":{\"details\":\"Returns the EIP-712 domain separator for the EIP-2612 permit.\"},\"allowance(address,address)\":{\"details\":\"Returns the amount of tokens that `spender` can spend on behalf of `owner`.\"},\"approve(address,uint256)\":{\"details\":\"Sets `amount` as the allowance of `spender` over the caller's tokens. Emits a {Approval} event.\"},\"balanceOf(address)\":{\"details\":\"Returns the amount of tokens owned by `owner`.\"},\"burn(address)\":{\"details\":\"Burns LP tokens sent to this contract.\"},\"decimals()\":{\"details\":\"Returns the decimals places of the token.\"},\"mint(address)\":{\"details\":\"Mints LP tokens using tokens sent to this contract.\"},\"name()\":{\"details\":\"Returns the name of the token.\"},\"nonces(address)\":{\"details\":\"Returns the current nonce for `owner`. This value is used to compute the signature for EIP-2612 permit.\"},\"permit(address,address,uint256,uint256,uint8,bytes32,bytes32)\":{\"details\":\"Sets `value` as the allowance of `spender` over the tokens of `owner`, authorized by a signed approval by `owner`. Emits a {Approval} event.\"},\"swap(int256,bool,address,bytes)\":{\"params\":{\"aAmount\":\"positive to indicate token0, negative to indicate token1\",\"aData\":\"calls to with this data, in the event of a flash swap\",\"aExactIn\":\"true to indicate an exact in trade, false to indicate an exact out trade\",\"aTo\":\"address to send the output token and leftover input tokens, callee for the flash swap\"}},\"symbol()\":{\"details\":\"Returns the symbol of the token.\"},\"totalSupply()\":{\"details\":\"Returns the amount of tokens in existence.\"},\"transfer(address,uint256)\":{\"details\":\"Transfer `amount` tokens from the caller to `to`. Requirements: - `from` must at least have `amount`. Emits a {Transfer} event.\"},\"transferFrom(address,address,uint256)\":{\"details\":\"Transfers `amount` tokens from `from` to `to`. Note: Does not update the allowance if it is the maximum uint256 value. Requirements: - `from` must at least have `amount`. - The caller must have at least `amount` of allowance to transfer the tokens of `from`. Emits a {Transfer} event.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"MAX_PLATFORM_FEE()\":{\"notice\":\"Maximum allowed platform fee, which is 100%.\"},\"MAX_SWAP_FEE()\":{\"notice\":\"Maximum allowed swap fee, which is 2%.\"},\"customPlatformFee()\":{\"notice\":\"Custom platformFee override for the pair, max uint256 indicates no override.\"},\"customSwapFee()\":{\"notice\":\"Custom swap fee override for the pair, max uint256 indicates no override.\"},\"platformFee()\":{\"notice\":\"Current platformFee.\"},\"skim(address)\":{\"notice\":\"Force balances to match reserves.\"},\"swap(int256,bool,address,bytes)\":{\"notice\":\"Swaps one token for another. The router must prefund this contract and ensure there isn't too much         slippage.\"},\"swapFee()\":{\"notice\":\"Current swap fee.\"},\"sync()\":{\"notice\":\"Force reserves to match balances.\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/ReservoirPair.sol\":\"ReservoirPair\"},\"evmVersion\":\"cancun\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":1000000},\"remappings\":[\":@openzeppelin/=lib/openzeppelin-contracts/contracts/\",\":@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":forge-std/=lib/forge-std/src/\",\":openzeppelin-contracts/=lib/openzeppelin-contracts/\",\":solady/=lib/solady/src/\",\":solmate/=lib/solmate/src/\"],\"viaIR\":true},\"sources\":{\"lib/forge-std/src/interfaces/IERC20.sol\":{\"keccak256\":\"0x4cab887298790f908c27de107e4e2907ca5413aee482ef776f8d2f353c5ef947\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://bb715e0c4a2bdbe432bb624501506041f06e878e0b72675aebba30ad2c2b72e7\",\"dweb:/ipfs/QmWhhLSvkxS2NrukJJHqFY8gDVE5r9rD4PfHvR24pwdKv9\"]},\"lib/openzeppelin-contracts/contracts/utils/math/SafeCast.sol\":{\"keccak256\":\"0x195533c86d0ef72bcc06456a4f66a9b941f38eb403739b00f21fd7c1abd1ae54\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b1d578337048cad08c1c03041cca5978eff5428aa130c781b271ad9e5566e1f8\",\"dweb:/ipfs/QmPFKL2r9CBsMwmUqqdcFPfHZB2qcs9g1HDrPxzWSxomvy\"]},\"lib/solady/src/tokens/ERC20.sol\":{\"keccak256\":\"0x1c3cdf5158b29b16ba2d2c7ff1f6d4304754605441257e198b46803f0fa9df1a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://f6ed3d15fd372495ff76439878fb5e007ae0b39da3ce3d9fd877ee8147647bb2\",\"dweb:/ipfs/QmZ1zC91VhPHMXAdcY8SahJMwDsC2B5q9uXFF16R5eHmkV\"]},\"lib/solady/src/utils/FixedPointMathLib.sol\":{\"keccak256\":\"0x4913fe355ada3849fca527195135bb659092778113984a6590669d2a80106bc8\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3f403357b46f778250e8b07430409185f99231c67dee43b65ba231fb2c383be8\",\"dweb:/ipfs/QmUTNSrSBJSJdJUc539FFLb7pC6c7h6nmSPYG4Qb11Viq4\"]},\"lib/solady/src/utils/ReentrancyGuardTransient.sol\":{\"keccak256\":\"0x21b2e5cba720b937bd97897bf355b889442494c8ad5932f8e5a11beb0dc1d7eb\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://78cc5d5f88b0c20427f1c47897204abfbc89213dc781c0c062ced62b4b4648e5\",\"dweb:/ipfs/QmVbKbd6cZX95SaNiCShpRz799sZ7bV2LPGmc3ht62vmfr\"]},\"lib/solady/src/utils/SafeTransferLib.sol\":{\"keccak256\":\"0x7d0de1ff3be5dc32635283280b000d4794015a1b61d7dae7f3ff7b0721b07210\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e307c9eece677565e7d584ee77c56134b5db38a70f557f9d2b1b308219276c0c\",\"dweb:/ipfs/QmTEtqaTFgRBFGpJyb5o4v2w8yrSpcNThov4bNpcLr2tTR\"]},\"src/ReservoirERC20.sol\":{\"keccak256\":\"0x3a3307f2e8edc10acf1f3e63abec3cf7a5de0123b57726a8ac7ce5fe137c6aab\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://2136c2fd195459f7f337450560f238841a3525d1e5f8c22405ade996ea68c6e8\",\"dweb:/ipfs/QmaQdccYBfQzGZA17CokiYwC52VhtbV5negVXrrXZFj3Cd\"]},\"src/ReservoirPair.sol\":{\"keccak256\":\"0x6fe04ca3a81640112755b8fe108c886e4215aff21ca4f235c8dae24dcebe8d87\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://59d4e457d7ce057885c2c392bae19a96f3436280fa2309042a088f57eb2034e8\",\"dweb:/ipfs/QmW82J9FayWSjLAweNkEJRZjwGMWro3wgSA8eJv3B1YZ2E\"]},\"src/interfaces/IAssetManagedPair.sol\":{\"keccak256\":\"0x6a79e8ad5d1c9328e260fa5386551498c3d3c4791648a6188374f8a81a2cbe40\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://637b8e4e090ed0b2d05159c25bf5ef1fcec8cb9075969d6ec8f2ed373fad1b5f\",\"dweb:/ipfs/QmdRjNbCrdELMSVPQ3gokkHmNNKqG2D9h4xkZmK5FtyJ7n\"]},\"src/interfaces/IAssetManager.sol\":{\"keccak256\":\"0x3fdea28d3453b5830d86fb5459d54fbaf2c8711be8b128dff14a00d8887991ae\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://bea007a3ef8cd9274b3751562e4004b56a9992146cb07bfa74a79bf8eb9f485a\",\"dweb:/ipfs/QmR68Ky1ZvoeiB5awoymoVjoDyJhwb9VyRLvqFLykQxwsE\"]},\"src/interfaces/IGenericFactory.sol\":{\"keccak256\":\"0xe5b021953da6a62119f9fb0fc895aadb4a03079c086bb5d338ef4b19577ee0ef\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://6f20d0adfc51e8fda64eaf55996a4f8af4e240e64391d829f0b49481c8a92849\",\"dweb:/ipfs/QmQCr4UP7RCjuGBEzQEP7e5qvSh9Bb4smLqJPrN1bvDHg5\"]},\"src/libraries/Buffer.sol\":{\"keccak256\":\"0x622ff37ade002a172eb544735948e779cd093ac952496ccfa6ac550378164126\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://facc9a0f9a5f30a9bbc4545cc1298546805f493641b3058f19237be49cab2681\",\"dweb:/ipfs/QmTdRjfUDrSNfQ3dwUWELESTCBAjPdUhCPAJ8zgpyUUjj3\"]},\"src/libraries/Bytes32.sol\":{\"keccak256\":\"0xc1c2963b7ea38aa63c8be9cd44262f3b90cb071ba997c352b9a27752fba3ee33\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://4061bcec09acf1cb5d3356b286a9df30a45ad14e1754485c8b575f5b893cd06e\",\"dweb:/ipfs/QmRQhCY48KvZNaH8YfQG8voWQriHc9KyE3enM7RfGAk2By\"]},\"src/libraries/FactoryStore.sol\":{\"keccak256\":\"0xa1615d1a12d2fd9a9e84248ccffa14dd4c3c0dafc3768b2b77bf5a8c648b598b\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://ae61c89ab7700ef10186029889836e34b3762b3cd338a7a7388043759c3cf714\",\"dweb:/ipfs/QmbHMg8vjxbtnrJTLNbxZowe1daVZSuogD56xVYCh6cVeZ\"]},\"src/libraries/LogCompression.sol\":{\"keccak256\":\"0x7dc113de57f76fe376de48b53cb2f2b160f5bf3d907d0fe4f80da0246903002d\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://816d00c5234217b172d826b9d7280b8aadc5a4f861cad20990df9220afa5e6da\",\"dweb:/ipfs/QmQBNTzxAHQJcoUkmZHdd2mvaVmkMQG8ptgrsqsdH58UdR\"]},\"src/libraries/LogExpMath.sol\":{\"keccak256\":\"0x382873320d14f42300c10fd4d328404712876dd41e4ebb67e1aec9daaa57410b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ed59f05c1e663cb4d2b54c44648645643cdfee70e5e01c4ca9c3fa7a77f88a91\",\"dweb:/ipfs/QmRLTg2UjCpstTL4GQX1TPzKcMX6uoUnVsRRNAGQjR4zsH\"]},\"src/libraries/StdMath.sol\":{\"keccak256\":\"0x68124bea69fb24b3d27ffb5dd755ab6877e3fdd2e7f54b84bbae42b5d1e836a1\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://34264ecc6587b9dc8a1dfec4a62b53bf4ec96fc223680171c77e5599c92a9ff9\",\"dweb:/ipfs/QmPPqRiVB7uAxgVyukgcwNWqvtK2JhG4ksUJqUEyFyNbZH\"]},\"src/structs/Observation.sol\":{\"keccak256\":\"0x7de4375cdf88ee805feef1617ad3b46511da3682738e64c486ba861a9b1fa0a4\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://7cfd1b8c15464ae675fe8be60a31a7cddce62bb7a71595552a453607be21f467\",\"dweb:/ipfs/QmZ66mB8PhwvzpHQR5keHV8XQDYqALvPypGhufNy21ggcD\"]},\"src/structs/Slot0.sol\":{\"keccak256\":\"0xbd4915c0d7e7443bf18a618c6a9d65dd4f8387b4d1c4fa68e6dce211548e2c6c\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://b06d990dcae37d2ac5e8a0e4e9e691da43996a60f0ac1b17c9d03f9b02e14a54\",\"dweb:/ipfs/QmP2KQmtYBZ8a3aBj4UtFaQtWTWFFZo74k7WQf412YAntG\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": { "version": "0.8.28+commit.7893614a" },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        { "inputs": [], "type": "error", "name": "AllowanceOverflow" },
+        { "inputs": [], "type": "error", "name": "AllowanceUnderflow" },
+        { "inputs": [], "type": "error", "name": "AmountZero" },
+        { "inputs": [], "type": "error", "name": "AssetManagerStillActive" },
+        { "inputs": [], "type": "error", "name": "Forbidden" },
+        { "inputs": [], "type": "error", "name": "InsufficientAllowance" },
+        { "inputs": [], "type": "error", "name": "InsufficientAmtIn" },
+        { "inputs": [], "type": "error", "name": "InsufficientBalance" },
+        { "inputs": [], "type": "error", "name": "InsufficientLiq" },
+        { "inputs": [], "type": "error", "name": "InsufficientLiqMinted" },
+        { "inputs": [], "type": "error", "name": "InvalidChangePerSecond" },
+        { "inputs": [], "type": "error", "name": "InvalidChangePerTrade" },
+        { "inputs": [], "type": "error", "name": "InvalidPermit" },
+        { "inputs": [], "type": "error", "name": "InvalidPlatformFee" },
+        { "inputs": [], "type": "error", "name": "InvalidSkimToken" },
+        { "inputs": [], "type": "error", "name": "InvalidSwapFee" },
+        { "inputs": [], "type": "error", "name": "InvalidTokenToRecover" },
+        { "inputs": [], "type": "error", "name": "LEM_InvalidExponent" },
+        { "inputs": [], "type": "error", "name": "LEM_OutOfBounds" },
+        { "inputs": [], "type": "error", "name": "NotManager" },
+        { "inputs": [], "type": "error", "name": "Overflow" },
+        { "inputs": [], "type": "error", "name": "Permit2AllowanceIsFixedAtInfinity" },
+        { "inputs": [], "type": "error", "name": "PermitExpired" },
+        { "inputs": [], "type": "error", "name": "Reentrancy" },
+        {
+          "inputs": [
+            { "internalType": "uint8", "name": "bits", "type": "uint8" },
+            { "internalType": "uint256", "name": "value", "type": "uint256" }
+          ],
+          "type": "error",
+          "name": "SafeCastOverflowedUintDowncast"
+        },
+        { "inputs": [], "type": "error", "name": "TotalSupplyOverflow" },
+        { "inputs": [], "type": "error", "name": "TransferFailed" },
+        {
+          "inputs": [{ "internalType": "bytes", "name": "revert", "type": "bytes", "indexed": false }],
+          "type": "event",
+          "name": "AfterLiquidityEventFailed",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            { "internalType": "address", "name": "owner", "type": "address", "indexed": true },
+            { "internalType": "address", "name": "spender", "type": "address", "indexed": true },
+            { "internalType": "uint256", "name": "amount", "type": "uint256", "indexed": false }
+          ],
+          "type": "event",
+          "name": "Approval",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            { "internalType": "contract IAssetManager", "name": "manager", "type": "address", "indexed": false }
+          ],
+          "type": "event",
+          "name": "AssetManager",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            { "internalType": "address", "name": "sender", "type": "address", "indexed": true },
+            { "internalType": "uint256", "name": "amount0", "type": "uint256", "indexed": false },
+            { "internalType": "uint256", "name": "amount1", "type": "uint256", "indexed": false }
+          ],
+          "type": "event",
+          "name": "Burn",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            { "internalType": "uint128", "name": "newMaxChangeRatePerSecond", "type": "uint128", "indexed": false },
+            { "internalType": "uint128", "name": "newMaxChangePerTrade", "type": "uint128", "indexed": false }
+          ],
+          "type": "event",
+          "name": "ClampParams",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            { "internalType": "uint256", "name": "newCustomPlatformFee", "type": "uint256", "indexed": false }
+          ],
+          "type": "event",
+          "name": "CustomPlatformFee",
+          "anonymous": false
+        },
+        {
+          "inputs": [{ "internalType": "uint256", "name": "newCustomSwapFee", "type": "uint256", "indexed": false }],
+          "type": "event",
+          "name": "CustomSwapFee",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            { "internalType": "contract IERC20", "name": "token", "type": "address", "indexed": false },
+            { "internalType": "uint256", "name": "amount", "type": "uint256", "indexed": false }
+          ],
+          "type": "event",
+          "name": "Loss",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            { "internalType": "address", "name": "sender", "type": "address", "indexed": true },
+            { "internalType": "uint256", "name": "amount0", "type": "uint256", "indexed": false },
+            { "internalType": "uint256", "name": "amount1", "type": "uint256", "indexed": false }
+          ],
+          "type": "event",
+          "name": "Mint",
+          "anonymous": false
+        },
+        {
+          "inputs": [{ "internalType": "uint256", "name": "newPlatformFee", "type": "uint256", "indexed": false }],
+          "type": "event",
+          "name": "PlatformFee",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            { "internalType": "contract IERC20", "name": "token", "type": "address", "indexed": false },
+            { "internalType": "uint256", "name": "amount", "type": "uint256", "indexed": false }
+          ],
+          "type": "event",
+          "name": "Profit",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            { "internalType": "address", "name": "sender", "type": "address", "indexed": true },
+            { "internalType": "bool", "name": "zeroForOne", "type": "bool", "indexed": false },
+            { "internalType": "uint256", "name": "amountIn", "type": "uint256", "indexed": false },
+            { "internalType": "uint256", "name": "amountOut", "type": "uint256", "indexed": false },
+            { "internalType": "address", "name": "to", "type": "address", "indexed": true }
+          ],
+          "type": "event",
+          "name": "Swap",
+          "anonymous": false
+        },
+        {
+          "inputs": [{ "internalType": "uint256", "name": "newSwapFee", "type": "uint256", "indexed": false }],
+          "type": "event",
+          "name": "SwapFee",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            { "internalType": "uint104", "name": "reserve0", "type": "uint104", "indexed": false },
+            { "internalType": "uint104", "name": "reserve1", "type": "uint104", "indexed": false }
+          ],
+          "type": "event",
+          "name": "Sync",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            { "internalType": "address", "name": "from", "type": "address", "indexed": true },
+            { "internalType": "address", "name": "to", "type": "address", "indexed": true },
+            { "internalType": "uint256", "name": "amount", "type": "uint256", "indexed": false }
+          ],
+          "type": "event",
+          "name": "Transfer",
+          "anonymous": false
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "DOMAIN_SEPARATOR",
+          "outputs": [{ "internalType": "bytes32", "name": "result", "type": "bytes32" }]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "FEE_ACCURACY",
+          "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "MAX_PLATFORM_FEE",
+          "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "MAX_SWAP_FEE",
+          "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "MINIMUM_LIQUIDITY",
+          "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }]
+        },
+        {
+          "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "_observations",
+          "outputs": [
+            { "internalType": "int24", "name": "logInstantRawPrice", "type": "int24" },
+            { "internalType": "int24", "name": "logInstantClampedPrice", "type": "int24" },
+            { "internalType": "int88", "name": "logAccRawPrice", "type": "int88" },
+            { "internalType": "int88", "name": "logAccClampedPrice", "type": "int88" },
+            { "internalType": "uint32", "name": "timestamp", "type": "uint32" }
+          ]
+        },
+        {
+          "inputs": [
+            { "internalType": "int256", "name": "aToken0Change", "type": "int256" },
+            { "internalType": "int256", "name": "aToken1Change", "type": "int256" }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "adjustManagement"
+        },
+        {
+          "inputs": [
+            { "internalType": "address", "name": "owner", "type": "address" },
+            { "internalType": "address", "name": "spender", "type": "address" }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "allowance",
+          "outputs": [{ "internalType": "uint256", "name": "result", "type": "uint256" }]
+        },
+        {
+          "inputs": [
+            { "internalType": "address", "name": "spender", "type": "address" },
+            { "internalType": "uint256", "name": "amount", "type": "uint256" }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "approve",
+          "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "assetManager",
+          "outputs": [{ "internalType": "contract IAssetManager", "name": "", "type": "address" }]
+        },
+        {
+          "inputs": [{ "internalType": "address", "name": "owner", "type": "address" }],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "balanceOf",
+          "outputs": [{ "internalType": "uint256", "name": "result", "type": "uint256" }]
+        },
+        {
+          "inputs": [{ "internalType": "address", "name": "aTo", "type": "address" }],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "burn",
+          "outputs": [
+            { "internalType": "uint256", "name": "amount0", "type": "uint256" },
+            { "internalType": "uint256", "name": "amount1", "type": "uint256" }
+          ]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "customPlatformFee",
+          "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "customSwapFee",
+          "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "decimals",
+          "outputs": [{ "internalType": "uint8", "name": "", "type": "uint8" }]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "factory",
+          "outputs": [{ "internalType": "contract IGenericFactory", "name": "", "type": "address" }]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "getReserves",
+          "outputs": [
+            { "internalType": "uint104", "name": "rReserve0", "type": "uint104" },
+            { "internalType": "uint104", "name": "rReserve1", "type": "uint104" },
+            { "internalType": "uint32", "name": "rBlockTimestampLast", "type": "uint32" },
+            { "internalType": "uint16", "name": "rIndex", "type": "uint16" }
+          ]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "maxChangePerTrade",
+          "outputs": [{ "internalType": "uint128", "name": "", "type": "uint128" }]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "maxChangeRate",
+          "outputs": [{ "internalType": "uint128", "name": "", "type": "uint128" }]
+        },
+        {
+          "inputs": [{ "internalType": "address", "name": "aTo", "type": "address" }],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "mint",
+          "outputs": [{ "internalType": "uint256", "name": "liquidity", "type": "uint256" }]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "pure",
+          "type": "function",
+          "name": "name",
+          "outputs": [{ "internalType": "string", "name": "", "type": "string" }]
+        },
+        {
+          "inputs": [{ "internalType": "address", "name": "owner", "type": "address" }],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "nonces",
+          "outputs": [{ "internalType": "uint256", "name": "result", "type": "uint256" }]
+        },
+        {
+          "inputs": [{ "internalType": "uint256", "name": "aIndex", "type": "uint256" }],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "observation",
+          "outputs": [
+            {
+              "internalType": "struct Observation",
+              "name": "",
+              "type": "tuple",
+              "components": [
+                { "internalType": "int24", "name": "logInstantRawPrice", "type": "int24" },
+                { "internalType": "int24", "name": "logInstantClampedPrice", "type": "int24" },
+                { "internalType": "int88", "name": "logAccRawPrice", "type": "int88" },
+                { "internalType": "int88", "name": "logAccClampedPrice", "type": "int88" },
+                { "internalType": "uint32", "name": "timestamp", "type": "uint32" }
+              ]
+            }
+          ]
+        },
+        {
+          "inputs": [
+            { "internalType": "address", "name": "owner", "type": "address" },
+            { "internalType": "address", "name": "spender", "type": "address" },
+            { "internalType": "uint256", "name": "value", "type": "uint256" },
+            { "internalType": "uint256", "name": "deadline", "type": "uint256" },
+            { "internalType": "uint8", "name": "v", "type": "uint8" },
+            { "internalType": "bytes32", "name": "r", "type": "bytes32" },
+            { "internalType": "bytes32", "name": "s", "type": "bytes32" }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "permit"
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "platformFee",
+          "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }]
+        },
+        {
+          "inputs": [{ "internalType": "contract IERC20", "name": "aToken", "type": "address" }],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "recoverToken"
+        },
+        {
+          "inputs": [
+            { "internalType": "uint128", "name": "aMaxChangeRate", "type": "uint128" },
+            { "internalType": "uint128", "name": "aMaxChangePerTrade", "type": "uint128" }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "setClampParams"
+        },
+        {
+          "inputs": [{ "internalType": "uint256", "name": "aCustomPlatformFee", "type": "uint256" }],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "setCustomPlatformFee"
+        },
+        {
+          "inputs": [{ "internalType": "uint256", "name": "aCustomSwapFee", "type": "uint256" }],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "setCustomSwapFee"
+        },
+        {
+          "inputs": [{ "internalType": "contract IAssetManager", "name": "manager", "type": "address" }],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "setManager"
+        },
+        {
+          "inputs": [{ "internalType": "address", "name": "aTo", "type": "address" }],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "skim"
+        },
+        {
+          "inputs": [{ "internalType": "contract IERC20", "name": "aToken", "type": "address" }],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "skimExcessManaged",
+          "outputs": [{ "internalType": "uint256", "name": "rAmtSkimmed", "type": "uint256" }]
+        },
+        {
+          "inputs": [
+            { "internalType": "int256", "name": "aAmount", "type": "int256" },
+            { "internalType": "bool", "name": "aExactIn", "type": "bool" },
+            { "internalType": "address", "name": "aTo", "type": "address" },
+            { "internalType": "bytes", "name": "aData", "type": "bytes" }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "swap",
+          "outputs": [{ "internalType": "uint256", "name": "rAmountOut", "type": "uint256" }]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "swapFee",
+          "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "pure",
+          "type": "function",
+          "name": "symbol",
+          "outputs": [{ "internalType": "string", "name": "", "type": "string" }]
+        },
+        { "inputs": [], "stateMutability": "nonpayable", "type": "function", "name": "sync" },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "token0",
+          "outputs": [{ "internalType": "contract IERC20", "name": "", "type": "address" }]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "token0Managed",
+          "outputs": [{ "internalType": "uint104", "name": "", "type": "uint104" }]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "token0PrecisionMultiplier",
+          "outputs": [{ "internalType": "uint128", "name": "", "type": "uint128" }]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "token1",
+          "outputs": [{ "internalType": "contract IERC20", "name": "", "type": "address" }]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "token1Managed",
+          "outputs": [{ "internalType": "uint104", "name": "", "type": "uint104" }]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "token1PrecisionMultiplier",
+          "outputs": [{ "internalType": "uint128", "name": "", "type": "uint128" }]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "totalSupply",
+          "outputs": [{ "internalType": "uint256", "name": "result", "type": "uint256" }]
+        },
+        {
+          "inputs": [
+            { "internalType": "address", "name": "to", "type": "address" },
+            { "internalType": "uint256", "name": "amount", "type": "uint256" }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "transfer",
+          "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }]
+        },
+        {
+          "inputs": [
+            { "internalType": "address", "name": "from", "type": "address" },
+            { "internalType": "address", "name": "to", "type": "address" },
+            { "internalType": "uint256", "name": "amount", "type": "uint256" }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "transferFrom",
+          "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }]
+        },
+        { "inputs": [], "stateMutability": "nonpayable", "type": "function", "name": "updatePlatformFee" },
+        { "inputs": [], "stateMutability": "nonpayable", "type": "function", "name": "updateSwapFee" }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {
+          "DOMAIN_SEPARATOR()": { "details": "Returns the EIP-712 domain separator for the EIP-2612 permit." },
+          "allowance(address,address)": {
+            "details": "Returns the amount of tokens that `spender` can spend on behalf of `owner`."
+          },
+          "approve(address,uint256)": {
+            "details": "Sets `amount` as the allowance of `spender` over the caller's tokens. Emits a {Approval} event."
+          },
+          "balanceOf(address)": { "details": "Returns the amount of tokens owned by `owner`." },
+          "burn(address)": { "details": "Burns LP tokens sent to this contract." },
+          "decimals()": { "details": "Returns the decimals places of the token." },
+          "mint(address)": { "details": "Mints LP tokens using tokens sent to this contract." },
+          "name()": { "details": "Returns the name of the token." },
+          "nonces(address)": {
+            "details": "Returns the current nonce for `owner`. This value is used to compute the signature for EIP-2612 permit."
+          },
+          "permit(address,address,uint256,uint256,uint8,bytes32,bytes32)": {
+            "details": "Sets `value` as the allowance of `spender` over the tokens of `owner`, authorized by a signed approval by `owner`. Emits a {Approval} event."
+          },
+          "swap(int256,bool,address,bytes)": {
+            "params": {
+              "aAmount": "positive to indicate token0, negative to indicate token1",
+              "aData": "calls to with this data, in the event of a flash swap",
+              "aExactIn": "true to indicate an exact in trade, false to indicate an exact out trade",
+              "aTo": "address to send the output token and leftover input tokens, callee for the flash swap"
+            }
+          },
+          "symbol()": { "details": "Returns the symbol of the token." },
+          "totalSupply()": { "details": "Returns the amount of tokens in existence." },
+          "transfer(address,uint256)": {
+            "details": "Transfer `amount` tokens from the caller to `to`. Requirements: - `from` must at least have `amount`. Emits a {Transfer} event."
+          },
+          "transferFrom(address,address,uint256)": {
+            "details": "Transfers `amount` tokens from `from` to `to`. Note: Does not update the allowance if it is the maximum uint256 value. Requirements: - `from` must at least have `amount`. - The caller must have at least `amount` of allowance to transfer the tokens of `from`. Emits a {Transfer} event."
+          }
+        },
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {
+          "MAX_PLATFORM_FEE()": { "notice": "Maximum allowed platform fee, which is 100%." },
+          "MAX_SWAP_FEE()": { "notice": "Maximum allowed swap fee, which is 2%." },
+          "customPlatformFee()": {
+            "notice": "Custom platformFee override for the pair, max uint256 indicates no override."
+          },
+          "customSwapFee()": { "notice": "Custom swap fee override for the pair, max uint256 indicates no override." },
+          "platformFee()": { "notice": "Current platformFee." },
+          "skim(address)": { "notice": "Force balances to match reserves." },
+          "swap(int256,bool,address,bytes)": {
+            "notice": "Swaps one token for another. The router must prefund this contract and ensure there isn't too much         slippage."
+          },
+          "swapFee()": { "notice": "Current swap fee." },
+          "sync()": { "notice": "Force reserves to match balances." }
+        },
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        "@openzeppelin/=lib/openzeppelin-contracts/contracts/",
+        "@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
+        "ds-test/=lib/forge-std/lib/ds-test/src/",
+        "forge-std/=lib/forge-std/src/",
+        "openzeppelin-contracts/=lib/openzeppelin-contracts/",
+        "solady/=lib/solady/src/",
+        "solmate/=lib/solmate/src/"
+      ],
+      "optimizer": { "enabled": true, "runs": 1000000 },
+      "metadata": { "bytecodeHash": "ipfs" },
+      "compilationTarget": { "src/ReservoirPair.sol": "ReservoirPair" },
+      "evmVersion": "cancun",
+      "libraries": {},
+      "viaIR": true
+    },
+    "sources": {
+      "lib/forge-std/src/interfaces/IERC20.sol": {
+        "keccak256": "0x4cab887298790f908c27de107e4e2907ca5413aee482ef776f8d2f353c5ef947",
+        "urls": [
+          "bzz-raw://bb715e0c4a2bdbe432bb624501506041f06e878e0b72675aebba30ad2c2b72e7",
+          "dweb:/ipfs/QmWhhLSvkxS2NrukJJHqFY8gDVE5r9rD4PfHvR24pwdKv9"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts/contracts/utils/math/SafeCast.sol": {
+        "keccak256": "0x195533c86d0ef72bcc06456a4f66a9b941f38eb403739b00f21fd7c1abd1ae54",
+        "urls": [
+          "bzz-raw://b1d578337048cad08c1c03041cca5978eff5428aa130c781b271ad9e5566e1f8",
+          "dweb:/ipfs/QmPFKL2r9CBsMwmUqqdcFPfHZB2qcs9g1HDrPxzWSxomvy"
+        ],
+        "license": "MIT"
+      },
+      "lib/solady/src/tokens/ERC20.sol": {
+        "keccak256": "0x1c3cdf5158b29b16ba2d2c7ff1f6d4304754605441257e198b46803f0fa9df1a",
+        "urls": [
+          "bzz-raw://f6ed3d15fd372495ff76439878fb5e007ae0b39da3ce3d9fd877ee8147647bb2",
+          "dweb:/ipfs/QmZ1zC91VhPHMXAdcY8SahJMwDsC2B5q9uXFF16R5eHmkV"
+        ],
+        "license": "MIT"
+      },
+      "lib/solady/src/utils/FixedPointMathLib.sol": {
+        "keccak256": "0x4913fe355ada3849fca527195135bb659092778113984a6590669d2a80106bc8",
+        "urls": [
+          "bzz-raw://3f403357b46f778250e8b07430409185f99231c67dee43b65ba231fb2c383be8",
+          "dweb:/ipfs/QmUTNSrSBJSJdJUc539FFLb7pC6c7h6nmSPYG4Qb11Viq4"
+        ],
+        "license": "MIT"
+      },
+      "lib/solady/src/utils/ReentrancyGuardTransient.sol": {
+        "keccak256": "0x21b2e5cba720b937bd97897bf355b889442494c8ad5932f8e5a11beb0dc1d7eb",
+        "urls": [
+          "bzz-raw://78cc5d5f88b0c20427f1c47897204abfbc89213dc781c0c062ced62b4b4648e5",
+          "dweb:/ipfs/QmVbKbd6cZX95SaNiCShpRz799sZ7bV2LPGmc3ht62vmfr"
+        ],
+        "license": "MIT"
+      },
+      "lib/solady/src/utils/SafeTransferLib.sol": {
+        "keccak256": "0x7d0de1ff3be5dc32635283280b000d4794015a1b61d7dae7f3ff7b0721b07210",
+        "urls": [
+          "bzz-raw://e307c9eece677565e7d584ee77c56134b5db38a70f557f9d2b1b308219276c0c",
+          "dweb:/ipfs/QmTEtqaTFgRBFGpJyb5o4v2w8yrSpcNThov4bNpcLr2tTR"
+        ],
+        "license": "MIT"
+      },
+      "src/ReservoirERC20.sol": {
+        "keccak256": "0x3a3307f2e8edc10acf1f3e63abec3cf7a5de0123b57726a8ac7ce5fe137c6aab",
+        "urls": [
+          "bzz-raw://2136c2fd195459f7f337450560f238841a3525d1e5f8c22405ade996ea68c6e8",
+          "dweb:/ipfs/QmaQdccYBfQzGZA17CokiYwC52VhtbV5negVXrrXZFj3Cd"
+        ],
+        "license": "GPL-3.0-or-later"
+      },
+      "src/ReservoirPair.sol": {
+        "keccak256": "0x6fe04ca3a81640112755b8fe108c886e4215aff21ca4f235c8dae24dcebe8d87",
+        "urls": [
+          "bzz-raw://59d4e457d7ce057885c2c392bae19a96f3436280fa2309042a088f57eb2034e8",
+          "dweb:/ipfs/QmW82J9FayWSjLAweNkEJRZjwGMWro3wgSA8eJv3B1YZ2E"
+        ],
+        "license": "GPL-3.0-or-later"
+      },
+      "src/interfaces/IAssetManagedPair.sol": {
+        "keccak256": "0x6a79e8ad5d1c9328e260fa5386551498c3d3c4791648a6188374f8a81a2cbe40",
+        "urls": [
+          "bzz-raw://637b8e4e090ed0b2d05159c25bf5ef1fcec8cb9075969d6ec8f2ed373fad1b5f",
+          "dweb:/ipfs/QmdRjNbCrdELMSVPQ3gokkHmNNKqG2D9h4xkZmK5FtyJ7n"
+        ],
+        "license": "GPL-3.0-or-later"
+      },
+      "src/interfaces/IAssetManager.sol": {
+        "keccak256": "0x3fdea28d3453b5830d86fb5459d54fbaf2c8711be8b128dff14a00d8887991ae",
+        "urls": [
+          "bzz-raw://bea007a3ef8cd9274b3751562e4004b56a9992146cb07bfa74a79bf8eb9f485a",
+          "dweb:/ipfs/QmR68Ky1ZvoeiB5awoymoVjoDyJhwb9VyRLvqFLykQxwsE"
+        ],
+        "license": "GPL-3.0-or-later"
+      },
+      "src/interfaces/IGenericFactory.sol": {
+        "keccak256": "0xe5b021953da6a62119f9fb0fc895aadb4a03079c086bb5d338ef4b19577ee0ef",
+        "urls": [
+          "bzz-raw://6f20d0adfc51e8fda64eaf55996a4f8af4e240e64391d829f0b49481c8a92849",
+          "dweb:/ipfs/QmQCr4UP7RCjuGBEzQEP7e5qvSh9Bb4smLqJPrN1bvDHg5"
+        ],
+        "license": "GPL-3.0-or-later"
+      },
+      "src/libraries/Buffer.sol": {
+        "keccak256": "0x622ff37ade002a172eb544735948e779cd093ac952496ccfa6ac550378164126",
+        "urls": [
+          "bzz-raw://facc9a0f9a5f30a9bbc4545cc1298546805f493641b3058f19237be49cab2681",
+          "dweb:/ipfs/QmTdRjfUDrSNfQ3dwUWELESTCBAjPdUhCPAJ8zgpyUUjj3"
+        ],
+        "license": "GPL-3.0-or-later"
+      },
+      "src/libraries/Bytes32.sol": {
+        "keccak256": "0xc1c2963b7ea38aa63c8be9cd44262f3b90cb071ba997c352b9a27752fba3ee33",
+        "urls": [
+          "bzz-raw://4061bcec09acf1cb5d3356b286a9df30a45ad14e1754485c8b575f5b893cd06e",
+          "dweb:/ipfs/QmRQhCY48KvZNaH8YfQG8voWQriHc9KyE3enM7RfGAk2By"
+        ],
+        "license": "GPL-3.0-or-later"
+      },
+      "src/libraries/FactoryStore.sol": {
+        "keccak256": "0xa1615d1a12d2fd9a9e84248ccffa14dd4c3c0dafc3768b2b77bf5a8c648b598b",
+        "urls": [
+          "bzz-raw://ae61c89ab7700ef10186029889836e34b3762b3cd338a7a7388043759c3cf714",
+          "dweb:/ipfs/QmbHMg8vjxbtnrJTLNbxZowe1daVZSuogD56xVYCh6cVeZ"
+        ],
+        "license": "GPL-3.0-or-later"
+      },
+      "src/libraries/LogCompression.sol": {
+        "keccak256": "0x7dc113de57f76fe376de48b53cb2f2b160f5bf3d907d0fe4f80da0246903002d",
+        "urls": [
+          "bzz-raw://816d00c5234217b172d826b9d7280b8aadc5a4f861cad20990df9220afa5e6da",
+          "dweb:/ipfs/QmQBNTzxAHQJcoUkmZHdd2mvaVmkMQG8ptgrsqsdH58UdR"
+        ],
+        "license": "GPL-3.0-or-later"
+      },
+      "src/libraries/LogExpMath.sol": {
+        "keccak256": "0x382873320d14f42300c10fd4d328404712876dd41e4ebb67e1aec9daaa57410b",
+        "urls": [
+          "bzz-raw://ed59f05c1e663cb4d2b54c44648645643cdfee70e5e01c4ca9c3fa7a77f88a91",
+          "dweb:/ipfs/QmRLTg2UjCpstTL4GQX1TPzKcMX6uoUnVsRRNAGQjR4zsH"
+        ],
+        "license": "MIT"
+      },
+      "src/libraries/StdMath.sol": {
+        "keccak256": "0x68124bea69fb24b3d27ffb5dd755ab6877e3fdd2e7f54b84bbae42b5d1e836a1",
+        "urls": [
+          "bzz-raw://34264ecc6587b9dc8a1dfec4a62b53bf4ec96fc223680171c77e5599c92a9ff9",
+          "dweb:/ipfs/QmPPqRiVB7uAxgVyukgcwNWqvtK2JhG4ksUJqUEyFyNbZH"
+        ],
+        "license": "GPL-3.0-or-later"
+      },
+      "src/structs/Observation.sol": {
+        "keccak256": "0x7de4375cdf88ee805feef1617ad3b46511da3682738e64c486ba861a9b1fa0a4",
+        "urls": [
+          "bzz-raw://7cfd1b8c15464ae675fe8be60a31a7cddce62bb7a71595552a453607be21f467",
+          "dweb:/ipfs/QmZ66mB8PhwvzpHQR5keHV8XQDYqALvPypGhufNy21ggcD"
+        ],
+        "license": "GPL-3.0-or-later"
+      },
+      "src/structs/Slot0.sol": {
+        "keccak256": "0xbd4915c0d7e7443bf18a618c6a9d65dd4f8387b4d1c4fa68e6dce211548e2c6c",
+        "urls": [
+          "bzz-raw://b06d990dcae37d2ac5e8a0e4e9e691da43996a60f0ac1b17c9d03f9b02e14a54",
+          "dweb:/ipfs/QmP2KQmtYBZ8a3aBj4UtFaQtWTWFFZo74k7WQf412YAntG"
+        ],
+        "license": "GPL-3.0-or-later"
+      }
+    },
+    "version": 1
+  },
+  "id": 42
+}
