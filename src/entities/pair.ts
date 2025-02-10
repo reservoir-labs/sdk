@@ -11,7 +11,7 @@ import {
   FEE_ACCURACY,
   ONE,
   ZERO,
-  DEFAULT_AMPLIFICATION_COEFFICIENT_PRECISE
+  DEFAULT_AMPLIFICATION_COEFFICIENT_PRECISE,
 } from '../constants'
 import { InsufficientReservesError, InsufficientInputAmountError } from '../errors'
 import ConstantProductPair from '../abis/ConstantProductPair.json'
@@ -24,7 +24,7 @@ export const computePairAddress = ({
   factoryAddress,
   tokenA,
   tokenB,
-  curveId
+  curveId,
 }: {
   factoryAddress: string
   tokenA: Token

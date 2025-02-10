@@ -1,25 +1,29 @@
 {
   "name": "@reservoir-labs/sdk",
   "license": "MIT",
-  "version": "0.2.17",
+  "version": "0.3.6",
   "description": "🛠 An SDK for building applications on top of Reservoir",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "repository": "https://github.com/reservoir-labs/sdk.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reservoir-labs/sdk.git"
+  },
   "keywords": [
     "reservoir",
     "ethereum"
   ],
-  "module": "dist/sdk.esm.js",
+  "module": "dist/index.mjs",
   "scripts": {
-    "lint": "tsdx lint src test",
-    "build": "tsdx build",
-    "start": "tsdx watch",
-    "test": "tsdx test",
-    "prepublishOnly": "tsdx build",
+    "lint": "eslint src test",
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "start": "tsup src/index.ts --watch",
+    "test": "jest",
+    "prepublishOnly": "npm run build",
+    "push": "npm publish --access public",
     "anvil": "anvil",
     "anvil:avax": "anvil -f https://api.avax.network/ext/bc/C/rpc --mnemonic 'fresh gas cattle foster delay vacuum typical negative push churn brush wheel'",
     "setupTest": "cd lib/v3-periphery && forge script script/setup_scaffold.s.sol --target-contract SetupScaffold --fork-url \"http://127.0.0.1:8545\" --broadcast --skip-simulation --slow -vvv",
@@ -33,16 +37,17 @@
     "@ethersproject/providers": "^5.7.2",
     "@ethersproject/solidity": "^5.0.0",
     "@ethersproject/wallet": "^5.7.0",
-    "@reservoir-labs/sdk-core": "^3.1.7",
+    "@reservoir-labs/sdk-core": "3.2.3",
     "decimal.js": "^10.4.3",
-    "jsbi": "^3.1.4",
+    "jsbi": "3.1.4",
     "tiny-invariant": "^1.1.0",
     "tiny-warning": "^1.0.3"
   },
   "devDependencies": {
     "@types/big.js": "^4.0.5",
     "@types/jest": "^24.0.25",
-    "tsdx": "^0.14.1"
+    "dts-cli": "^1.0.0",
+    "tsup": "^6.0.0"
   },
   "engines": {
     "node": ">=10"
