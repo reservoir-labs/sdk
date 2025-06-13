@@ -11,7 +11,7 @@ describe('computePairAddress', () => {
       factoryAddress: '0x1111111111111111111111111111111111111111',
       tokenA,
       tokenB,
-      curveId: 0
+      curveId: 0,
     })
 
     expect(result).toEqual('0xd770dD269133BE3a5C847da87BA3CAf1edE96700')
@@ -25,7 +25,7 @@ describe('computePairAddress', () => {
       factoryAddress: '0x1111111111111111111111111111111111111111',
       tokenA,
       tokenB,
-      curveId: 0
+      curveId: 0,
     })
 
     tokenA = DAI
@@ -34,7 +34,7 @@ describe('computePairAddress', () => {
       factoryAddress: '0x1111111111111111111111111111111111111111',
       tokenA,
       tokenB,
-      curveId: 0
+      curveId: 0,
     })
 
     expect(resultA).toEqual(resultB)

@@ -6,7 +6,7 @@ import {
   Percent,
   TradeType,
   validateAndParseAddress,
-  SupportedChainId
+  SupportedChainId,
 } from '@reservoir-labs/sdk-core'
 import { Pair, Trade } from './entities'
 import { Multicall } from './multicall'
@@ -134,7 +134,7 @@ export abstract class Router {
     // the nativeIn swap would have value attached to it, but the wrapped one would not have value
     return {
       calldata,
-      value
+      value,
     }
   }
 
@@ -167,7 +167,7 @@ export abstract class Router {
       tokenAmountB.quotient.toString(),
       calculateSlippageAmount(tokenAmountA.quotient, options.allowedSlippage).lower.toString(),
       calculateSlippageAmount(tokenAmountB.quotient, options.allowedSlippage).lower.toString(),
-      validateAndParseAddress(options.recipient)
+      validateAndParseAddress(options.recipient),
     ]
     const encodedAddLiqCall = Router.INTERFACE.encodeFunctionData(methodName, args)
     calldatas.push(encodedAddLiqCall)
@@ -182,7 +182,7 @@ export abstract class Router {
 
     return {
       calldata,
-      value
+      value,
     }
   }
 
@@ -218,7 +218,7 @@ export abstract class Router {
       liquidityAmount.quotient.toString(),
       tokenAMinimumAmount.toString(),
       tokenBMinimumAmount.toString(),
-      to
+      to,
     ]
     const encodedRemoveLiqCall = Router.INTERFACE.encodeFunctionData(methodName, args)
     calldatas.push(encodedRemoveLiqCall)
@@ -243,7 +243,7 @@ export abstract class Router {
 
     return {
       calldata,
-      value: ZERO_HEX // value will always be zero when removing liq
+      value: ZERO_HEX, // value will always be zero when removing liq
     }
   }
 }

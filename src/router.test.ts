@@ -37,7 +37,7 @@ describe('Router', () => {
           '0x51',
           [WETH9[1].address, token0.address, token1.address],
           [0, 0],
-          '0x0000000000000000000000000000000000000004'
+          '0x0000000000000000000000000000000000000004',
         ])
         expect(result.value).toEqual('0x0')
       })
@@ -56,7 +56,7 @@ describe('Router', () => {
           '0x51',
           [token1.address, token0.address, WETH9[1].address],
           [0, 0],
-          '0x0000000000000000000000000000000000000004'
+          '0x0000000000000000000000000000000000000004',
         ])
         expect(result.value).toEqual('0x0')
       })
@@ -71,7 +71,7 @@ describe('Router', () => {
           '0x59',
           [token0.address, token1.address],
           [0],
-          '0x0000000000000000000000000000000000000004'
+          '0x0000000000000000000000000000000000000004',
         ])
         expect(result.value).toEqual('0x0')
       })
@@ -91,7 +91,7 @@ describe('Router', () => {
           '0x80',
           [WETH9[1].address, token0.address, token1.address],
           [0, 0],
-          '0x0000000000000000000000000000000000000004'
+          '0x0000000000000000000000000000000000000004',
         ])
         expect(result.value).toEqual('0x0')
       })
@@ -109,7 +109,7 @@ describe('Router', () => {
           '0x80',
           [token1.address, token0.address, WETH9[1].address],
           [0, 0],
-          '0x0000000000000000000000000000000000000004'
+          '0x0000000000000000000000000000000000000004',
         ])
         expect(result.value).toEqual('0x0')
       })
@@ -124,7 +124,7 @@ describe('Router', () => {
           '0x71',
           [token0.address, token1.address],
           [0],
-          '0x0000000000000000000000000000000000000004'
+          '0x0000000000000000000000000000000000000004',
         ])
         expect(result.value).toEqual('0x0')
       })
@@ -139,7 +139,7 @@ describe('Router', () => {
         const liqAmount = '12312312312'
         const parameters = Router.removeLiquidityParameters(tokenAmountA, tokenAmountB, 1, liqAmount, {
           allowedSlippage: new Percent(1, 100),
-          recipient: AddressZero
+          recipient: AddressZero,
         })
 
         expect(parameters.calldata.slice((end = 10))).toEqual('0xac9650d8')
@@ -153,7 +153,7 @@ describe('Router', () => {
         const liqAmount = '12312312312'
         const parameters = Router.removeLiquidityParameters(tokenAmountA, tokenAmountB, 1, liqAmount, {
           allowedSlippage: new Percent(1, 1000),
-          recipient: AddressZero
+          recipient: AddressZero,
         })
         expect(parameters.calldata.slice(undefined, 10)).toEqual('0xea904f3d')
       })

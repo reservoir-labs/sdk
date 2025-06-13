@@ -36,24 +36,14 @@ function calculateApproxInvariant(
   let inv = sum
   let prevInv = decimal(0)
   for (let i = 0; i < MAX_LOOP_LIMIT; ++i) {
-    let dP = inv
-      .mul(inv)
-      .div(bal0)
-      .mul(inv)
-      .div(bal1)
-      .div(4)
+    let dP = inv.mul(inv).div(bal0).mul(inv).div(bal1).div(4)
 
     prevInv = inv
     inv = N_A.mul(sum)
       .div(A_PRECISION)
       .add(dP.mul(2))
       .mul(inv)
-      .div(
-        N_A.minus(A_PRECISION)
-          .mul(inv)
-          .div(A_PRECISION)
-          .add(dP.mul(3))
-      )
+      .div(N_A.minus(A_PRECISION).mul(inv).div(A_PRECISION).add(dP.mul(3)))
 
     if (within1(inv, prevInv)) {
       break
@@ -107,10 +97,7 @@ function _getTokenBalanceGivenInvariantAndAllOtherBalances(
   const N_A = amplificationCoefficient.mul(2)
 
   let c = invariant.mul(invariant).div(balanceIn.mul(2))
-  c = c
-    .mul(invariant)
-    .mul(A_PRECISION)
-    .div(N_A.mul(2))
+  c = c.mul(invariant).mul(A_PRECISION).div(N_A.mul(2))
 
   let b = balanceIn.add(invariant.mul(A_PRECISION).div(N_A))
   let yPrev
@@ -118,15 +105,7 @@ function _getTokenBalanceGivenInvariantAndAllOtherBalances(
 
   for (let i = 0; i < MAX_LOOP_LIMIT; ++i) {
     yPrev = y
-    y = y
-      .mul(y)
-      .add(c)
-      .div(
-        y
-          .mul(2)
-          .add(b)
-          .sub(invariant)
-      )
+    y = y.mul(y).add(c).div(y.mul(2).add(b).sub(invariant))
     if (within1(yPrev, y)) {
       break
     }
@@ -142,37 +121,17 @@ export function calculateStableSpotPrice(
   amplificationCoefficient: BigNumberish
 ): Decimal {
   const invariant = fromFp(calculateInvariant(scaledReserve0, scaledReserve1, amplificationCoefficient))
-  const a = decimal(amplificationCoefficient)
-    .mul(2)
-    .div(A_PRECISION)
+  const a = decimal(amplificationCoefficient).mul(2).div(A_PRECISION)
 
   const b = invariant.mul(a).sub(invariant)
 
   const bal0 = decimal(scaledReserve0)
   const bal1 = decimal(scaledReserve1)
 
-  const axy2 = a
-    .mul(2)
-    .mul(bal0)
-    .mul(bal1)
-    .div(1e18)
+  const axy2 = a.mul(2).mul(bal0).mul(bal1).div(1e18)
 
-  const derivativeX = axy2
-    .add(
-      a
-        .mul(bal1)
-        .mul(bal1)
-        .div(1e18)
-    )
-    .sub(b.mul(bal1).div(1e18))
-  const derivativeY = axy2
-    .add(
-      a
-        .mul(bal0)
-        .mul(bal0)
-        .div(1e18)
-    )
-    .sub(b.mul(bal0).div(1e18))
+  const derivativeX = axy2.add(a.mul(bal1).mul(bal1).div(1e18)).sub(b.mul(bal1).div(1e18))
+  const derivativeY = axy2.add(a.mul(bal0).mul(bal0).div(1e18)).sub(b.mul(bal0).div(1e18))
 
   return derivativeX.div(derivativeY)
 }

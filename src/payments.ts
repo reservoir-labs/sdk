@@ -40,7 +40,7 @@ export abstract class Payments {
         toHex(amountMinimum),
         recipient,
         feeBips,
-        feeRecipient
+        feeRecipient,
       ])
     } else {
       return Payments.INTERFACE.encodeFunctionData('unwrapWETH', [toHex(amountMinimum), recipient])
@@ -64,7 +64,7 @@ export abstract class Payments {
         toHex(amountMinimum),
         recipient,
         feeBips,
-        feeRecipient
+        feeRecipient,
       ])
     } else {
       return Payments.INTERFACE.encodeFunctionData('sweepToken', [token.address, toHex(amountMinimum), recipient])

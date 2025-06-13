@@ -25,7 +25,7 @@ const ERC20_ABI = [
     outputs: [{ name: '', type: 'uint8' }],
     payable: false,
     stateMutability: 'view',
-    type: 'function'
+    type: 'function',
   },
   {
     inputs: [],
@@ -34,11 +34,11 @@ const ERC20_ABI = [
       {
         internalType: 'string',
         name: '',
-        type: 'string'
-      }
+        type: 'string',
+      },
     ],
     stateMutability: 'view',
-    type: 'function'
+    type: 'function',
   },
   {
     inputs: [],
@@ -47,12 +47,12 @@ const ERC20_ABI = [
       {
         internalType: 'string',
         name: '',
-        type: 'string'
-      }
+        type: 'string',
+      },
     ],
     stateMutability: 'view',
-    type: 'function'
-  }
+    type: 'function',
+  },
 ]
 
 /**
@@ -123,7 +123,7 @@ export abstract class Fetcher {
       relevantPairs.add(nativeTokenBStable)
     }
 
-    const promises = Array.from(relevantPairs).map(async value => {
+    const promises = Array.from(relevantPairs).map(async (value) => {
       try {
         return [await this.fetchPairDataUsingAddress(chainId, value, provider)]
       } catch {
@@ -159,8 +159,8 @@ export abstract class Fetcher {
               ...TOKEN_DECIMALS_CACHE,
               [chainId]: {
                 ...TOKEN_DECIMALS_CACHE?.[chainId],
-                [address]: decimals
-              }
+                [address]: decimals,
+              },
             }
             return decimals
           })
