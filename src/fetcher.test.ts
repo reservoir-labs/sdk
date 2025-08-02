@@ -1,13 +1,14 @@
 import { Fetcher } from './fetcher'
-import { BaseProvider } from '@ethersproject/providers'
-import { WebSocketProvider } from '@ethersproject/providers'
+import { BaseProvider, JsonRpcProvider } from '@ethersproject/providers'
 import { Token } from '@reservoir-labs/sdk-core'
 import { Pair } from 'entities'
 
 describe('fetcher', () => {
-  let provider: BaseProvider = new WebSocketProvider('ws://127.0.0.1:8545')
+  let provider: BaseProvider = new JsonRpcProvider('https://api.avax.network/ext/bc/C/rpc')
   const USDC_AVAX = '0x5D60473C5Cb323032d6fdFf42380B50E2AE4d245'
   const USDT_AVAX = '0x6e9FDaE1Fe20b0A5a605C879Ae14030a0aE99cF9'
+  const BTCB_AVAX = '0x152b9d0FdC40C096757F570A51E494bd4b943E50'
+  const WBTCE_AVAX = '0x50b7545627a5162F82A992c33b87aDc75187B218'
 
   describe('fetchAllPairs', () => {
     it('should fetch pairs', async () => {
@@ -21,10 +22,11 @@ describe('fetcher', () => {
     it('should not return pairs that have not been created', async () => {
       const relevantPairs = await Fetcher.fetchRelevantPairs(
         43114,
-        new Token(43114, USDT_AVAX, 6),
-        new Token(43114, USDC_AVAX, 6),
+        new Token(43114, BTCB_AVAX, 8),
+        new Token(43114, WBTCE_AVAX, 8),
         provider
       )
+      console.log(relevantPairs)
       expect(relevantPairs.length).toBeLessThan(6)
       expect(relevantPairs.length).toBeGreaterThan(0)
     })
