@@ -2,6 +2,7 @@ import JSBI from 'jsbi'
 import { SupportedChainId } from '@reservoir-labs/sdk-core'
 
 export const FACTORY_ADDRESS = {
+  1: '0x89D235b4A770CB09ee976dF814266226A23A9315',
   // this is deployed using the ReservoirDeployer
   [SupportedChainId.ARBITRUM]: '0x89D235b4A770CB09ee976dF814266226A23A9315',
   [SupportedChainId.ARBITRUM_SEPOLIA]: '0x89D235b4A770CB09ee976dF814266226A23A9315',

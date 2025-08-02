@@ -2,6 +2,7 @@ import { Token, WETH9, Price, CurrencyAmount } from '@reservoir-labs/sdk-core'
 import { InsufficientInputAmountError } from '../errors'
 import { computePairAddress, Pair } from './pair'
 import JSBI from 'jsbi'
+import { FACTORY_ADDRESS } from '../constants'
 
 describe('computePairAddress', () => {
   it('should correctly compute the pool address', () => {
@@ -16,6 +17,19 @@ describe('computePairAddress', () => {
 
     expect(result).toEqual('0xd770dD269133BE3a5C847da87BA3CAf1edE96700')
   })
+
+  it('should correct compute the pool address on avax', () => {
+    const btcb = new Token(43114, '0x152b9d0FdC40C096757F570A51E494bd4b943E50', 8 , 'BTCB', 'asd')
+    const wbtce = new Token(43114, '0x50b7545627a5162F82A992c33b87aDc75187B218', 18, 'WBTCE', 'WBTCE')
+    const result = computePairAddress({
+      factoryAddress: FACTORY_ADDRESS[43114],
+      tokenA: btcb,
+      tokenB: wbtce,
+      curveId: 1,
+    })
+    expect(result).toEqual('0xF6Ea95d012fd5761527f0DAfB7210Af10E1Da26D')
+  })
+
   it('should give same result regardless of token order', () => {
     const USDC = new Token(1, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 18, 'USDC', 'USD Coin')
     const DAI = new Token(1, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'DAI Stablecoin')
