@@ -4,14 +4,10 @@ module.exports = {
   testEnvironment: 'node',
   // Only run tests in the SDK source tree, ignore vendored sub-modules
   testMatch: ['<rootDir>/src/**/*.test.ts', '<rootDir>/src/**/*.spec.ts'],
-  modulePathIgnorePatterns: [
-    '<rootDir>/lib/',
-    '<rootDir>/dist/',
-    '<rootDir>/node_modules/'
-  ],
+  modulePathIgnorePatterns: ['<rootDir>/lib/', '<rootDir>/dist/', '<rootDir>/node_modules/'],
   globals: {
     'ts-jest': {
-      tsconfig: 'tsconfig.json'
-    }
-  }
+      tsconfig: 'tsconfig.json',
+    },
+  },
 }
