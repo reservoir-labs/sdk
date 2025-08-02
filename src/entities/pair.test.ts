@@ -19,7 +19,7 @@ describe('computePairAddress', () => {
   })
 
   it('should correct compute the pool address on avax', () => {
-    const btcb = new Token(43114, '0x152b9d0FdC40C096757F570A51E494bd4b943E50', 8 , 'BTCB', 'asd')
+    const btcb = new Token(43114, '0x152b9d0FdC40C096757F570A51E494bd4b943E50', 8, 'BTCB', 'asd')
     const wbtce = new Token(43114, '0x50b7545627a5162F82A992c33b87aDc75187B218', 18, 'WBTCE', 'WBTCE')
     const result = computePairAddress({
       factoryAddress: FACTORY_ADDRESS[43114],
